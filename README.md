@@ -37,7 +37,8 @@ python3 -m http.server
 
 - [SOC-Incident-Writeups](https://github.com/moisesceazard-creator/SOC-Incident-Writeups.git) — detailed case write-ups (alert triage, MITRE ATT&CK mapping, containment actions)
 - Security Operations Home Lab
-- Wazuh SIEM & Endpoint Monitoring Lab
+- [Wazuh-SIEM-Endpoint-Monitoring-Lab](https://github.com/moisesceazard-creator/Wazuh-SIEM-Endpoint-Monitoring-Lab)
+- [Nessus-Vulnerability-Assessment-Lab](https://github.com/moisesceazard-creator/Nessus-Vulnerability-Assessment-Lab)
 
 ## Maintenance Notes
 
