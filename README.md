@@ -36,7 +36,7 @@ python3 -m http.server
 ## Project/Repo Links Referenced on the Site
 
 - [SOC-Incident-Writeups](https://github.com/moisesceazard-creator/SOC-Incident-Writeups.git) — detailed case write-ups (alert triage, MITRE ATT&CK mapping, containment actions)
-- Security Operations Home Lab
+- [Security-Onion-Telegram-Alerting](https://github.com/moisesceazard-creator/Security-Onion-Telegram-Alerting)
 - [Wazuh-SIEM-Endpoint-Monitoring-Lab](https://github.com/moisesceazard-creator/Wazuh-SIEM-Endpoint-Monitoring-Lab)
 - [Nessus-Vulnerability-Assessment-Lab](https://github.com/moisesceazard-creator/Nessus-Vulnerability-Assessment-Lab)
 
