@@ -50,6 +50,45 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);overflow-x:h
 .nav-menu a:hover::after{width:100%;}
 .nav-hire{font-size:12px;font-weight:700;padding:8px 20px;border-radius:8px;background:linear-gradient(135deg,var(--blue),var(--blue-l));color:#fff;text-decoration:none;letter-spacing:.04em;transition:all .3s;}
 .nav-hire:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(59,130,246,.5);}
+.nav-menu{gap:1.7rem;}
+.nav-right{display:flex;align-items:center;gap:.6rem;}
+.nav-toggle{display:none;width:38px;height:38px;border-radius:8px;border:1px solid var(--border);background:rgba(255,255,255,.04);cursor:pointer;flex-direction:column;align-items:center;justify-content:center;gap:4px;}
+.nav-toggle span{display:block;width:16px;height:2px;border-radius:2px;background:var(--text);transition:transform .25s,opacity .25s;}
+#nav.open .nav-toggle span:nth-child(1){transform:translateY(6px) rotate(45deg);}
+#nav.open .nav-toggle span:nth-child(2){opacity:0;}
+#nav.open .nav-toggle span:nth-child(3){transform:translateY(-6px) rotate(-45deg);}
+@media(max-width:1100px){
+  .nav-toggle{display:flex;}
+  .nav-menu{display:none;position:absolute;top:64px;left:0;right:0;flex-direction:column;align-items:stretch;gap:0;padding:.4rem 1.2rem 1rem;background:rgba(1,4,9,.97);backdrop-filter:blur(24px);border-bottom:1px solid var(--border);}
+  #nav.open{background:rgba(1,4,9,.97);border-bottom:1px solid var(--border);}
+  #nav.open .nav-menu{display:flex;}
+  .nav-menu a{padding:.85rem .3rem;font-size:15px;color:var(--t2);border-bottom:1px solid var(--border);}
+  .nav-menu a:last-child{border-bottom:none;}
+  .nav-menu a::after{display:none;}
+}
+
+/* HERO PROOF POINTS */
+.hero-proof{list-style:none;display:flex;flex-direction:column;gap:.6rem;margin-bottom:2.2rem;animation:fade-in .8s .4s both;}
+.hero-proof li{display:flex;align-items:flex-start;gap:.65rem;font-size:14.5px;color:var(--t2);line-height:1.5;}
+.hero-proof strong{color:var(--text);font-weight:600;}
+.hp-i{width:1.4rem;flex-shrink:0;text-align:center;}
+
+/* EXPERIENCE TIMELINE */
+.timeline{position:relative;margin-top:3rem;padding-left:2rem;}
+.timeline::before{content:'';position:absolute;left:6px;top:8px;bottom:8px;width:2px;background:linear-gradient(var(--blue),var(--cyan) 60%,transparent);}
+.tl-item{position:relative;margin-bottom:1.1rem;}
+.tl-dot{position:absolute;left:-2rem;top:1.65rem;width:14px;height:14px;border-radius:50%;background:var(--bg);border:2px solid var(--blue);}
+.tl-dot.now{background:var(--green);border-color:var(--green);box-shadow:0 0 12px var(--green);}
+.tl-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:1.4rem 1.6rem;transition:border-color .25s;}
+.tl-card:hover{border-color:var(--border-glow);}
+.tl-head{display:flex;justify-content:space-between;align-items:baseline;gap:.4rem 1rem;flex-wrap:wrap;margin-bottom:.25rem;}
+.tl-role{font-size:1.02rem;font-weight:700;letter-spacing:-.01em;}
+.tl-date{font-size:11px;font-family:var(--mono);color:var(--cyan);white-space:nowrap;}
+.tl-org{font-size:12px;font-family:var(--mono);color:var(--t3);margin-bottom:.9rem;}
+.tl-list{list-style:none;display:flex;flex-direction:column;gap:.45rem;margin-bottom:1rem;}
+.tl-list li{position:relative;padding-left:1.1rem;font-size:13.5px;color:var(--t2);line-height:1.7;}
+.tl-list li::before{content:'▹';position:absolute;left:0;color:var(--blue);}
+@media(max-width:600px){.timeline{padding-left:1.4rem;}.tl-dot{left:-1.4rem;}.tl-card{padding:1.2rem;}}
 
 /* HERO */
 #hero{min-height:100vh;display:flex;align-items:center;padding:7rem 2rem 4rem;position:relative;overflow:hidden;}
@@ -388,6 +427,8 @@ a:focus-visible,button:focus-visible,[role="button"]:focus-visible{outline:2px s
   .hero-left{text-align:center;display:flex;flex-direction:column;align-items:center;}
   .hero-eyebrow{justify-content:center;}
   .hero-pills{justify-content:center;}
+  .hero-proof{align-items:center;}
+  .hero-proof li{text-align:left;max-width:460px;width:100%;}
   .hero-actions{justify-content:center;}
 }
 
@@ -451,16 +492,20 @@ a:focus-visible,button:focus-visible,[role="button"]:focus-visible{outline:2px s
       <div class="nav-logo-icon">MC</div>
       <span class="nav-logo-text"><span>moises</span>ceazar</span>
     </a>
-    <div class="nav-menu">
-      <a href="#about">About</a>
-      <a href="#skills">Skills</a>
+    <div class="nav-menu" id="nav-menu">
+      <a href="#capstone">Capstone</a>
+      <a href="#experience">Experience</a>
       <a href="#projects">Projects</a>
-      <a href="#va-lab">VA Lab</a>
+      <a href="#skills">Skills</a>
+      <a href="#awards">Awards</a>
       <a href="#credentials">Credentials</a>
       <a href="#writeups">Writeups</a>
       <a href="#contact">Contact</a>
     </div>
-    <a href="https://mail.google.com/mail/?view=cm&fs=1&to=moisesceazard@gmail.com" target="_blank" class="nav-hire">Hire Me →</a>
+    <div class="nav-right">
+      <a href="mailto:moisesceazard@gmail.com" class="nav-hire">Hire Me →</a>
+      <button class="nav-toggle" id="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="nav-menu"><span></span><span></span><span></span></button>
+    </div>
   </div>
 </nav>
 
@@ -480,14 +525,14 @@ a:focus-visible,button:focus-visible,[role="button"]:focus-visible{outline:2px s
         <span class="hero-name-line name-plain">Moises Ceazar</span>
         <span class="hero-name-line name-gradient">Del Mundo</span>
       </h1>
-      <p class="hero-role"><strong>SOC Analyst Intern Candidate</strong> — Blue Team Operations &amp; Security Monitoring.<br/>Turning lab hours into real-world cyber defense readiness.</p>
-      <div class="hero-pills">
-        <span class="pill">ISC2 CC</span><span class="pill">SIEM</span><span class="pill">Blue Team</span>
-        <span class="pill">Wazuh</span><span class="pill">Threat Detection</span><span class="pill">LetsDefend</span>
-        <span class="pill">De La Salle Lipa</span><span class="pill">Dean's Lister</span><span class="pill">🏆 Best Capstone 2026</span>
-      </div>
+      <p class="hero-role"><strong>SOC Analyst Intern Candidate</strong> — a fourth-year Information Security student who built and deployed a working SOC for a city government.</p>
+      <ul class="hero-proof">
+        <li><span class="hp-i">🏆</span><span><strong>1st Place, Best Capstone</strong> — Information Security Track, IT Colloquium '26–'27</span></li>
+        <li><span class="hp-i">🛡️</span><span><strong>ISC2 Certified in Cybersecurity (CC)</strong> · Appkademiya CCP</span></li>
+        <li><span class="hp-i">📈</span><span><strong>9.7M events</strong> monitored in a live government SOC deployment</span></li>
+      </ul>
       <div class="hero-actions">
-        <a href="#projects" class="btn btn-primary">View Projects →</a>
+        <a href="#capstone" class="btn btn-primary">See My Capstone →</a>
         <a href="#contact" class="btn btn-ghost">Contact Me</a>
       </div>
     </div>
@@ -548,99 +593,12 @@ a:focus-visible,button:focus-visible,[role="button"]:focus-visible{outline:2px s
   </div>
 </div>
 
-<!-- ABOUT -->
-<section id="about" class="section" style="background:var(--s1);">
+<!-- FEATURED CAPSTONE -->
+<section id="capstone" class="section" style="background:var(--s1);">
   <div class="section-inner">
-    <div class="s-eyebrow rev">01 — About</div>
-    <h2 class="s-title rev">Who I Am</h2>
-    <div class="about-grid">
-      <div class="about-body rev">
-        <p>I'm a <strong>fourth-year BSIT student majoring in Information Security at De La Salle Lipa</strong>, focused on Blue Team operations: SOC monitoring, SIEM operations, threat detection, vulnerability assessment, and patch management. I don't just study cybersecurity — I build environments where I practice it every single day.</p>
-        <p>As a <strong>SOC lab mentee in the DysrupIT–DLSL partnership</strong>, I worked hands-on with Security Onion, Wazuh, Kibana, Zeek, Suricata, T-Pot honeypots, Sophos Central, Action1 RMM, and Fortinet FortiGate. I independently built a <strong>Proxmox VE virtualized lab</strong> to run Nessus and OpenVAS vulnerability assessments and PowerShell remediation.</p>
-        <p>I practice real <strong>SOC Tier 1 workflows</strong> daily through LetsDefend — alert triage, phishing analysis, malware investigation, and incident handling. Currently pursuing <strong>CompTIA Security+</strong> as my next milestone.</p>
-      </div>
-      <div class="facts rev d1">
-        <div class="fact"><div class="fact-i"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" ><path d="M22 10 12 5 2 10l10 5 10-5Z"/><path d="M6 12v5c0 1 3 3 6 3s6-2 6-3v-5"/></svg></div><div><div class="fact-k">Education</div><div class="fact-v">BSIT, Major in Information Security — De La Salle Lipa · 4th Year · Expected graduation June 2027</div></div></div>
-        <div class="fact"><div class="fact-i"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" ><path d="M12 21s-7-6.5-7-12a7 7 0 0 1 14 0c0 5.5-7 12-7 12z"/><circle cx="12" cy="9" r="2.5"/></svg></div><div><div class="fact-k">Location</div><div class="fact-v">Lipa City, Batangas, Philippines</div></div></div>
-        <div class="fact"><div class="fact-i"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" ><circle cx="12" cy="8" r="6"/><path d="M9 14.5 6 22l6-3 6 3-3-7.5"/></svg></div><div><div class="fact-k">Achievements</div><div class="fact-v">1st Place Best Capstone (Information Security Track) &amp; 1st Place Best Group Presentation — IT Colloquium '26–'27 · Dean's Lister · NSTP Lingkod Awardee (2024) · Top Student Awardee — IT Elective 2 (Information Security): Security Planning, Implementation &amp; Audit (2026)</div></div></div>
-        <div class="fact"><div class="fact-i"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" ><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.3" fill="currentColor" stroke="none"/></svg></div><div><div class="fact-k">Target Role</div><div class="fact-v">SOC Analyst Intern · Blue Team · Cybersecurity OJT</div></div></div>
-        <div class="fact"><div class="fact-i"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" ><path d="M2 4h7a4 4 0 0 1 4 4v13a3 3 0 0 0-3-3H2V4z"/><path d="M22 4h-7a4 4 0 0 0-4 4v13a3 3 0 0 1 3-3h8V4z"/></svg></div><div><div class="fact-k">Studying</div><div class="fact-v">Google Cybersecurity Certificate (in progress) · CompTIA Security+ · Splunk SIEM</div></div></div>
-        <div class="fact"><div class="fact-i"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" ><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div><div><div class="fact-k">Available</div><div class="fact-v">Internship / OJT · Philippines · 2026</div></div></div>
-      </div>
-    </div>
-    <div class="honor rev">
-      <div class="honor-text">
-        <div class="awards"><span class="award">🏅 Top Student Awardee</span></div>
-        <div class="capstone-kicker">Academic Honors · JPCS – DLSL Chapter · April 21, 2026</div>
-        <h3 class="capstone-title">Top Student — IT Elective 2 (Information Security): Security Planning, Implementation &amp; Audit</h3>
-        <p class="capstone-desc">Recognized as one of the top students in the IT Elective 2 (Information Security) class of IT3D for the First Semester of Academic Year 2025–2026, presented by the Junior Philippine Computer Society – De La Salle Lipa Chapter and the IT Program.</p>
-      </div>
-      <div class="honor-gallery">
-        <div class="cg-item wide" onclick="openModal('Certificate of Achievement — Top Student, IT Elective 2 (Information Security)','images/honors/top-student-certificate.jpg',true)"><img loading="lazy" decoding="async" src="images/honors/top-student-certificate.jpg" alt="Certificate of Achievement and Top Student medal for IT Elective 2 (Information Security)"/><div class="cg-cap">Certificate &amp; medal</div></div>
-        <div class="cg-item" onclick="openModal('Top Student Awardee — Awards Night','images/honors/top-student-awards-night.jpg',true)"><img loading="lazy" decoding="async" src="images/honors/top-student-awards-night.jpg" alt="Moises holding the Top Student certificate at the awards night" style="object-position:center 55%"/><div class="cg-cap">Awards night</div></div>
-        <div class="cg-item" onclick="openModal('Top Student medal','images/honors/top-student-medal.jpg',true)"><img loading="lazy" decoding="async" src="images/honors/top-student-medal.jpg" alt="Moises with the Top Student medal and certificate" style="object-position:center 50%"/><div class="cg-cap">Top Student medal</div></div>
-      </div>
-    </div>
-    <div class="honor rev">
-      <div class="honor-text">
-        <div class="awards"><span class="award">🎖️ NSTP Lingkod Awardee</span></div>
-        <div class="capstone-kicker">Community Service · NSTP · De La Salle Lipa · June 14, 2024</div>
-        <h3 class="capstone-title">NSTP Lingkod Award — Community Service Learning</h3>
-        <p class="capstone-desc">Spearheaded our NSTP group's community service project at a local public school, teaching students basic computer skills: how to navigate and use a computer, and how to work with Microsoft Office apps like Word. Recognized for exceptional dedication and service to the community.</p>
-      </div>
-      <div class="honor-gallery">
-        <div class="cg-item wide" onclick="openModal('Certificate of Recognition — NSTP Lingkod Award','images/nstp/lingkod-award-certificate.jpg',true)"><img loading="lazy" decoding="async" src="images/nstp/lingkod-award-certificate.jpg" alt="NSTP Lingkod Award certificate of recognition and NSTP medal"/><div class="cg-cap">Certificate &amp; medal</div></div>
-        <div class="cg-item" onclick="openModal('Teaching basic computer skills','images/nstp/teaching-computer-basics.jpg',true)"><img loading="lazy" decoding="async" src="images/nstp/teaching-computer-basics.jpg" alt="Moises teaching a computer basics lesson from a laptop connected to the classroom TV"/><div class="cg-cap">Teaching the lesson</div></div>
-        <div class="cg-item" onclick="openModal('Our NSTP community service group','images/nstp/nstp-team.jpg',true)"><img loading="lazy" decoding="async" src="images/nstp/nstp-team.jpg" alt="The NSTP community service group" style="object-position:center 65%"/><div class="cg-cap">Our NSTP group</div></div>
-      </div>
-    </div>
-    <div class="honor rev">
-      <div class="honor-text">
-        <div class="awards"><span class="award">🤝 Student Leadership</span></div>
-        <div class="capstone-kicker">Leadership · Junior Philippine Computer Society – DLSL Chapter</div>
-        <h3 class="capstone-title">JPCS Officer — Internal Affairs &amp; IT Student Representation</h3>
-        <div class="roles">
-          <div class="role"><span class="role-dot now"></span><div><div class="role-t">Project Head, Internal Affairs (IT)</div><div class="role-d">Current role</div></div></div>
-          <div class="role"><span class="role-dot"></span><div><div class="role-t">3rd Year IT Representative</div><div class="role-d">AY 2025–2026</div></div></div>
-        </div>
-        <p class="capstone-desc">Lead student committees organizing department-wide IT workshops, technical seminars and academic competitions for 200+ attendees. Write the paperwork behind each event for administrative approval — concept papers, SWOT analyses, narrative reports and executive summaries — and handle stakeholder communication and promotional media.</p>
-        <div class="tags" style="margin-top:1rem;"><span class="t">Event Planning</span><span class="t">Concept Papers</span><span class="t">SWOT Analysis</span><span class="t">Narrative Reports</span><span class="t">Executive Summaries</span><span class="t">Google Workspace</span></div>
-      </div>
-      <div class="honor-gallery">
-        <div class="cg-item wide" onclick="openModal('JPCS – DLSL event officers and guests','images/leadership/jpcs-event-officers.jpg',true)"><img loading="lazy" decoding="async" src="images/leadership/jpcs-event-officers.jpg" alt="JPCS – DLSL Chapter officers and guests on stage after a chapter event"/><div class="cg-cap">JPCS – DLSL event</div></div>
-        <div class="cg-item" onclick="openModal('Opening remarks — JPCS – DLSL event','images/leadership/jpcs-event-opening-remarks.jpg',true)"><img loading="lazy" decoding="async" src="images/leadership/jpcs-event-opening-remarks.jpg" alt="Opening remarks at a JPCS – DLSL Chapter event" style="object-position:30% center"/><div class="cg-cap">Opening remarks</div></div>
-        <div class="cg-item" onclick="openModal('JPCS Nite 2026 — JPCS – DLSL Chapter','images/leadership/jpcs-nite-2026.jpg',true)"><img loading="lazy" decoding="async" src="images/leadership/jpcs-nite-2026.jpg" alt="JPCS – DLSL Chapter members at JPCS Nite 2026" style="object-position:center 42%"/><div class="cg-cap">JPCS Nite 2026</div></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- SKILLS -->
-<section id="skills" class="section">
-  <div class="section-inner">
-    <div class="s-eyebrow rev">02 — Skills</div>
-    <h2 class="s-title rev">Technical Arsenal</h2>
-    <p class="s-sub rev">Built through real lab environments — not just coursework.</p>
-    <div class="skills-grid">
-      <div class="sk-card rev"><span class="sk-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" ><circle cx="12" cy="12" r="2"/><path d="M16.24 7.76a6 6 0 0 1 0 8.49M7.76 16.24a6 6 0 0 1 0-8.49M19.07 4.93a10 10 0 0 1 0 14.14M4.93 4.93a10 10 0 0 1 0 14.14"/></svg></span><div class="sk-title">SIEM &amp; Monitoring</div><div class="tags"><span class="t">Security Onion</span><span class="t">Wazuh SIEM/XDR</span><span class="t">Elasticsearch</span><span class="t">Logstash</span><span class="t">Kibana</span><span class="t">Suricata</span><span class="t">Zeek</span><span class="t">ElastAlert 2</span></div></div>
-      <div class="sk-card rev d1"><span class="sk-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" ><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></span><div class="sk-title">Vulnerability Assessment</div><div class="tags"><span class="t">Tenable Nessus</span><span class="t">OpenVAS</span><span class="t">Nmap</span><span class="t">Patch Management</span><span class="t">Vulnerability Remediation</span><span class="t">CVE Analysis</span></div></div>
-      <div class="sk-card rev d2"><span class="sk-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" ><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></span><div class="sk-title">Endpoint &amp; Network</div><div class="tags"><span class="t">Sophos Central</span><span class="t">Action1 RMM</span><span class="t">Fortinet FortiGate</span><span class="t">File Integrity Monitoring</span><span class="t">T-Pot Honeypot</span><span class="t">IDS/IPS</span></div></div>
-      <div class="sk-card rev"><span class="sk-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" ><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></span><div class="sk-title">SOC Competencies</div><div class="tags"><span class="t">Alert Triage</span><span class="t">Threat Detection</span><span class="t">Log Analysis</span><span class="t">IOC Identification</span><span class="t">Phishing Triage</span><span class="t">Email-Header Analysis</span><span class="t">Malware Investigation</span><span class="t">Incident Response</span></div></div>
-      <div class="sk-card rev d1"><span class="sk-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" ><rect x="8" y="6" width="8" height="14" rx="4"/><path d="M8 12H2M16 12h6M8 8 3 5M16 8l5-3M8 16l-5 3M16 16l5 3M12 6V2"/></svg></span><div class="sk-title">Security Testing</div><div class="tags"><span class="t">Nmap Recon</span><span class="t">Hydra Brute-Force Simulation</span><span class="t">Telnet (Cleartext Risk)</span><span class="t">Detection Validation</span><span class="t">Custom Detection Rules</span></div></div>
-      <div class="sk-card rev d2"><span class="sk-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" ><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg></span><div class="sk-title">Systems &amp; Scripting</div><div class="tags"><span class="t">Windows Sysinternals</span><span class="t">Sysmon</span><span class="t">Process Explorer</span><span class="t">Autoruns</span><span class="t">PowerShell</span><span class="t">Active Directory</span><span class="t">Linux</span><span class="t">Bash</span><span class="t">Proxmox VE</span></div></div>
-      <div class="sk-card rev"><span class="sk-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" ><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg></span><div class="sk-title">Frameworks &amp; Governance</div><div class="tags"><span class="t">NIST CSF 2.0</span><span class="t">MITRE ATT&amp;CK</span><span class="t">STRIDE Threat Modeling</span><span class="t">Philippine NCSP 2023–2028</span><span class="t">Group Policy (GPO)</span><span class="t">RBAC</span></div></div>
-      <div class="sk-card rev d1"><span class="sk-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" ><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.3" fill="currentColor" stroke="none"/></svg></span><div class="sk-title">Training Platforms</div><div class="tags"><span class="t">LetsDefend</span><span class="t">Hack The Box</span><span class="t">VirusTotal</span><span class="t">Any.run</span><span class="t">MXToolbox</span></div></div>
-      <div class="sk-card rev d2"><span class="sk-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" ><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="8" y1="13" x2="16" y2="13"/><line x1="8" y1="17" x2="16" y2="17"/></svg></span><div class="sk-title">Documentation &amp; Communication</div><div class="tags"><span class="t">Technical Documentation</span><span class="t">Concept Papers</span><span class="t">SWOT Analysis</span><span class="t">Narrative Reports</span><span class="t">Executive Summaries</span><span class="t">Stakeholder Communication</span><span class="t">Google Workspace</span></div></div>
-    </div>
-  </div>
-</section>
-
-<!-- PROJECTS -->
-<section id="projects" class="section" style="background:var(--s1);">
-  <div class="section-inner">
-    <div class="s-eyebrow rev">03 — Projects</div>
-    <h2 class="s-title rev">Lab Projects</h2>
-    <p class="s-sub rev">Hands-on environments simulating real SOC workflows.</p>
+    <div class="s-eyebrow rev">01 — Featured</div>
+    <h2 class="s-title rev">Award-Winning Capstone</h2>
+    <p class="s-sub rev">A working SOC deployed into a real city government network — built, tested, hardened, and handed over.</p>
     <div class="capstone rev">
       <div>
         <div class="awards"><span class="award">🏆 1st Place · Best Capstone Project — Information Security Track</span><span class="award">🏆 1st Place · Best Group Presentation</span></div>
@@ -670,6 +628,85 @@ a:focus-visible,button:focus-visible,[role="button"]:focus-visible{outline:2px s
       </div>
       <div class="capstone-event">First IT Colloquium of De La Salle Lipa · organized by JPCS – DLSL Chapter · Oct 16, 2026 · Senator Diokno Auditorium</div>
     </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience" class="section">
+  <div class="section-inner">
+    <div class="s-eyebrow rev">02 — Experience</div>
+    <h2 class="s-title rev">Hands-On Experience</h2>
+    <p class="s-sub rev">Real deployments, industry mentorship and leadership — not just coursework.</p>
+    <div class="timeline">
+      <div class="tl-item rev">
+        <span class="tl-dot now"></span>
+        <div class="tl-card">
+          <div class="tl-head"><div class="tl-role">SOC Deployment Team — Capstone Project (Group 6)</div><div class="tl-date">2025 – 2026 · Live Aug 2026</div></div>
+          <div class="tl-org">MIS Office, Tanauan City Hall · Real client deployment</div>
+          <ul class="tl-list"><li>Deployed Security Onion on the city hall network via a SPAN/mirror port and enrolled five pilot endpoints with Elastic Agent for host and network visibility.</li><li>Built custom Kibana host and network monitoring dashboards and STRIDE / MITRE ATT&amp;CK-mapped detection rules for brute force, port scanning, USB exfiltration and C2 traffic.</li><li>Delivered plain-language Telegram alerts via ElastAlert 2 (~1.5 min average) and incident tracking with Security Onion Cases; indexed 9.7M+ events in four days live.</li><li>Hardened the server after the defense — MFA, secrets storage, key-only SSH — raising the Lynis index from 68 to 83. Endorsed by the MIS Department Head for continued use.</li></ul>
+          <div class="tags"><span class="t">Security Onion</span><span class="t">Elastic Stack</span><span class="t">Suricata</span><span class="t">Zeek</span><span class="t">ElastAlert 2</span><span class="t">NIST CSF 2.0</span></div>
+        </div>
+      </div>
+      <div class="tl-item rev d1">
+        <span class="tl-dot now"></span>
+        <div class="tl-card">
+          <div class="tl-head"><div class="tl-role">Project Head, Internal Affairs (IT) · previously 3rd Year IT Representative</div><div class="tl-date">AY 2025–2026 – Present</div></div>
+          <div class="tl-org">Junior Philippine Computer Society – De La Salle Lipa Chapter</div>
+          <ul class="tl-list"><li>Lead student committees organizing department-wide IT workshops, technical seminars and academic competitions for 200+ attendees.</li><li>Write the documentation behind each event for administrative approval: concept papers, SWOT analyses, narrative reports and executive summaries.</li><li>Handle stakeholder communication and promotional media to drive student engagement.</li></ul>
+          <div class="tags"><span class="t">Event Planning</span><span class="t">Concept Papers</span><span class="t">SWOT Analysis</span><span class="t">Google Workspace</span></div>
+        </div>
+      </div>
+      <div class="tl-item rev d2">
+        <span class="tl-dot"></span>
+        <div class="tl-card">
+          <div class="tl-head"><div class="tl-role">Security Operations Center Lab Mentee</div><div class="tl-date">2025 – 2026</div></div>
+          <div class="tl-org">DysrupIT × De La Salle Lipa Partnership · Industry mentorship</div>
+          <ul class="tl-list"><li>Deployed Action1 RMM across lab endpoints to find missing patches and vulnerabilities, run patch management and software deployment, and support remediation.</li><li>Ran controlled simulations — Nmap reconnaissance, Hydra credential brute-forcing, Telnet cleartext exposure — to evaluate NIDS/HIDS detection.</li><li>Analyzed processes, persistence and endpoint alerts with Windows Sysinternals and Sophos Central; triaged phishing via email-header analysis and reviewed T-Pot honeypot attacker logs.</li></ul>
+          <div class="tags"><span class="t">Action1 RMM</span><span class="t">Sophos Central</span><span class="t">Sysinternals</span><span class="t">Nmap</span><span class="t">Hydra</span><span class="t">T-Pot</span></div>
+        </div>
+      </div>
+      <div class="tl-item rev d3">
+        <span class="tl-dot"></span>
+        <div class="tl-card">
+          <div class="tl-head"><div class="tl-role">Community Service Lead — NSTP</div><div class="tl-date">2024</div></div>
+          <div class="tl-org">De La Salle Lipa · NSTP Community Service Learning</div>
+          <ul class="tl-list"><li>Spearheaded our group's community service at a public school, teaching students basic computer skills and Microsoft Office.</li><li>Received the NSTP Lingkod Award (June 14, 2024) for exceptional dedication and service to the community.</li></ul>
+          <div class="tags"><span class="t">Teaching</span><span class="t">Leadership</span><span class="t">Community Service</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about" class="section" style="background:var(--s1);">
+  <div class="section-inner">
+    <div class="s-eyebrow rev">03 — About</div>
+    <h2 class="s-title rev">Who I Am</h2>
+    <div class="about-grid">
+      <div class="about-body rev">
+        <p>I'm a <strong>fourth-year BSIT student majoring in Information Security at De La Salle Lipa</strong>, focused on Blue Team operations: SOC monitoring, SIEM operations, threat detection, vulnerability assessment, and patch management. I don't just study cybersecurity — I build environments where I practice it every single day.</p>
+        <p>As a <strong>SOC lab mentee in the DysrupIT–DLSL partnership</strong>, I worked hands-on with Security Onion, Wazuh, Kibana, Zeek, Suricata, T-Pot honeypots, Sophos Central, Action1 RMM, and Fortinet FortiGate. I independently built a <strong>Proxmox VE virtualized lab</strong> to run Nessus and OpenVAS vulnerability assessments and PowerShell remediation.</p>
+        <p>I practice real <strong>SOC Tier 1 workflows</strong> daily through LetsDefend — alert triage, phishing analysis, malware investigation, and incident handling. Currently pursuing <strong>CompTIA Security+</strong> as my next milestone.</p>
+      </div>
+      <div class="facts rev d1">
+        <div class="fact"><div class="fact-i"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" ><path d="M22 10 12 5 2 10l10 5 10-5Z"/><path d="M6 12v5c0 1 3 3 6 3s6-2 6-3v-5"/></svg></div><div><div class="fact-k">Education</div><div class="fact-v">BSIT, Major in Information Security — De La Salle Lipa · 4th Year · Expected graduation June 2027</div></div></div>
+        <div class="fact"><div class="fact-i"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" ><path d="M12 21s-7-6.5-7-12a7 7 0 0 1 14 0c0 5.5-7 12-7 12z"/><circle cx="12" cy="9" r="2.5"/></svg></div><div><div class="fact-k">Location</div><div class="fact-v">Lipa City, Batangas, Philippines</div></div></div>
+        <div class="fact"><div class="fact-i"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" ><circle cx="12" cy="8" r="6"/><path d="M9 14.5 6 22l6-3 6 3-3-7.5"/></svg></div><div><div class="fact-k">Achievements</div><div class="fact-v">1st Place Best Capstone (Information Security Track) &amp; 1st Place Best Group Presentation — IT Colloquium '26–'27 · Dean's Lister · NSTP Lingkod Awardee (2024) · Top Student Awardee — IT Elective 2 (Information Security): Security Planning, Implementation &amp; Audit (2026)</div></div></div>
+        <div class="fact"><div class="fact-i"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" ><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.3" fill="currentColor" stroke="none"/></svg></div><div><div class="fact-k">Target Role</div><div class="fact-v">SOC Analyst Intern · Blue Team · Cybersecurity OJT</div></div></div>
+        <div class="fact"><div class="fact-i"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" ><path d="M2 4h7a4 4 0 0 1 4 4v13a3 3 0 0 0-3-3H2V4z"/><path d="M22 4h-7a4 4 0 0 0-4 4v13a3 3 0 0 1 3-3h8V4z"/></svg></div><div><div class="fact-k">Studying</div><div class="fact-v">Google Cybersecurity Certificate (in progress) · CompTIA Security+ · Splunk SIEM</div></div></div>
+        <div class="fact"><div class="fact-i"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" ><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div><div><div class="fact-k">Available</div><div class="fact-v">Internship / OJT · Philippines · 2026</div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects" class="section">
+  <div class="section-inner">
+    <div class="s-eyebrow rev">04 — Projects</div>
+    <h2 class="s-title rev">Lab Projects</h2>
+    <p class="s-sub rev">Hands-on environments simulating real SOC workflows.</p>
     <div class="projects-grid">
       <div class="proj-card rev">
         <div class="proj-top"><div class="proj-icon pi-b"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" ><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div><div class="proj-bgs"><span class="pbg pbg-b">SOC LAB</span><span class="pbg pbg-b">MENTORSHIP</span></div></div>
@@ -747,9 +784,9 @@ a:focus-visible,button:focus-visible,[role="button"]:focus-visible{outline:2px s
 
 
 <!-- VULNERABILITY ASSESSMENT -->
-<section id="va-lab" class="section">
+<section id="va-lab" class="section" style="background:var(--s1);">
   <div class="section-inner">
-    <div class="s-eyebrow rev">03b — Vulnerability Assessment</div>
+    <div class="s-eyebrow rev">04b — Vulnerability Assessment</div>
     <h2 class="s-title rev">Nessus Vulnerability Playbooks</h2>
     <p class="s-sub rev">Real remediation playbooks from hands-on Nessus scanning — with before/after proof of resolution.</p>
 
@@ -888,10 +925,83 @@ a:focus-visible,button:focus-visible,[role="button"]:focus-visible{outline:2px s
   </div>
 </section>
 
+<!-- SKILLS -->
+<section id="skills" class="section">
+  <div class="section-inner">
+    <div class="s-eyebrow rev">05 — Skills</div>
+    <h2 class="s-title rev">Technical Arsenal</h2>
+    <p class="s-sub rev">Built through real lab environments — not just coursework.</p>
+    <div class="skills-grid">
+      <div class="sk-card rev"><span class="sk-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" ><circle cx="12" cy="12" r="2"/><path d="M16.24 7.76a6 6 0 0 1 0 8.49M7.76 16.24a6 6 0 0 1 0-8.49M19.07 4.93a10 10 0 0 1 0 14.14M4.93 4.93a10 10 0 0 1 0 14.14"/></svg></span><div class="sk-title">SIEM &amp; Monitoring</div><div class="tags"><span class="t">Security Onion</span><span class="t">Wazuh SIEM/XDR</span><span class="t">Elasticsearch</span><span class="t">Logstash</span><span class="t">Kibana</span><span class="t">Suricata</span><span class="t">Zeek</span><span class="t">ElastAlert 2</span></div></div>
+      <div class="sk-card rev d1"><span class="sk-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" ><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></span><div class="sk-title">Vulnerability Assessment</div><div class="tags"><span class="t">Tenable Nessus</span><span class="t">OpenVAS</span><span class="t">Nmap</span><span class="t">Patch Management</span><span class="t">Vulnerability Remediation</span><span class="t">CVE Analysis</span></div></div>
+      <div class="sk-card rev d2"><span class="sk-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" ><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></span><div class="sk-title">Endpoint &amp; Network</div><div class="tags"><span class="t">Sophos Central</span><span class="t">Action1 RMM</span><span class="t">Fortinet FortiGate</span><span class="t">File Integrity Monitoring</span><span class="t">T-Pot Honeypot</span><span class="t">IDS/IPS</span></div></div>
+      <div class="sk-card rev"><span class="sk-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" ><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></span><div class="sk-title">SOC Competencies</div><div class="tags"><span class="t">Alert Triage</span><span class="t">Threat Detection</span><span class="t">Log Analysis</span><span class="t">IOC Identification</span><span class="t">Phishing Triage</span><span class="t">Email-Header Analysis</span><span class="t">Malware Investigation</span><span class="t">Incident Response</span></div></div>
+      <div class="sk-card rev d1"><span class="sk-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" ><rect x="8" y="6" width="8" height="14" rx="4"/><path d="M8 12H2M16 12h6M8 8 3 5M16 8l5-3M8 16l-5 3M16 16l5 3M12 6V2"/></svg></span><div class="sk-title">Security Testing</div><div class="tags"><span class="t">Nmap Recon</span><span class="t">Hydra Brute-Force Simulation</span><span class="t">Telnet (Cleartext Risk)</span><span class="t">Detection Validation</span><span class="t">Custom Detection Rules</span></div></div>
+      <div class="sk-card rev d2"><span class="sk-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" ><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg></span><div class="sk-title">Systems &amp; Scripting</div><div class="tags"><span class="t">Windows Sysinternals</span><span class="t">Sysmon</span><span class="t">Process Explorer</span><span class="t">Autoruns</span><span class="t">PowerShell</span><span class="t">Active Directory</span><span class="t">Linux</span><span class="t">Bash</span><span class="t">Proxmox VE</span></div></div>
+      <div class="sk-card rev"><span class="sk-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" ><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg></span><div class="sk-title">Frameworks &amp; Governance</div><div class="tags"><span class="t">NIST CSF 2.0</span><span class="t">MITRE ATT&amp;CK</span><span class="t">STRIDE Threat Modeling</span><span class="t">Philippine NCSP 2023–2028</span><span class="t">Group Policy (GPO)</span><span class="t">RBAC</span></div></div>
+      <div class="sk-card rev d1"><span class="sk-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" ><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.3" fill="currentColor" stroke="none"/></svg></span><div class="sk-title">Training Platforms</div><div class="tags"><span class="t">LetsDefend</span><span class="t">Hack The Box</span><span class="t">VirusTotal</span><span class="t">Any.run</span><span class="t">MXToolbox</span></div></div>
+      <div class="sk-card rev d2"><span class="sk-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" ><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="8" y1="13" x2="16" y2="13"/><line x1="8" y1="17" x2="16" y2="17"/></svg></span><div class="sk-title">Documentation &amp; Communication</div><div class="tags"><span class="t">Technical Documentation</span><span class="t">Concept Papers</span><span class="t">SWOT Analysis</span><span class="t">Narrative Reports</span><span class="t">Executive Summaries</span><span class="t">Stakeholder Communication</span><span class="t">Google Workspace</span></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- AWARDS & LEADERSHIP -->
+<section id="awards" class="section" style="background:var(--s1);">
+  <div class="section-inner">
+    <div class="s-eyebrow rev">06 — Awards &amp; Leadership</div>
+    <h2 class="s-title rev">Recognition &amp; Leadership</h2>
+    <p class="s-sub rev">Academic honors, community service and student leadership at De La Salle Lipa.</p>
+    <div class="honor rev">
+      <div class="honor-text">
+        <div class="awards"><span class="award">🏅 Top Student Awardee</span></div>
+        <div class="capstone-kicker">Academic Honors · JPCS – DLSL Chapter · April 21, 2026</div>
+        <h3 class="capstone-title">Top Student — IT Elective 2 (Information Security): Security Planning, Implementation &amp; Audit</h3>
+        <p class="capstone-desc">Recognized as one of the top students in the IT Elective 2 (Information Security) class of IT3D for the First Semester of Academic Year 2025–2026, presented by the Junior Philippine Computer Society – De La Salle Lipa Chapter and the IT Program.</p>
+      </div>
+      <div class="honor-gallery">
+        <div class="cg-item wide" onclick="openModal('Certificate of Achievement — Top Student, IT Elective 2 (Information Security)','images/honors/top-student-certificate.jpg',true)"><img loading="lazy" decoding="async" src="images/honors/top-student-certificate.jpg" alt="Certificate of Achievement and Top Student medal for IT Elective 2 (Information Security)"/><div class="cg-cap">Certificate &amp; medal</div></div>
+        <div class="cg-item" onclick="openModal('Top Student Awardee — Awards Night','images/honors/top-student-awards-night.jpg',true)"><img loading="lazy" decoding="async" src="images/honors/top-student-awards-night.jpg" alt="Moises holding the Top Student certificate at the awards night" style="object-position:center 55%"/><div class="cg-cap">Awards night</div></div>
+        <div class="cg-item" onclick="openModal('Top Student medal','images/honors/top-student-medal.jpg',true)"><img loading="lazy" decoding="async" src="images/honors/top-student-medal.jpg" alt="Moises with the Top Student medal and certificate" style="object-position:center 50%"/><div class="cg-cap">Top Student medal</div></div>
+      </div>
+    </div>
+    <div class="honor rev">
+      <div class="honor-text">
+        <div class="awards"><span class="award">🎖️ NSTP Lingkod Awardee</span></div>
+        <div class="capstone-kicker">Community Service · NSTP · De La Salle Lipa · June 14, 2024</div>
+        <h3 class="capstone-title">NSTP Lingkod Award — Community Service Learning</h3>
+        <p class="capstone-desc">Spearheaded our NSTP group's community service project at a local public school, teaching students basic computer skills: how to navigate and use a computer, and how to work with Microsoft Office apps like Word. Recognized for exceptional dedication and service to the community.</p>
+      </div>
+      <div class="honor-gallery">
+        <div class="cg-item wide" onclick="openModal('Certificate of Recognition — NSTP Lingkod Award','images/nstp/lingkod-award-certificate.jpg',true)"><img loading="lazy" decoding="async" src="images/nstp/lingkod-award-certificate.jpg" alt="NSTP Lingkod Award certificate of recognition and NSTP medal"/><div class="cg-cap">Certificate &amp; medal</div></div>
+        <div class="cg-item" onclick="openModal('Teaching basic computer skills','images/nstp/teaching-computer-basics.jpg',true)"><img loading="lazy" decoding="async" src="images/nstp/teaching-computer-basics.jpg" alt="Moises teaching a computer basics lesson from a laptop connected to the classroom TV"/><div class="cg-cap">Teaching the lesson</div></div>
+        <div class="cg-item" onclick="openModal('Our NSTP community service group','images/nstp/nstp-team.jpg',true)"><img loading="lazy" decoding="async" src="images/nstp/nstp-team.jpg" alt="The NSTP community service group" style="object-position:center 65%"/><div class="cg-cap">Our NSTP group</div></div>
+      </div>
+    </div>
+    <div class="honor rev">
+      <div class="honor-text">
+        <div class="awards"><span class="award">🤝 Student Leadership</span></div>
+        <div class="capstone-kicker">Leadership · Junior Philippine Computer Society – DLSL Chapter</div>
+        <h3 class="capstone-title">JPCS Officer — Internal Affairs &amp; IT Student Representation</h3>
+        <div class="roles">
+          <div class="role"><span class="role-dot now"></span><div><div class="role-t">Project Head, Internal Affairs (IT)</div><div class="role-d">Current role</div></div></div>
+          <div class="role"><span class="role-dot"></span><div><div class="role-t">3rd Year IT Representative</div><div class="role-d">AY 2025–2026</div></div></div>
+        </div>
+        <p class="capstone-desc">Lead student committees organizing department-wide IT workshops, technical seminars and academic competitions for 200+ attendees. Write the paperwork behind each event for administrative approval — concept papers, SWOT analyses, narrative reports and executive summaries — and handle stakeholder communication and promotional media.</p>
+        <div class="tags" style="margin-top:1rem;"><span class="t">Event Planning</span><span class="t">Concept Papers</span><span class="t">SWOT Analysis</span><span class="t">Narrative Reports</span><span class="t">Executive Summaries</span><span class="t">Google Workspace</span></div>
+      </div>
+      <div class="honor-gallery">
+        <div class="cg-item wide" onclick="openModal('JPCS – DLSL event officers and guests','images/leadership/jpcs-event-officers.jpg',true)"><img loading="lazy" decoding="async" src="images/leadership/jpcs-event-officers.jpg" alt="JPCS – DLSL Chapter officers and guests on stage after a chapter event"/><div class="cg-cap">JPCS – DLSL event</div></div>
+        <div class="cg-item" onclick="openModal('Opening remarks — JPCS – DLSL event','images/leadership/jpcs-event-opening-remarks.jpg',true)"><img loading="lazy" decoding="async" src="images/leadership/jpcs-event-opening-remarks.jpg" alt="Opening remarks at a JPCS – DLSL Chapter event" style="object-position:30% center"/><div class="cg-cap">Opening remarks</div></div>
+        <div class="cg-item" onclick="openModal('JPCS Nite 2026 — JPCS – DLSL Chapter','images/leadership/jpcs-nite-2026.jpg',true)"><img loading="lazy" decoding="async" src="images/leadership/jpcs-nite-2026.jpg" alt="JPCS – DLSL Chapter members at JPCS Nite 2026" style="object-position:center 42%"/><div class="cg-cap">JPCS Nite 2026</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- CREDENTIALS — UNIFIED -->
 <section id="credentials" class="section">
   <div class="section-inner">
-    <div class="s-eyebrow rev">04 — Credentials</div>
+    <div class="s-eyebrow rev">07 — Credentials</div>
     <h2 class="s-title rev">Certifications &amp; Badges</h2>
     <p class="s-sub rev">Click any item to view the full certificate or badge.</p>
 
@@ -1047,7 +1157,7 @@ a:focus-visible,button:focus-visible,[role="button"]:focus-visible{outline:2px s
 <!-- WRITEUPS -->
 <section id="writeups" class="section" style="background:var(--s1);">
   <div class="section-inner">
-    <div class="s-eyebrow rev">05 — Writeups</div>
+    <div class="s-eyebrow rev">08 — Writeups</div>
     <h2 class="s-title rev">SOC Investigations</h2>
     <p class="s-sub rev">Documented alert triage, threat analysis &amp; incident investigations.</p>
     <div class="writeups-list rev">
@@ -1102,14 +1212,14 @@ a:focus-visible,button:focus-visible,[role="button"]:focus-visible{outline:2px s
 <!-- CONTACT -->
 <section id="contact" class="section">
   <div class="section-inner">
-    <div class="s-eyebrow rev">06 — Contact</div>
+    <div class="s-eyebrow rev">09 — Contact</div>
     <h2 class="s-title rev">Let's Connect</h2>
     <div class="contact-grid">
       <div class="contact-left rev">
         <h2>Looking for a<br/><em>driven intern?</em></h2>
         <p>I'm actively seeking Cybersecurity or SOC Analyst internship opportunities in the Philippines. Hands-on lab experience, real certifications, and the discipline to learn fast.</p>
         <div class="clinks">
-          <a href="https://mail.google.com/mail/?view=cm&fs=1&to=moisesceazard@gmail.com" target="_blank" class="cl"><div class="cl-icon ci-e"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" ><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 6-10 7L2 6"/></svg></div><div><div class="cl-k">Email</div><div class="cl-v">moisesceazard@gmail.com</div></div></a>
+          <a href="mailto:moisesceazard@gmail.com" class="cl"><div class="cl-icon ci-e"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" ><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 6-10 7L2 6"/></svg></div><div><div class="cl-k">Email</div><div class="cl-v">moisesceazard@gmail.com</div></div></a>
           <a href="https://linkedin.com/in/moises-ceazar-del-mundo-90218a31b" target="_blank" class="cl"><div class="cl-icon ci-l"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" ><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/><path d="M10 9h3.6v1.9h.05C14.13 9.6 15.6 9 17.2 9c3.6 0 4.3 2.37 4.3 5.45V21h-4v-6.1c0-1.46-.03-3.34-2.04-3.34-2.04 0-2.36 1.6-2.36 3.24V21h-3.1z"/></svg></div><div><div class="cl-k">LinkedIn</div><div class="cl-v">moises-ceazar-del-mundo</div></div></a>
           <a href="https://github.com/moisesceazard-creator" target="_blank" class="cl"><div class="cl-icon ci-g"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" ><path d="M15 22v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 19 4.77 5.07 5.07 0 0 0 18.91.5S17.73.15 15 2a13.38 13.38 0 0 0-6 0C6.27.15 5.09.5 5.09.5A5.07 5.07 0 0 0 5 4.77 5.44 5.44 0 0 0 3.5 8.55c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg></div><div><div class="cl-k">GitHub</div><div class="cl-v">github.com/moisesceazard-creator</div></div></a>
           <a href="https://app.letsdefend.io/user/moihackthebox" target="_blank" class="cl"><div class="cl-icon ci-ld"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" ><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div><div><div class="cl-k">LetsDefend</div><div class="cl-v">app.letsdefend.io/user/moihackthebox</div></div></a>
@@ -1138,7 +1248,7 @@ a:focus-visible,button:focus-visible,[role="button"]:focus-visible{outline:2px s
     <div class="footer-copy">© 2026 <span>Moises Ceazar Del Mundo</span> · Built with purpose.</div>
     <div class="footer-links">
       <a href="#hero">Top ↑</a>
-      <a href="https://mail.google.com/mail/?view=cm&fs=1&to=moisesceazard@gmail.com" target="_blank">Email</a>
+      <a href="mailto:moisesceazard@gmail.com">Email</a>
       <a href="https://linkedin.com/in/moises-ceazar-del-mundo-90218a31b" target="_blank">LinkedIn</a>
       <a href="https://github.com/moisesceazard-creator" target="_blank">GitHub</a>
       <a href="https://app.letsdefend.io/user/moihackthebox" target="_blank">LetsDefend</a>
@@ -1147,17 +1257,32 @@ a:focus-visible,button:focus-visible,[role="button"]:focus-visible{outline:2px s
 </footer>
 
 <script>
+const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const smallScreen = window.matchMedia('(max-width: 768px)').matches;
+
 // CURSOR
 const glow = document.getElementById('cursor-glow');
-document.addEventListener('mousemove', e => {
-  glow.style.left = e.clientX + 'px';
-  glow.style.top = e.clientY + 'px';
-}, {passive:true});
+if (window.matchMedia('(pointer: fine)').matches) {
+  document.addEventListener('mousemove', e => {
+    glow.style.left = e.clientX + 'px';
+    glow.style.top = e.clientY + 'px';
+  }, {passive:true});
+} else { glow.style.display = 'none'; }
 
 // NAV
+const navEl = document.getElementById('nav');
+const navToggle = document.getElementById('nav-toggle');
 window.addEventListener('scroll', () => {
-  document.getElementById('nav').classList.toggle('solid', window.scrollY > 40);
+  navEl.classList.toggle('solid', window.scrollY > 40);
 }, {passive:true});
+function setMenu(open) {
+  navEl.classList.toggle('open', open);
+  navToggle.setAttribute('aria-expanded', open);
+  navToggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+}
+navToggle.addEventListener('click', () => setMenu(!navEl.classList.contains('open')));
+document.querySelectorAll('.nav-menu a').forEach(a => a.addEventListener('click', () => setMenu(false)));
+document.addEventListener('keydown', e => { if (e.key === 'Escape') setMenu(false); });
 
 // PARTICLES
 const bgc = document.getElementById('bg-canvas');
@@ -1183,7 +1308,7 @@ class Particle {
     bctx.fillStyle=`rgba(${this.color},${op})`; bctx.fill();
   }
 }
-const particles = Array.from({length:120},()=>new Particle());
+const particles = Array.from({length: smallScreen ? 40 : 80},()=>new Particle());
 function drawLines() {
   for(let a=0;a<particles.length;a++) for(let b=a+1;b<particles.length;b++) {
     const dx=particles[a].x-particles[b].x, dy=particles[a].y-particles[b].y;
@@ -1193,19 +1318,23 @@ function drawLines() {
     bctx.strokeStyle=`rgba(59,130,246,${.08*(1-d/100)})`;bctx.lineWidth=.5;bctx.stroke();}
   }
 }
-function animateBg() {
+let lastBg = 0;
+function animateBg(t) {
+  requestAnimationFrame(animateBg);
+  if (document.hidden || t - lastBg < 33) return; // ~30fps is plenty for a background
+  lastBg = t;
   bctx.clearRect(0,0,bgc.width,bgc.height);
-  particles.forEach(p=>{p.update();p.draw();}); drawLines(); requestAnimationFrame(animateBg);
+  particles.forEach(p=>{p.update();p.draw();}); drawLines();
 }
-animateBg();
+if (!reduceMotion) requestAnimationFrame(animateBg);
 
 // MATRIX
 const mc = document.getElementById('matrix-canvas');
 const mctx = mc.getContext('2d');
-function resizeMatrix() { mc.width=window.innerWidth; mc.height=window.innerHeight; }
-resizeMatrix(); window.addEventListener('resize', resizeMatrix);
 const chars='01アイウエオカキクケコサシスセソタチツテトナニヌネノ';
-const fz=12; let drops=Array(Math.floor(mc.width/fz)).fill(1);
+const fz=12; let drops=[];
+function resizeMatrix() { mc.width=window.innerWidth; mc.height=window.innerHeight; drops=Array(Math.floor(mc.width/fz)).fill(1); }
+resizeMatrix(); window.addEventListener('resize', resizeMatrix);
 function drawMatrix() {
   mctx.fillStyle='rgba(1,4,9,0.05)'; mctx.fillRect(0,0,mc.width,mc.height);
   mctx.fillStyle='#3B82F6'; mctx.font=fz+'px JetBrains Mono,monospace';
@@ -1214,7 +1343,7 @@ function drawMatrix() {
     if(y*fz>mc.height&&Math.random()>.975) drops[i]=0; drops[i]++;
   });
 }
-setInterval(drawMatrix,60);
+if (!reduceMotion) setInterval(() => { if (!document.hidden) drawMatrix(); }, smallScreen ? 110 : 70);
 
 // REVEAL
 const ro = new IntersectionObserver(entries=>{
@@ -1254,20 +1383,6 @@ function closeModal() {
   document.body.style.overflow='';
 }
 
-// TYPING
-const roles=['SOC Analyst Intern Candidate','Blue Team Operator','Threat Detection Enthusiast','Security Monitoring Specialist'];
-let ri=0,ci=0,del=false;
-const el=document.querySelector('.hero-role strong');
-if(el){
-  el.style.borderRight='2px solid #3B82F6';
-  function typeRole(){
-    const role=roles[ri];
-    if(!del){el.textContent=role.substring(0,ci+1);ci++;if(ci===role.length){del=true;setTimeout(typeRole,2000);return;}}
-    else{el.textContent=role.substring(0,ci-1);ci--;if(ci===0){del=false;ri=(ri+1)%roles.length;}}
-    setTimeout(typeRole,del?40:80);
-  }
-  setTimeout(typeRole,1000);
-}
 </script>
 </body>
 </html>
