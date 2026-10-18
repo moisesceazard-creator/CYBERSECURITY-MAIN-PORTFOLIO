@@ -173,6 +173,23 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);overflow-x:h
 .proj-link{font-size:12px;font-family:var(--mono);color:var(--blue);text-decoration:none;display:flex;align-items:center;gap:6px;transition:all .2s;}
 .proj-link:hover{color:var(--cyan);gap:10px;}
 .proj-stars{font-size:12px;font-family:var(--mono);color:var(--t3);display:flex;align-items:center;gap:4px;}
+
+/* FEATURED CAPSTONE */
+.capstone{grid-column:1/-1;background:linear-gradient(135deg,rgba(245,158,11,.06),rgba(59,130,246,.05) 60%,var(--card));border:1px solid rgba(245,158,11,.25);border-radius:18px;padding:2rem;display:grid;grid-template-columns:1.4fr 1fr;gap:2rem;margin-top:3rem;position:relative;overflow:hidden;}
+.capstone::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--amber),var(--blue),var(--cyan));}
+.awards{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:1rem;}
+.award{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:700;font-family:var(--mono);letter-spacing:.05em;padding:5px 12px;border-radius:99px;background:rgba(245,158,11,.12);color:#FCD34D;border:1px solid rgba(245,158,11,.35);}
+.capstone-kicker{font-family:var(--mono);font-size:11px;color:var(--cyan);letter-spacing:.15em;text-transform:uppercase;margin-bottom:.5rem;}
+.capstone-title{font-size:1.35rem;font-weight:800;letter-spacing:-.03em;line-height:1.3;margin-bottom:.8rem;}
+.capstone-desc{font-size:14px;color:var(--t2);line-height:1.8;margin-bottom:1rem;}
+.capstone-team{font-size:12px;color:var(--t3);font-family:var(--mono);line-height:1.6;margin-bottom:1.2rem;}
+.capstone-team strong{color:var(--t2);font-weight:600;}
+.capstone-links{display:flex;flex-wrap:wrap;gap:1.2rem;}
+.capstone-metrics{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--border);border-radius:12px;overflow:hidden;align-self:start;}
+.cm{background:var(--s2);padding:1rem;}
+.cm-n{font-size:1.4rem;font-weight:800;font-family:var(--mono);background:linear-gradient(135deg,var(--amber),var(--cyan));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.cm-l{font-size:10px;color:var(--t3);text-transform:uppercase;letter-spacing:.08em;margin-top:3px;line-height:1.4;}
+@media(max-width:960px){.capstone{grid-template-columns:1fr;padding:1.5rem;}}
 .creds-tab svg{vertical-align:-3px;margin-right:4px;}
 .sk-icon svg{color:var(--blue);}
 .fact-i svg,.proj-icon svg,.va-card-icon svg,.ld-icon svg,.cl-icon svg{flex-shrink:0;}
@@ -447,7 +464,7 @@ a:focus-visible,button:focus-visible,[role="button"]:focus-visible{outline:2px s
       <div class="hero-pills">
         <span class="pill">ISC2 CC</span><span class="pill">SIEM</span><span class="pill">Blue Team</span>
         <span class="pill">Wazuh</span><span class="pill">Threat Detection</span><span class="pill">LetsDefend</span>
-        <span class="pill">De La Salle Lipa</span><span class="pill">Dean's Lister</span>
+        <span class="pill">De La Salle Lipa</span><span class="pill">Dean's Lister</span><span class="pill">🏆 Best Capstone 2026</span>
       </div>
       <div class="hero-actions">
         <a href="#projects" class="btn btn-primary">View Projects →</a>
@@ -525,7 +542,7 @@ a:focus-visible,button:focus-visible,[role="button"]:focus-visible{outline:2px s
       <div class="facts rev d1">
         <div class="fact"><div class="fact-i"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" ><path d="M22 10 12 5 2 10l10 5 10-5Z"/><path d="M6 12v5c0 1 3 3 6 3s6-2 6-3v-5"/></svg></div><div><div class="fact-k">Education</div><div class="fact-v">BSIT — Information Security, De La Salle Lipa</div></div></div>
         <div class="fact"><div class="fact-i"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" ><path d="M12 21s-7-6.5-7-12a7 7 0 0 1 14 0c0 5.5-7 12-7 12z"/><circle cx="12" cy="9" r="2.5"/></svg></div><div><div class="fact-k">Location</div><div class="fact-v">Lipa City, Batangas, Philippines</div></div></div>
-        <div class="fact"><div class="fact-i"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" ><circle cx="12" cy="8" r="6"/><path d="M9 14.5 6 22l6-3 6 3-3-7.5"/></svg></div><div><div class="fact-k">Achievements</div><div class="fact-v">Dean's Lister · NSTP Awardee · Top Student — Security Planning &amp; Audit (2026)</div></div></div>
+        <div class="fact"><div class="fact-i"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" ><circle cx="12" cy="8" r="6"/><path d="M9 14.5 6 22l6-3 6 3-3-7.5"/></svg></div><div><div class="fact-k">Achievements</div><div class="fact-v">Best Capstone &amp; Best Group Presentation — IT Colloquium 2026 · Dean's Lister · NSTP Awardee · Top Student — Security Planning &amp; Audit (2026)</div></div></div>
         <div class="fact"><div class="fact-i"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" ><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.3" fill="currentColor" stroke="none"/></svg></div><div><div class="fact-k">Target Role</div><div class="fact-v">SOC Analyst Intern · Blue Team · Cybersecurity OJT</div></div></div>
         <div class="fact"><div class="fact-i"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" ><path d="M2 4h7a4 4 0 0 1 4 4v13a3 3 0 0 0-3-3H2V4z"/><path d="M22 4h-7a4 4 0 0 0-4 4v13a3 3 0 0 1 3-3h8V4z"/></svg></div><div><div class="fact-k">Studying</div><div class="fact-v">CompTIA Security+ · Splunk SIEM</div></div></div>
         <div class="fact"><div class="fact-i"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" ><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div><div><div class="fact-k">Available</div><div class="fact-v">Internship / OJT · Philippines · 2026</div></div></div>
@@ -557,6 +574,27 @@ a:focus-visible,button:focus-visible,[role="button"]:focus-visible{outline:2px s
     <div class="s-eyebrow rev">03 — Projects</div>
     <h2 class="s-title rev">Lab Projects</h2>
     <p class="s-sub rev">Hands-on environments simulating real SOC workflows.</p>
+    <div class="capstone rev">
+      <div>
+        <div class="awards"><span class="award">🏆 Best Capstone</span><span class="award">🏆 Best Group Presentation</span></div>
+        <div class="capstone-kicker">Featured · Capstone Project · IT Colloquium 2026</div>
+        <h3 class="capstone-title">Security Onion for Network &amp; Host Visibility and Case Management — MIS Office, Tanauan City Hall</h3>
+        <p class="capstone-desc">Deployed Security Onion into a live government network that had only a perimeter firewall and relied on external advisories for threat awareness. Built network visibility (Suricata, Zeek via SPAN port), host visibility (Elastic Agent on five pilot endpoints), Telegram alerting and structured case management, grounded in NIST CSF 2.0, MITRE ATT&amp;CK and STRIDE. Validated against five simulated attack scenarios, then hardened the platform after the defense with MFA, secrets storage and key-only SSH. Formally endorsed by the MIS Department Head for continued use.</p>
+        <div class="capstone-team"><strong>Group 6, De La Salle Lipa</strong> — Atienza · Babasa · Del Mundo · Macandile</div>
+        <div class="capstone-links">
+          <a href="https://moisesceazard-creator.github.io/TANAUAN-Security-Onion-Handbook/" target="_blank" class="proj-link">SOC User Handbook →</a>
+          <a href="https://github.com/moisesceazard-creator/Security-Onion-Telegram-Alerting" target="_blank" class="proj-link">Telegram Alerting on GitHub →</a>
+        </div>
+      </div>
+      <div class="capstone-metrics">
+        <div class="cm"><div class="cm-n">100%</div><div class="cm-l">Detection rate · 5 of 5 attack scenarios</div></div>
+        <div class="cm"><div class="cm-n">~1.5 min</div><div class="cm-l">Average alert-to-Telegram time</div></div>
+        <div class="cm"><div class="cm-n">9.7M</div><div class="cm-l">Events indexed in 4 days live</div></div>
+        <div class="cm"><div class="cm-n">~10%</div><div class="cm-l">False positive rate after tuning</div></div>
+        <div class="cm"><div class="cm-n">68→83</div><div class="cm-l">Lynis hardening index</div></div>
+        <div class="cm"><div class="cm-n">₱0</div><div class="cm-l">Licensing cost · fully open source</div></div>
+      </div>
+    </div>
     <div class="projects-grid">
       <div class="proj-card rev">
         <div class="proj-top"><div class="proj-icon pi-b"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" ><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div><div class="proj-bgs"><span class="pbg pbg-b">SOC LAB</span><span class="pbg pbg-b">SIEM</span></div></div>
