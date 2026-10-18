@@ -196,8 +196,14 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);overflow-x:h
 .cg-item:hover img{transform:scale(1.04);}
 .cg-item:hover{border-color:rgba(245,158,11,.4);}
 .cg-cap{position:absolute;left:0;right:0;bottom:0;padding:1.6rem .8rem .6rem;font-size:11px;font-family:var(--mono);color:#fff;background:linear-gradient(transparent,rgba(1,4,9,.85));}
+.honor{margin-top:2.5rem;background:linear-gradient(135deg,rgba(59,130,246,.06),rgba(245,158,11,.04) 60%,var(--card));border:1px solid rgba(59,130,246,.22);border-radius:18px;padding:2rem;display:grid;grid-template-columns:1fr 1.3fr;gap:2rem;align-items:center;position:relative;overflow:hidden;}
+.honor::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--blue),var(--amber));}
+.honor .capstone-desc{margin-bottom:0;}
+.honor-gallery{display:grid;grid-template-columns:repeat(4,1fr);gap:.6rem;}
+.honor-gallery .cg-item{grid-column:span 1;}
+.honor-gallery .cg-item.wide{grid-column:span 2;}
 .capstone-event{grid-column:1/-1;font-size:12px;font-family:var(--mono);color:var(--t3);margin-top:-.8rem;}
-@media(max-width:960px){.capstone{grid-template-columns:1fr;padding:1.5rem;}.capstone-gallery{grid-template-columns:1fr 1fr;}.cg-item{grid-column:span 1;height:200px;}.cg-item.wide,.cg-item:last-child{grid-column:1/-1;}}
+@media(max-width:960px){.capstone{grid-template-columns:1fr;padding:1.5rem;}.capstone-gallery{grid-template-columns:1fr 1fr;}.cg-item{grid-column:span 1;height:200px;}.cg-item.wide,.cg-item:last-child{grid-column:1/-1;}.honor{grid-template-columns:1fr;padding:1.5rem;}.honor-gallery{grid-template-columns:1fr 1fr;}.honor-gallery .cg-item:last-child{grid-column:span 1;}}
 .creds-tab svg{vertical-align:-3px;margin-right:4px;}
 .sk-icon svg{color:var(--blue);}
 .fact-i svg,.proj-icon svg,.va-card-icon svg,.ld-icon svg,.cl-icon svg{flex-shrink:0;}
@@ -550,10 +556,23 @@ a:focus-visible,button:focus-visible,[role="button"]:focus-visible{outline:2px s
       <div class="facts rev d1">
         <div class="fact"><div class="fact-i"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" ><path d="M22 10 12 5 2 10l10 5 10-5Z"/><path d="M6 12v5c0 1 3 3 6 3s6-2 6-3v-5"/></svg></div><div><div class="fact-k">Education</div><div class="fact-v">BSIT — Information Security, De La Salle Lipa</div></div></div>
         <div class="fact"><div class="fact-i"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" ><path d="M12 21s-7-6.5-7-12a7 7 0 0 1 14 0c0 5.5-7 12-7 12z"/><circle cx="12" cy="9" r="2.5"/></svg></div><div><div class="fact-k">Location</div><div class="fact-v">Lipa City, Batangas, Philippines</div></div></div>
-        <div class="fact"><div class="fact-i"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" ><circle cx="12" cy="8" r="6"/><path d="M9 14.5 6 22l6-3 6 3-3-7.5"/></svg></div><div><div class="fact-k">Achievements</div><div class="fact-v">1st Place Best Capstone (Information Security Track) &amp; 1st Place Best Group Presentation — IT Colloquium '26–'27 · Dean's Lister · NSTP Awardee · Top Student — Security Planning &amp; Audit (2026)</div></div></div>
+        <div class="fact"><div class="fact-i"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" ><circle cx="12" cy="8" r="6"/><path d="M9 14.5 6 22l6-3 6 3-3-7.5"/></svg></div><div><div class="fact-k">Achievements</div><div class="fact-v">1st Place Best Capstone (Information Security Track) &amp; 1st Place Best Group Presentation — IT Colloquium '26–'27 · Dean's Lister · NSTP Awardee · Top Student Awardee — IT Elective 2 (Information Security): Security Planning, Implementation &amp; Audit (2026)</div></div></div>
         <div class="fact"><div class="fact-i"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" ><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.3" fill="currentColor" stroke="none"/></svg></div><div><div class="fact-k">Target Role</div><div class="fact-v">SOC Analyst Intern · Blue Team · Cybersecurity OJT</div></div></div>
         <div class="fact"><div class="fact-i"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" ><path d="M2 4h7a4 4 0 0 1 4 4v13a3 3 0 0 0-3-3H2V4z"/><path d="M22 4h-7a4 4 0 0 0-4 4v13a3 3 0 0 1 3-3h8V4z"/></svg></div><div><div class="fact-k">Studying</div><div class="fact-v">CompTIA Security+ · Splunk SIEM</div></div></div>
         <div class="fact"><div class="fact-i"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" ><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div><div><div class="fact-k">Available</div><div class="fact-v">Internship / OJT · Philippines · 2026</div></div></div>
+      </div>
+    </div>
+    <div class="honor rev">
+      <div class="honor-text">
+        <div class="awards"><span class="award">🏅 Top Student Awardee</span></div>
+        <div class="capstone-kicker">Academic Honors · JPCS – DLSL Chapter · April 21, 2026</div>
+        <h3 class="capstone-title">Top Student — IT Elective 2 (Information Security): Security Planning, Implementation &amp; Audit</h3>
+        <p class="capstone-desc">Recognized as one of the top students in the IT Elective 2 (Information Security) class of IT3D for the First Semester of Academic Year 2025–2026, presented by the Junior Philippine Computer Society – De La Salle Lipa Chapter and the IT Program.</p>
+      </div>
+      <div class="honor-gallery">
+        <div class="cg-item wide" onclick="openModal('Certificate of Achievement — Top Student, IT Elective 2 (Information Security)','images/honors/top-student-certificate.jpg',true)"><img loading="lazy" decoding="async" src="images/honors/top-student-certificate.jpg" alt="Certificate of Achievement and Top Student medal for IT Elective 2 (Information Security)"/><div class="cg-cap">Certificate &amp; medal</div></div>
+        <div class="cg-item" onclick="openModal('Top Student Awardee — Awards Night','images/honors/top-student-awards-night.jpg',true)"><img loading="lazy" decoding="async" src="images/honors/top-student-awards-night.jpg" alt="Moises holding the Top Student certificate at the awards night" style="object-position:center 55%"/><div class="cg-cap">Awards night</div></div>
+        <div class="cg-item" onclick="openModal('Top Student medal','images/honors/top-student-medal.jpg',true)"><img loading="lazy" decoding="async" src="images/honors/top-student-medal.jpg" alt="Moises with the Top Student medal and certificate" style="object-position:center 50%"/><div class="cg-cap">Top Student medal</div></div>
       </div>
     </div>
   </div>
