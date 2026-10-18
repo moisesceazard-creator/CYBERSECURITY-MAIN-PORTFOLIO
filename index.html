@@ -202,6 +202,12 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);overflow-x:h
 .honor-gallery{display:grid;grid-template-columns:repeat(4,1fr);gap:.6rem;}
 .honor-gallery .cg-item{grid-column:span 1;}
 .honor-gallery .cg-item.wide{grid-column:span 2;}
+.roles{display:flex;flex-direction:column;gap:.6rem;margin-bottom:1rem;}
+.role{display:flex;align-items:flex-start;gap:.7rem;}
+.role-dot{width:10px;height:10px;border-radius:50%;margin-top:5px;flex-shrink:0;background:var(--t3);}
+.role-dot.now{background:var(--green);box-shadow:0 0 10px var(--green);}
+.role-t{font-size:14px;font-weight:600;color:var(--text);}
+.role-d{font-size:11px;font-family:var(--mono);color:var(--t3);}
 .capstone-event{grid-column:1/-1;font-size:12px;font-family:var(--mono);color:var(--t3);margin-top:-.8rem;}
 @media(max-width:960px){.capstone{grid-template-columns:1fr;padding:1.5rem;}.capstone-gallery{grid-template-columns:1fr 1fr;}.cg-item{grid-column:span 1;height:200px;}.cg-item.wide,.cg-item:last-child{grid-column:1/-1;}.honor{grid-template-columns:1fr;padding:1.5rem;}.honor-gallery{grid-template-columns:1fr 1fr;}.honor-gallery .cg-item:last-child{grid-column:span 1;}}
 .creds-tab svg{vertical-align:-3px;margin-right:4px;}
@@ -586,6 +592,24 @@ a:focus-visible,button:focus-visible,[role="button"]:focus-visible{outline:2px s
         <div class="cg-item wide" onclick="openModal('Certificate of Recognition — NSTP Lingkod Award','images/nstp/lingkod-award-certificate.jpg',true)"><img loading="lazy" decoding="async" src="images/nstp/lingkod-award-certificate.jpg" alt="NSTP Lingkod Award certificate of recognition and NSTP medal"/><div class="cg-cap">Certificate &amp; medal</div></div>
         <div class="cg-item" onclick="openModal('Teaching basic computer skills','images/nstp/teaching-computer-basics.jpg',true)"><img loading="lazy" decoding="async" src="images/nstp/teaching-computer-basics.jpg" alt="Moises teaching a computer basics lesson from a laptop connected to the classroom TV"/><div class="cg-cap">Teaching the lesson</div></div>
         <div class="cg-item" onclick="openModal('Our NSTP community service group','images/nstp/nstp-team.jpg',true)"><img loading="lazy" decoding="async" src="images/nstp/nstp-team.jpg" alt="The NSTP community service group" style="object-position:center 65%"/><div class="cg-cap">Our NSTP group</div></div>
+      </div>
+    </div>
+    <div class="honor rev">
+      <div class="honor-text">
+        <div class="awards"><span class="award">🤝 Student Leadership</span></div>
+        <div class="capstone-kicker">Leadership · Junior Philippine Computer Society – DLSL Chapter</div>
+        <h3 class="capstone-title">JPCS Officer — Internal Affairs &amp; IT Student Representation</h3>
+        <div class="roles">
+          <div class="role"><span class="role-dot now"></span><div><div class="role-t">Project Head, Internal Affairs (IT)</div><div class="role-d">Current role</div></div></div>
+          <div class="role"><span class="role-dot"></span><div><div class="role-t">3rd Year IT Representative</div><div class="role-d">AY 2025–2026</div></div></div>
+        </div>
+        <p class="capstone-desc">Organize and plan chapter events, and write the paperwork behind them: concept papers, SWOT analyses, event documentation and narrative reports.</p>
+        <div class="tags" style="margin-top:1rem;"><span class="t">Event Planning</span><span class="t">Concept Papers</span><span class="t">SWOT Analysis</span><span class="t">Narrative Reports</span><span class="t">Documentation</span></div>
+      </div>
+      <div class="honor-gallery">
+        <div class="cg-item wide" onclick="openModal('JPCS – DLSL event officers and guests','images/leadership/jpcs-event-officers.jpg',true)"><img loading="lazy" decoding="async" src="images/leadership/jpcs-event-officers.jpg" alt="JPCS – DLSL Chapter officers and guests on stage after a chapter event"/><div class="cg-cap">JPCS – DLSL event</div></div>
+        <div class="cg-item" onclick="openModal('Opening remarks — JPCS – DLSL event','images/leadership/jpcs-event-opening-remarks.jpg',true)"><img loading="lazy" decoding="async" src="images/leadership/jpcs-event-opening-remarks.jpg" alt="Opening remarks at a JPCS – DLSL Chapter event" style="object-position:30% center"/><div class="cg-cap">Opening remarks</div></div>
+        <div class="cg-item" onclick="openModal('JPCS Nite 2026 — JPCS – DLSL Chapter','images/leadership/jpcs-nite-2026.jpg',true)"><img loading="lazy" decoding="async" src="images/leadership/jpcs-nite-2026.jpg" alt="JPCS – DLSL Chapter members at JPCS Nite 2026" style="object-position:center 42%"/><div class="cg-cap">JPCS Nite 2026</div></div>
       </div>
     </div>
   </div>
