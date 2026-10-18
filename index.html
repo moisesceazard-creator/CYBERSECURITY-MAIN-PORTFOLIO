@@ -189,14 +189,15 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);overflow-x:h
 .cm{background:var(--s2);padding:1rem;}
 .cm-n{font-size:1.4rem;font-weight:800;font-family:var(--mono);background:linear-gradient(135deg,var(--amber),var(--cyan));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
 .cm-l{font-size:10px;color:var(--t3);text-transform:uppercase;letter-spacing:.08em;margin-top:3px;line-height:1.4;}
-.capstone-gallery{grid-column:1/-1;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:.6rem;}
-.cg-item{position:relative;border-radius:12px;overflow:hidden;border:1px solid var(--border);cursor:pointer;height:240px;background:var(--s2);}
+.capstone-gallery{grid-column:1/-1;display:grid;grid-template-columns:repeat(6,1fr);gap:.6rem;}
+.cg-item{position:relative;border-radius:12px;overflow:hidden;border:1px solid var(--border);cursor:pointer;height:260px;background:var(--s2);grid-column:span 2;}
+.cg-item.wide{grid-column:span 3;}
 .cg-item img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s cubic-bezier(.16,1,.3,1);}
 .cg-item:hover img{transform:scale(1.04);}
 .cg-item:hover{border-color:rgba(245,158,11,.4);}
 .cg-cap{position:absolute;left:0;right:0;bottom:0;padding:1.6rem .8rem .6rem;font-size:11px;font-family:var(--mono);color:#fff;background:linear-gradient(transparent,rgba(1,4,9,.85));}
 .capstone-event{grid-column:1/-1;font-size:12px;font-family:var(--mono);color:var(--t3);margin-top:-.8rem;}
-@media(max-width:960px){.capstone{grid-template-columns:1fr;padding:1.5rem;}.capstone-gallery{grid-template-columns:1fr 1fr;}.cg-item:first-child{grid-column:1/-1;}.cg-item{height:200px;}}
+@media(max-width:960px){.capstone{grid-template-columns:1fr;padding:1.5rem;}.capstone-gallery{grid-template-columns:1fr 1fr;}.cg-item{grid-column:span 1;height:200px;}.cg-item.wide,.cg-item:last-child{grid-column:1/-1;}}
 .creds-tab svg{vertical-align:-3px;margin-right:4px;}
 .sk-icon svg{color:var(--blue);}
 .fact-i svg,.proj-icon svg,.va-card-icon svg,.ld-icon svg,.cl-icon svg{flex-shrink:0;}
@@ -602,7 +603,8 @@ a:focus-visible,button:focus-visible,[role="button"]:focus-visible{outline:2px s
         <div class="cm"><div class="cm-n">₱0</div><div class="cm-l">Licensing cost · fully open source</div></div>
       </div>
       <div class="capstone-gallery">
-        <div class="cg-item" onclick="openModal('Best Capstone — Information Security Track · IT Colloquium \'26–\'27','images/colloquium/award-stage-team.jpg',true)"><img loading="lazy" decoding="async" src="images/colloquium/award-stage-team.jpg" alt="Group 6 on stage receiving the Best Capstone award for the Information Security Track"/><div class="cg-cap">Best Capstone — InfoSec Track</div></div>
+        <div class="cg-item wide" onclick="openModal('Best Capstone — Information Security Track · IT Colloquium \'26–\'27','images/colloquium/award-stage-team.jpg',true)"><img loading="lazy" decoding="async" src="images/colloquium/award-stage-team.jpg" alt="Group 6 on stage receiving the Best Capstone award for the Information Security Track"/><div class="cg-cap">1st Place · Best Capstone — InfoSec Track</div></div>
+        <div class="cg-item wide" onclick="openModal('Best Group Presentation · IT Colloquium \'26–\'27','images/colloquium/award-stage-group-presentation.jpg',true)"><img loading="lazy" decoding="async" src="images/colloquium/award-stage-group-presentation.jpg" alt="Group 6 on stage receiving the Best Group Presentation award"/><div class="cg-cap">1st Place · Best Group Presentation</div></div>
         <div class="cg-item" onclick="openModal('Group 6 with our medals and certificates','images/colloquium/team-medals.jpg',true)"><img loading="lazy" decoding="async" src="images/colloquium/team-medals.jpg" alt="Group 6 posing with medals and certificates" style="object-position:center 60%"/><div class="cg-cap">Group 6</div></div>
         <div class="cg-item" onclick="openModal('Both Certificates of Recognition','images/colloquium/moises-certificates.jpg',true)"><img loading="lazy" decoding="async" src="images/colloquium/moises-certificates.jpg" alt="Moises holding both certificates of recognition" style="object-position:center 65%"/><div class="cg-cap">Two 1st-place awards</div></div>
         <div class="cg-item" onclick="openModal('Certificates of Recognition — IT Colloquium \'26–\'27','images/colloquium/certificates-of-recognition.jpg',true)"><img loading="lazy" decoding="async" src="images/colloquium/certificates-of-recognition.jpg" alt="Certificates of recognition for Best Group Presentation and Best Capstone Project"/><div class="cg-cap">Certificates &amp; medal</div></div>
