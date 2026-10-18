@@ -189,7 +189,14 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);overflow-x:h
 .cm{background:var(--s2);padding:1rem;}
 .cm-n{font-size:1.4rem;font-weight:800;font-family:var(--mono);background:linear-gradient(135deg,var(--amber),var(--cyan));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
 .cm-l{font-size:10px;color:var(--t3);text-transform:uppercase;letter-spacing:.08em;margin-top:3px;line-height:1.4;}
-@media(max-width:960px){.capstone{grid-template-columns:1fr;padding:1.5rem;}}
+.capstone-gallery{grid-column:1/-1;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:.6rem;}
+.cg-item{position:relative;border-radius:12px;overflow:hidden;border:1px solid var(--border);cursor:pointer;height:240px;background:var(--s2);}
+.cg-item img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s cubic-bezier(.16,1,.3,1);}
+.cg-item:hover img{transform:scale(1.04);}
+.cg-item:hover{border-color:rgba(245,158,11,.4);}
+.cg-cap{position:absolute;left:0;right:0;bottom:0;padding:1.6rem .8rem .6rem;font-size:11px;font-family:var(--mono);color:#fff;background:linear-gradient(transparent,rgba(1,4,9,.85));}
+.capstone-event{grid-column:1/-1;font-size:12px;font-family:var(--mono);color:var(--t3);margin-top:-.8rem;}
+@media(max-width:960px){.capstone{grid-template-columns:1fr;padding:1.5rem;}.capstone-gallery{grid-template-columns:1fr 1fr;}.cg-item:first-child{grid-column:1/-1;}.cg-item{height:200px;}}
 .creds-tab svg{vertical-align:-3px;margin-right:4px;}
 .sk-icon svg{color:var(--blue);}
 .fact-i svg,.proj-icon svg,.va-card-icon svg,.ld-icon svg,.cl-icon svg{flex-shrink:0;}
@@ -319,7 +326,7 @@ footer{border-top:1px solid var(--border);padding:2rem;}
 .modal-x{background:var(--s2);border:1px solid var(--border);color:var(--t2);width:28px;height:28px;border-radius:6px;cursor:pointer;font-size:14px;display:flex;align-items:center;justify-content:center;transition:all .2s;}
 .modal-x:hover{border-color:var(--border-glow);color:var(--text);}
 .modal-img-wrap{overflow:auto;flex:1;background:#fff;display:flex;align-items:center;justify-content:center;}
-.modal-img-wrap img{max-width:100%;display:block;}
+.modal-img-wrap img{max-width:100%;max-height:calc(90vh - 52px);object-fit:contain;display:block;}
 .modal-img-wrap.dark-bg{background:var(--s1);}
 
 /* REVEAL */
@@ -542,7 +549,7 @@ a:focus-visible,button:focus-visible,[role="button"]:focus-visible{outline:2px s
       <div class="facts rev d1">
         <div class="fact"><div class="fact-i"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" ><path d="M22 10 12 5 2 10l10 5 10-5Z"/><path d="M6 12v5c0 1 3 3 6 3s6-2 6-3v-5"/></svg></div><div><div class="fact-k">Education</div><div class="fact-v">BSIT — Information Security, De La Salle Lipa</div></div></div>
         <div class="fact"><div class="fact-i"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" ><path d="M12 21s-7-6.5-7-12a7 7 0 0 1 14 0c0 5.5-7 12-7 12z"/><circle cx="12" cy="9" r="2.5"/></svg></div><div><div class="fact-k">Location</div><div class="fact-v">Lipa City, Batangas, Philippines</div></div></div>
-        <div class="fact"><div class="fact-i"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" ><circle cx="12" cy="8" r="6"/><path d="M9 14.5 6 22l6-3 6 3-3-7.5"/></svg></div><div><div class="fact-k">Achievements</div><div class="fact-v">Best Capstone &amp; Best Group Presentation — IT Colloquium 2026 · Dean's Lister · NSTP Awardee · Top Student — Security Planning &amp; Audit (2026)</div></div></div>
+        <div class="fact"><div class="fact-i"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" ><circle cx="12" cy="8" r="6"/><path d="M9 14.5 6 22l6-3 6 3-3-7.5"/></svg></div><div><div class="fact-k">Achievements</div><div class="fact-v">1st Place Best Capstone (Information Security Track) &amp; 1st Place Best Group Presentation — IT Colloquium '26–'27 · Dean's Lister · NSTP Awardee · Top Student — Security Planning &amp; Audit (2026)</div></div></div>
         <div class="fact"><div class="fact-i"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" ><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.3" fill="currentColor" stroke="none"/></svg></div><div><div class="fact-k">Target Role</div><div class="fact-v">SOC Analyst Intern · Blue Team · Cybersecurity OJT</div></div></div>
         <div class="fact"><div class="fact-i"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" ><path d="M2 4h7a4 4 0 0 1 4 4v13a3 3 0 0 0-3-3H2V4z"/><path d="M22 4h-7a4 4 0 0 0-4 4v13a3 3 0 0 1 3-3h8V4z"/></svg></div><div><div class="fact-k">Studying</div><div class="fact-v">CompTIA Security+ · Splunk SIEM</div></div></div>
         <div class="fact"><div class="fact-i"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" ><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div><div><div class="fact-k">Available</div><div class="fact-v">Internship / OJT · Philippines · 2026</div></div></div>
@@ -576,8 +583,8 @@ a:focus-visible,button:focus-visible,[role="button"]:focus-visible{outline:2px s
     <p class="s-sub rev">Hands-on environments simulating real SOC workflows.</p>
     <div class="capstone rev">
       <div>
-        <div class="awards"><span class="award">🏆 Best Capstone</span><span class="award">🏆 Best Group Presentation</span></div>
-        <div class="capstone-kicker">Featured · Capstone Project · IT Colloquium 2026</div>
+        <div class="awards"><span class="award">🏆 1st Place · Best Capstone Project — Information Security Track</span><span class="award">🏆 1st Place · Best Group Presentation</span></div>
+        <div class="capstone-kicker">Featured · Capstone Project · IT Colloquium '26–'27</div>
         <h3 class="capstone-title">Security Onion for Network &amp; Host Visibility and Case Management — MIS Office, Tanauan City Hall</h3>
         <p class="capstone-desc">Deployed Security Onion into a live government network that had only a perimeter firewall and relied on external advisories for threat awareness. Built network visibility (Suricata, Zeek via SPAN port), host visibility (Elastic Agent on five pilot endpoints), Telegram alerting and structured case management, grounded in NIST CSF 2.0, MITRE ATT&amp;CK and STRIDE. Validated against five simulated attack scenarios, then hardened the platform after the defense with MFA, secrets storage and key-only SSH. Formally endorsed by the MIS Department Head for continued use.</p>
         <div class="capstone-team"><strong>Group 6, De La Salle Lipa</strong> — Atienza · Babasa · Del Mundo · Macandile</div>
@@ -594,6 +601,13 @@ a:focus-visible,button:focus-visible,[role="button"]:focus-visible{outline:2px s
         <div class="cm"><div class="cm-n">68→83</div><div class="cm-l">Lynis hardening index</div></div>
         <div class="cm"><div class="cm-n">₱0</div><div class="cm-l">Licensing cost · fully open source</div></div>
       </div>
+      <div class="capstone-gallery">
+        <div class="cg-item" onclick="openModal('Best Capstone — Information Security Track · IT Colloquium \'26–\'27','images/colloquium/award-stage-team.jpg',true)"><img loading="lazy" decoding="async" src="images/colloquium/award-stage-team.jpg" alt="Group 6 on stage receiving the Best Capstone award for the Information Security Track"/><div class="cg-cap">Best Capstone — InfoSec Track</div></div>
+        <div class="cg-item" onclick="openModal('Group 6 with our medals and certificates','images/colloquium/team-medals.jpg',true)"><img loading="lazy" decoding="async" src="images/colloquium/team-medals.jpg" alt="Group 6 posing with medals and certificates" style="object-position:center 60%"/><div class="cg-cap">Group 6</div></div>
+        <div class="cg-item" onclick="openModal('Both Certificates of Recognition','images/colloquium/moises-certificates.jpg',true)"><img loading="lazy" decoding="async" src="images/colloquium/moises-certificates.jpg" alt="Moises holding both certificates of recognition" style="object-position:center 65%"/><div class="cg-cap">Two 1st-place awards</div></div>
+        <div class="cg-item" onclick="openModal('Certificates of Recognition — IT Colloquium \'26–\'27','images/colloquium/certificates-of-recognition.jpg',true)"><img loading="lazy" decoding="async" src="images/colloquium/certificates-of-recognition.jpg" alt="Certificates of recognition for Best Group Presentation and Best Capstone Project"/><div class="cg-cap">Certificates &amp; medal</div></div>
+      </div>
+      <div class="capstone-event">First IT Colloquium of De La Salle Lipa · organized by JPCS – DLSL Chapter · Oct 16, 2026 · Senator Diokno Auditorium</div>
     </div>
     <div class="projects-grid">
       <div class="proj-card rev">
