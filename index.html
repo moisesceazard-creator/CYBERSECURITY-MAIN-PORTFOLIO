@@ -204,6 +204,8 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);overflow-x:h
 .cert-yr{font-size:11px;font-family:var(--mono);color:var(--t3);}
 .cert-act{font-size:10px;color:var(--blue);font-family:var(--mono);}
 .cert-verified{font-size:10px;color:var(--green);font-family:var(--mono);}
+.cert-verify{font-size:10px;color:var(--blue-l);font-family:var(--mono);text-decoration:none;padding:2px 0;}
+.cert-verify:hover{color:var(--cyan);text-decoration:underline;}
 
 /* Badge cards */
 .badges-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;}
@@ -781,7 +783,7 @@ a:focus-visible,button:focus-visible,[role="button"]:focus-visible{outline:2px s
           <div class="cert-body">
             <div class="cert-issuer-row"><span class="cid" style="background:#3B82F6;"></span><span class="cin">Google / Coursera</span></div>
             <div class="cert-name">Foundations of Cybersecurity</div>
-            <div class="cert-foot"><span class="cert-yr">Apr 2026</span><span class="cert-act"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" ><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg> View</span></div>
+            <div class="cert-foot"><span class="cert-yr">Apr 2026</span><a class="cert-verify" href="https://coursera.org/verify/PP9C184KQZRZ" target="_blank" rel="noopener" onclick="event.stopPropagation()">Verify ↗</a></div>
           </div>
         </div>
         <div class="cert-card rev d2" onclick="openModal('Google — Play It Safe: Manage Security Risks','images/google-play-it-safe-manage-security-risks.jpg',false)">
@@ -789,7 +791,7 @@ a:focus-visible,button:focus-visible,[role="button"]:focus-visible{outline:2px s
           <div class="cert-body">
             <div class="cert-issuer-row"><span class="cid" style="background:#3B82F6;"></span><span class="cin">Google / Coursera</span></div>
             <div class="cert-name">Play It Safe: Manage Security Risks</div>
-            <div class="cert-foot"><span class="cert-yr">Apr 2026</span><span class="cert-act"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" ><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg> View</span></div>
+            <div class="cert-foot"><span class="cert-yr">Apr 2026</span><a class="cert-verify" href="https://coursera.org/verify/I52017G56LAM" target="_blank" rel="noopener" onclick="event.stopPropagation()">Verify ↗</a></div>
           </div>
         </div>
         <div class="cert-card rev" onclick="openModal('Google — Networks & Network Security','images/google-networks-network-security.jpg',false)">
@@ -797,7 +799,7 @@ a:focus-visible,button:focus-visible,[role="button"]:focus-visible{outline:2px s
           <div class="cert-body">
             <div class="cert-issuer-row"><span class="cid" style="background:#3B82F6;"></span><span class="cin">Google / Coursera</span></div>
             <div class="cert-name">Connect &amp; Protect: Networks &amp; Security</div>
-            <div class="cert-foot"><span class="cert-yr">May 2026</span><span class="cert-act"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" ><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg> View</span></div>
+            <div class="cert-foot"><span class="cert-yr">May 2026</span><a class="cert-verify" href="https://coursera.org/verify/L4LPAZO3H0JS" target="_blank" rel="noopener" onclick="event.stopPropagation()">Verify ↗</a></div>
           </div>
         </div>
         <div class="cert-card rev d1" onclick="openModal('Fortinet — Introduction to the Threat Landscape 3.0','images/fortinet-introduction-to-the-threat-landscape-3-0.png',false)">
@@ -829,7 +831,7 @@ a:focus-visible,button:focus-visible,[role="button"]:focus-visible{outline:2px s
         <div class="cert-body">
           <div class="cert-issuer-row"><span class="cid" style="background:#2563EB;"></span><span class="cin">Appkademiya</span></div>
           <div class="cert-name">Certified Cybersecurity Professional (CCP)</div>
-          <div class="cert-foot"><span class="cert-yr">Sep 2026</span><span class="cert-verified">✓ Verified</span></div>
+          <div class="cert-foot"><span class="cert-yr">Sep 2026</span><a class="cert-verify" href="https://appkademiya.online/verify/CERT-CCP-CYBERSECURITY-PROFESSIONAL-20260913-DCB69BCACFA3" target="_blank" rel="noopener" onclick="event.stopPropagation()">Verify ↗</a></div>
         </div>
       </div>
       </div>
@@ -1097,7 +1099,7 @@ function switchTab(tab) {
 document.querySelectorAll('.cert-card,.badge-card').forEach(card=>{
   card.setAttribute('tabindex','0');
   card.setAttribute('role','button');
-  card.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();card.click();}});
+  card.addEventListener('keydown',e=>{if(e.target===card&&(e.key==='Enter'||e.key===' ')){e.preventDefault();card.click();}});
 });
 
 // MODAL
