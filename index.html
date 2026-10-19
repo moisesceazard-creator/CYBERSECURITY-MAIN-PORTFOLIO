@@ -245,10 +245,38 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);overflow-x:h
 .role-t{font-size:14px;font-weight:600;color:var(--text);}
 .role-d{font-size:11px;font-family:var(--mono);color:var(--t3);}
 .capstone-certs{grid-column:1/-1;}
+/* CAPSTONE ARCHITECTURE (desktop) */
+.arch{display:block;width:100%;height:auto;margin-top:1rem;font-family:var(--sans);overflow:visible;}
+@media(max-width:900px){.arch{display:none;}}
+@media(min-width:901px){.pipe .pipe-track{display:none;}}
+.arch .nd{opacity:0;transform:translateY(8px);transition:opacity .5s cubic-bezier(.22,1,.36,1),transform .5s cubic-bezier(.22,1,.36,1);transition-delay:var(--t);}
+.pipe.run .arch .nd{opacity:1;transform:none;}
+.arch .bx{fill:#0D1526;stroke:rgba(255,255,255,.09);stroke-width:1;}
+.arch .bx-r{fill:rgba(239,68,68,.07);stroke:rgba(248,113,113,.45);}
+.arch .bx-g{fill:rgba(16,185,129,.07);stroke:rgba(52,211,153,.4);}
+.arch .panel{fill:rgba(59,130,246,.035);stroke:rgba(59,130,246,.28);stroke-width:1;}
+.arch .pl{font-family:var(--mono);font-size:10px;letter-spacing:.16em;fill:var(--blue-l);opacity:.75;}
+.arch .zh{font-family:var(--mono);font-size:11px;letter-spacing:.16em;fill:var(--t3);}
+.arch .tt{font-size:12.5px;font-weight:700;fill:#E6EDF3;}
+.arch .ts{font-size:10.5px;fill:#8B949E;}
+.arch .lb{font-family:var(--mono);font-size:9.5px;fill:#8B949E;}
+.arch .lb-r{fill:#F87171;}
+.arch .lb-v{writing-mode:vertical-rl;}
+.arch .note{font-size:15px;font-weight:700;fill:#E6EDF3;}
+.arch .ic{fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round;}
+.arch .ln{fill:none;stroke:rgba(148,163,184,.45);stroke-width:1.4;stroke-dasharray:1;stroke-dashoffset:1;transition:stroke-dashoffset .5s cubic-bezier(.65,0,.35,1);transition-delay:var(--t);}
+.pipe.run .arch .ln{stroke-dashoffset:0;}
+.arch .ah{fill:rgba(148,163,184,.7);opacity:0;transition:opacity .2s;transition-delay:calc(var(--t) + .45s);}
+.pipe.run .arch .ah{opacity:1;}
+.arch .atk{fill:none;stroke:#F87171;stroke-width:1.4;stroke-dasharray:4 4;animation:atk-march 1.2s linear infinite;}
+@keyframes atk-march{to{stroke-dashoffset:-16;}}
+.arch .badge circle{fill:#EF4444;}
+.arch .badge text{font-size:10px;font-weight:700;fill:#fff;}
+.arch .pk{fill:var(--cyan);opacity:0;transition:opacity .4s;filter:drop-shadow(0 0 4px rgba(34,211,238,.8));}
+.arch .pk-2{fill:#FBBF24;filter:drop-shadow(0 0 4px rgba(251,191,36,.8));}
+.arch .pk.go{opacity:1;}
 /* CAPSTONE PIPELINE */
 .pipe{grid-column:1/-1;padding-top:.4rem;}
-.pipe-more{display:block;margin:1.4rem auto 0;background:none;border:0;padding:4px 2px;font-family:var(--mono);font-size:12px;color:var(--blue-l);cursor:pointer;text-align:center;}
-.pipe-more:hover{color:var(--cyan);text-decoration:underline;text-underline-offset:3px;}
 .pipe-track{list-style:none;display:grid;grid-template-columns:repeat(5,1fr);margin-top:.9rem;}
 .pipe-node{position:relative;display:flex;flex-direction:column;align-items:center;text-align:center;padding:0 .6rem;}
 .pn-ico{position:relative;z-index:1;width:46px;height:46px;border-radius:12px;display:flex;align-items:center;justify-content:center;background:var(--s2);border:1px solid var(--border);color:var(--t3);transition:color .5s,border-color .5s,background .5s,box-shadow .5s;transition-delay:calc(var(--i)*.55s);}
@@ -661,7 +689,64 @@ a:focus-visible,button:focus-visible,[role="button"]:focus-visible{outline:2px s
         <div class="cm"><div class="cm-n">₱0</div><div class="cm-l">Licensing cost · fully open source</div></div>
       </div>
       <div class="pipe" id="pipeline">
-        <div class="cc-title">How an alert travels through the deployed system</div>
+        <div class="cc-title">How an attack becomes an alert and a case</div>
+        <svg class="arch" viewBox="0 0 1000 470" role="img" aria-label="Capstone architecture: mirrored traffic and endpoint logs flow into Security Onion (Suricata, Zeek, full PCAP, Fleet-managed Elastic Agents, Logstash and Elasticsearch); ElastAlert 2 sends Telegram alerts to MIS staff who decide on the response, and every match becomes a documented case.">
+          <text class="zh nd" x="20" y="26" text-anchor="start" style="--t:0.00s">COLLECTS</text>
+          <text class="zh nd" x="300" y="26" text-anchor="start" style="--t:1.04s">DETECTS</text>
+          <text class="zh nd" x="780" y="26" text-anchor="start" style="--t:2.96s">ALERTS &amp; DOCUMENTS</text>
+          <g class="nd" style="--t:1.04s"><rect class="panel" x="300" y="40" width="440" height="420" rx="16"/><text class="pl" x="318" y="66">SECURITY ONION</text></g>
+          <g class="nd" style="--t:0.08s"><rect class="bx" x="20" y="48" width="240" height="48" rx="10"/><g class="ic" style="color:#8B949E" transform="translate(32,63.0) scale(.75)"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></g><text class="tt" x="58" y="69">Internet</text><text class="ts" x="58" y="84">ISP uplink</text></g>
+          <path class="ln" d="M140 96 V122" pathLength="1" style="--t:0.28s"/>
+          <polygon class="ah" points="140,122 136,116 144,116" style="--t:0.28s"/>
+          <g class="nd" style="--t:0.36s"><rect class="bx" x="20" y="122" width="240" height="48" rx="10"/><g class="ic" style="color:#8B949E" transform="translate(32,137.0) scale(.75)"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M12 9v6"/><path d="M16 15v6"/><path d="M16 3v6"/><path d="M3 15h18"/><path d="M3 9h18"/><path d="M8 15v6"/><path d="M8 3v6"/></g><text class="tt" x="58" y="143">pfSense</text><text class="ts" x="58" y="158">Perimeter firewall</text></g>
+          <path class="ln" d="M140 170 V196" pathLength="1" style="--t:0.56s"/>
+          <polygon class="ah" points="140,196 136,190 144,190" style="--t:0.56s"/>
+          <g class="nd" style="--t:0.64s"><rect class="bx" x="20" y="196" width="240" height="54" rx="10"/><g class="ic" style="color:#8B949E" transform="translate(32,214.0) scale(.75)"><rect x="16" y="16" width="6" height="6" rx="1"/><rect x="2" y="16" width="6" height="6" rx="1"/><rect x="9" y="2" width="6" height="6" rx="1"/><path d="M5 16v-3a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v3"/><path d="M12 12V8"/></g><text class="tt" x="58" y="220">Managed switch</text><text class="ts" x="58" y="235">SPAN / mirror port</text></g>
+          <path class="ln" d="M140 250 V298" pathLength="1" style="--t:0.84s"/>
+          <polygon class="ah" points="140,298 136,292 144,292" style="--t:0.84s"/>
+          <g class="nd" style="--t:0.92s"><rect class="bx" x="20" y="298" width="240" height="56" rx="10"/><g class="ic" style="color:#8B949E" transform="translate(32,317.0) scale(.75)"><rect width="20" height="14" x="2" y="3" rx="2"/><line x1="8" x2="16" y1="21" y2="21"/><line x1="12" x2="12" y1="17" y2="21"/></g><text class="tt" x="58" y="323">5 pilot MIS workstations</text><text class="ts" x="58" y="338">Elastic Agent + Sysmon</text></g>
+          <g class="nd" style="--t:1.04s"><rect class="bx bx-r" x="20" y="404" width="240" height="50" rx="10"/><g class="ic" style="color:#F87171" transform="translate(32,420.0) scale(.75)"><path d="M20 16V7a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v9m16 0H4m16 0 1.28 2.55a1 1 0 0 1-.9 1.45H3.62a1 1 0 0 1-.9-1.45L4 16"/></g><text class="tt" x="58" y="426">Attack laptop</text><text class="ts" x="58" y="441">Authorized test only</text></g>
+          <g class="nd" style="--t:1.20s"><path class="atk" d="M140 404 V356"/><text class="lb lb-r" x="150" y="384">attack simulation</text></g>
+          <path class="ln" d="M260 223 H282 V121 H428" pathLength="1" style="--t:1.28s"/>
+          <polygon class="ah" points="428,121 422,117 422,125" style="--t:1.28s"/>
+          <text class="lb nd" x="318" y="113" text-anchor="start" style="--t:1.44s">mirrored traffic</text>
+          <path class="ln" d="M260 326 H284 V237 H316" pathLength="1" style="--t:1.28s"/>
+          <polygon class="ah" points="316,237 310,233 310,241" style="--t:1.28s"/>
+          <text class="lb lb-v nd" x="290" y="290" text-anchor="start" style="--t:1.44s">agent logs</text>
+          <g class="nd" style="--t:1.60s"><rect class="bx" x="428" y="82" width="90" height="78" rx="10"/><g class="ic" style="color:#60A5FA" transform="translate(464.0,93) scale(.75)"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></g><text class="tt" x="473.0" y="128" text-anchor="middle">Suricata</text><text class="ts" x="473.0" y="142" text-anchor="middle">IDS · ET Open</text></g>
+          <g class="nd" style="--t:1.68s"><rect class="bx" x="531" y="82" width="90" height="78" rx="10"/><g class="ic" style="color:#60A5FA" transform="translate(567.0,93) scale(.75)"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><circle cx="11.5" cy="14.5" r="2.5"/><path d="M13.3 16.3 15 18"/></g><text class="tt" x="576.0" y="128" text-anchor="middle">Zeek</text><text class="ts" x="576.0" y="142" text-anchor="middle">Network logs</text></g>
+          <g class="nd" style="--t:1.76s"><rect class="bx" x="634" y="82" width="90" height="78" rx="10"/><g class="ic" style="color:#60A5FA" transform="translate(670.0,93) scale(.75)"><line x1="22" x2="2" y1="12" y2="12"/><path d="M5.45 5.11 2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z"/><line x1="6" x2="6.01" y1="16" y2="16"/><line x1="10" x2="10.01" y1="16" y2="16"/></g><text class="tt" x="679.0" y="128" text-anchor="middle">Full PCAP</text><text class="ts" x="679.0" y="142" text-anchor="middle">Packet evidence</text></g>
+          <g class="nd" style="--t:1.60s"><rect class="bx" x="316" y="206" width="92" height="62" rx="10"/><g class="ic" style="color:#60A5FA" transform="translate(353.0,213) scale(.75)"><line x1="21" x2="14" y1="4" y2="4"/><line x1="10" x2="3" y1="4" y2="4"/><line x1="21" x2="12" y1="12" y2="12"/><line x1="8" x2="3" y1="12" y2="12"/><line x1="21" x2="16" y1="20" y2="20"/><line x1="12" x2="3" y1="20" y2="20"/><line x1="14" x2="14" y1="2" y2="6"/><line x1="8" x2="8" y1="10" y2="14"/><line x1="16" x2="16" y1="18" y2="22"/></g><text class="tt" x="362.0" y="246" text-anchor="middle">Elastic Agent</text><text class="ts" x="362.0" y="260" text-anchor="middle">Fleet-managed</text></g>
+          <path class="ln" d="M473 160 V206" pathLength="1" style="--t:1.92s"/>
+          <polygon class="ah" points="473,206 469,200 477,200" style="--t:1.92s"/>
+          <path class="ln" d="M576 160 V206" pathLength="1" style="--t:1.92s"/>
+          <polygon class="ah" points="576,206 572,200 580,200" style="--t:1.92s"/>
+          <path class="ln" d="M679 160 V206" pathLength="1" style="--t:1.92s"/>
+          <polygon class="ah" points="679,206 675,200 683,200" style="--t:1.92s"/>
+          <path class="ln" d="M408 237 H428" pathLength="1" style="--t:1.92s"/>
+          <polygon class="ah" points="428,237 422,233 422,241" style="--t:1.92s"/>
+          <g class="nd" style="--t:2.24s"><rect class="bx" x="428" y="206" width="296" height="62" rx="10"/><g class="ic" style="color:#60A5FA" transform="translate(440,228.0) scale(.75)"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v14a9 3 0 0 0 18 0V5"/><path d="M3 12a9 3 0 0 0 18 0"/></g><text class="tt" x="466" y="234">Logstash → Elasticsearch</text><text class="ts" x="466" y="249">Normalized (ECS), indexed · 9.7M+ events</text></g>
+          <path class="ln" d="M450 268 V292 H414 V318" pathLength="1" style="--t:2.48s"/>
+          <polygon class="ah" points="414,318 410,312 418,312" style="--t:2.48s"/>
+          <path class="ln" d="M626 268 V318" pathLength="1" style="--t:2.48s"/>
+          <polygon class="ah" points="626,318 622,312 630,312" style="--t:2.48s"/>
+          <g class="nd" style="--t:2.80s"><rect class="bx" x="316" y="318" width="196" height="72" rx="10"/><g class="ic" style="color:#60A5FA" transform="translate(328,345.0) scale(.75)"><rect width="7" height="9" x="3" y="3" rx="1"/><rect width="7" height="5" x="14" y="3" rx="1"/><rect width="7" height="9" x="14" y="12" rx="1"/><rect width="7" height="5" x="3" y="16" rx="1"/></g><text class="tt" x="354" y="344">SOC interface + Kibana</text><text class="ts" x="354" y="359">Alerts · Hunt · Cases</text><text class="ts" x="354" y="372">Every match on the dashboard</text></g>
+          <g class="nd" style="--t:2.80s"><rect class="bx" x="528" y="318" width="196" height="72" rx="10"/><g class="ic" style="color:#60A5FA" transform="translate(540,345.0) scale(.75)"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></g><text class="tt" x="566" y="344">ElastAlert 2</text><text class="ts" x="566" y="359">5 custom rules · every 3 min</text><text class="ts" x="566" y="372">ATT&amp;CK + Feodo Tracker IPs</text></g>
+          <path class="ln" d="M724 354 H780" pathLength="1" style="--t:3.04s"/>
+          <polygon class="ah" points="780,354 774,350 774,358" style="--t:3.04s"/>
+          <text class="lb nd" x="752" y="346" text-anchor="middle" style="--t:3.20s">~1.5 min</text>
+          <path class="ln" d="M414 390 V430 H780" pathLength="1" style="--t:3.04s"/>
+          <polygon class="ah" points="780,430 774,426 774,434" style="--t:3.04s"/>
+          <g class="nd" style="--t:3.36s"><rect class="bx" x="780" y="326" width="200" height="56" rx="10"/><g class="ic" style="color:#38BDF8" transform="translate(792,345.0) scale(.75)"><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></g><text class="tt" x="818" y="351">Telegram alert</text><text class="ts" x="818" y="366">Threat, IP, target, time</text></g>
+          <g class="nd badge" style="--t:3.60s"><circle cx="968" cy="330" r="8"/><text x="968" y="334" text-anchor="middle">1</text></g>
+          <g class="nd" style="--t:3.36s"><rect class="bx" x="780" y="405" width="200" height="50" rx="10"/><g class="ic" style="color:#FBBF24" transform="translate(792,421.0) scale(.75)"><path d="M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z"/><path d="m9 13 2 2 4-4"/></g><text class="tt" x="818" y="427">Documented case</text><text class="ts" x="818" y="442">Who handled it, when, findings</text></g>
+          <path class="ln" d="M880 326 V278" pathLength="1" style="--t:3.68s"/>
+          <polygon class="ah" points="880,278 876,284 884,284" style="--t:3.68s"/>
+          <g class="nd" style="--t:4.00s"><rect class="bx bx-g" x="780" y="216" width="200" height="62" rx="10"/><g class="ic" style="color:#34D399" transform="translate(792,238.0) scale(.75)"><circle cx="12" cy="8" r="5"/><path d="M20 21a8 8 0 0 0-16 0"/></g><text class="tt" x="818" y="244">MIS staff decides</text><text class="ts" x="818" y="259">Reviews the alert, then responds</text></g>
+          <g class="nd" style="--t:4.24s"><text class="note" x="780" y="62">Alerts inform,</text><text class="note" x="780" y="80">people decide.</text><text class="ts" x="780" y="102">Human-in-the-loop response,</text><text class="ts" x="780" y="116">no automatic blocking.</text></g>
+          <circle class="pk" r="4"><animateMotion begin="indefinite" dur="6s" repeatCount="indefinite" keyPoints="0;1;1" keyTimes="0;.72;1" calcMode="linear" path="M260 223 H282 V121 H473 V237 H626 V354 H880 V278"/></circle>
+          <circle class="pk pk-2" r="4"><animateMotion begin="indefinite" dur="6s" repeatCount="indefinite" keyPoints="0;1;1" keyTimes="0;.62;1" calcMode="linear" path="M260 326 H284 V237 H450 V292 H414 V430 H780"/></circle>
+        </svg>
         <ol class="pipe-track">
           <li class="pipe-node" style="--i:0"><span class="pipe-link" aria-hidden="true"><i></i></span><span class="pn-ico"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><rect x="16" y="16" width="6" height="6" rx="1"/><rect x="2" y="16" width="6" height="6" rx="1"/><rect x="9" y="2" width="6" height="6" rx="1"/><path d="M5 16v-3a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v3"/><path d="M12 12V8"/></svg></span><span class="pn-txt"><span class="pn-step">01 · Capture</span><span class="pn-name">SPAN port + Elastic Agent</span><span class="pn-desc">Mirrored traffic; Elastic Agent + Sysmon on 5 PCs</span></span></li>
           <li class="pipe-node" style="--i:1"><span class="pipe-link" aria-hidden="true"><i></i></span><span class="pn-ico"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="2"/><path d="M16.24 7.76a6 6 0 0 1 0 8.49M7.76 16.24a6 6 0 0 1 0-8.49M19.07 4.93a10 10 0 0 1 0 14.14M4.93 4.93a10 10 0 0 1 0 14.14"/></svg></span><span class="pn-txt"><span class="pn-step">02 · Inspect</span><span class="pn-name">Suricata + Zeek</span><span class="pn-desc">ET Open signatures, network logs, full PCAP</span></span></li>
@@ -669,7 +754,6 @@ a:focus-visible,button:focus-visible,[role="button"]:focus-visible{outline:2px s
           <li class="pipe-node" style="--i:3"><span class="pipe-link" aria-hidden="true"><i></i></span><span class="pn-ico"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg></span><span class="pn-txt"><span class="pn-step">04 · Detect</span><span class="pn-name">ElastAlert 2</span><span class="pn-desc">5 ATT&amp;CK-mapped rules + Feodo Tracker IPs</span></span></li>
           <li class="pipe-node" style="--i:4"><span class="pn-ico"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></svg></span><span class="pn-txt"><span class="pn-step">05 · Respond</span><span class="pn-name">Telegram → MIS staff → Case</span><span class="pn-desc">Alert in ~1.5 min; staff decide, no auto-blocking</span></span></li>
         </ol>
-        <button type="button" class="pipe-more" onclick="openModal('System architecture slide — IT Colloquium presentation (Group 6)','images/dashboards/architecture-slide.jpg',false)">View the architecture slide from our colloquium presentation →</button>
       </div>
       <div class="capstone-certs" id="dashboards">
         <div class="cc-title">Kibana dashboards I built</div>
@@ -1422,8 +1506,13 @@ document.querySelectorAll('.rev').forEach(el=>ro.observe(el));
 // CAPSTONE PIPELINE: plays once when it scrolls into view
 const pipeEl = document.getElementById('pipeline');
 if (pipeEl) {
+  const startPackets = () => setTimeout(() => {
+    pipeEl.querySelectorAll('.arch .pk').forEach((pk, i) => setTimeout(() => {
+      pk.classList.add('go'); pk.querySelector('animateMotion').beginElement();
+    }, i * 2600));
+  }, 4600);
   if (reduceMotion) pipeEl.classList.add('run');
-  else new IntersectionObserver((en, ob)=>{ if (en[0].isIntersecting) { pipeEl.classList.add('run'); ob.disconnect(); } }, {threshold:.45}).observe(pipeEl);
+  else new IntersectionObserver((en, ob)=>{ if (en[0].isIntersecting) { pipeEl.classList.add('run'); startPackets(); ob.disconnect(); } }, {threshold:.3}).observe(pipeEl);
 }
 
 // TABS
@@ -1444,7 +1533,7 @@ document.querySelectorAll('.cert-card,.badge-card').forEach(card=>{
 // MODAL
 let modalOrigin = null;
 document.addEventListener('click', e => {
-  const o = e.target.closest('.cert-card,.badge-card,.cg-item,.pipe-more');
+  const o = e.target.closest('.cert-card,.badge-card,.cg-item');
   if (o) modalOrigin = o.querySelector('img') || o;
 }, true);
 function flip(box, from, reverse, done) {
