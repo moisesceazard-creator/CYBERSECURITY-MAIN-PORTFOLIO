@@ -118,6 +118,9 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);overflow-x:h
 @keyframes slide-up{from{transform:translateY(100%);opacity:0;}to{transform:translateY(0);opacity:1;}}
 .hero-role{font-size:1.15rem;color:var(--t2);line-height:1.7;margin-bottom:2rem;animation:fade-in .8s .3s both;}
 .hero-role strong{color:var(--text);font-weight:600;}
+.typed-caret{display:inline-block;width:2px;height:1.05em;margin-left:3px;vertical-align:-2px;background:var(--blue);animation:caret-blink 1s steps(1) infinite;}
+@keyframes caret-blink{50%{opacity:0;}}
+.typed-caret.done{animation:none;opacity:0;transition:opacity .6s;}
 @keyframes fade-in{from{opacity:0;transform:translateY(16px);}to{opacity:1;transform:none;}}
 .hero-pills{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:2.5rem;animation:fade-in .8s .4s both;}
 .pill{font-family:var(--mono);font-size:11px;padding:5px 12px;border-radius:6px;border:1px solid var(--border);background:rgba(255,255,255,.03);color:var(--t2);letter-spacing:.05em;transition:all .3s;cursor:default;}
@@ -546,7 +549,7 @@ a:focus-visible,button:focus-visible,[role="button"]:focus-visible{outline:2px s
         <span class="hero-name-line name-plain">Moises Ceazar</span>
         <span class="hero-name-line name-gradient">Del Mundo</span>
       </h1>
-      <p class="hero-role"><strong>Aspiring SOC Analyst</strong> — a fourth-year Information Security student who deployed a live security monitoring platform for a city government.</p>
+      <p class="hero-role"><strong class="typed">Aspiring SOC Analyst</strong><span class="typed-caret" aria-hidden="true"></span><br/>A fourth-year Information Security student who deployed a live security monitoring platform for a city government.</p>
       <ul class="hero-proof">
         <li><span class="hp-i">🏆</span><span><strong>1st Place, Best Capstone</strong> — Information Security Track, IT Colloquium '26–'27</span></li>
         <li><span class="hp-i">🛡️</span><span><strong>ISC2 Certified in Cybersecurity (CC)</strong> · Appkademiya CCP (119/120)</span></li>
@@ -1449,6 +1452,31 @@ function closeModal() {
   document.body.style.overflow='';
 }
 
+
+// TYPING (hero role): one pass through two roles, then settles on the target title
+(function(){
+  const el=document.querySelector('.hero-role .typed');
+  if(!el||window.matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+  const roles=['Blue Team Defender','Threat Detection Enthusiast','Aspiring SOC Analyst'];
+  const caret=document.querySelector('.typed-caret');
+  let ri=0,ci=0,del=false;
+  el.textContent='';
+  function tick(){
+    const role=roles[ri];
+    if(!del){
+      ci++;el.textContent=role.substring(0,ci);
+      if(ci===role.length){
+        if(ri===roles.length-1){setTimeout(()=>caret&&caret.classList.add('done'),2500);return;}
+        del=true;setTimeout(tick,1100);return;
+      }
+    }else{
+      ci--;el.textContent=role.substring(0,ci);
+      if(ci===0){del=false;ri++;}
+    }
+    setTimeout(tick,del?35:70);
+  }
+  setTimeout(tick,700);
+})();
 </script>
 </body>
 </html>
