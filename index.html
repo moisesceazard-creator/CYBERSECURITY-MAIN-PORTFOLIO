@@ -259,6 +259,10 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);overflow-x:h
 .cc-title{font-family:var(--mono);font-size:11px;color:var(--t3);letter-spacing:.14em;text-transform:uppercase;margin-bottom:.6rem;}
 .cc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:.6rem;}
 .cc-grid .cg-item,.cc-grid .cg-item:last-child{grid-column:auto;height:auto;aspect-ratio:1400/990;}
+.cd-grid{grid-template-columns:repeat(2,1fr);}
+.cd-grid .cg-item,.cd-grid .cg-item:last-child{aspect-ratio:1918/1198;}
+.cd-grid .cg-item img{object-position:top;}
+.cd-note{font-size:12.5px;color:var(--t3);line-height:1.6;margin-top:.6rem;}
 @media(max-width:600px){.cc-grid{grid-template-columns:1fr;}}
 .capstone-event{grid-column:1/-1;font-size:12px;font-family:var(--mono);color:var(--t3);margin-top:-.8rem;}
 @media(max-width:960px){.capstone{grid-template-columns:1fr;padding:1.5rem;}.capstone-gallery{grid-template-columns:1fr 1fr;}.cg-item{grid-column:span 1;height:200px;}.cg-item.wide,.cg-item:last-child{grid-column:1/-1;}.honor{grid-template-columns:1fr;padding:1.5rem;}.honor-gallery{grid-template-columns:1fr 1fr;}.honor-gallery .cg-item:last-child{grid-column:span 1;}}
@@ -630,6 +634,14 @@ a:focus-visible,button:focus-visible,[role="button"]:focus-visible{outline:2px s
         <div class="cm"><div class="cm-n">~10%</div><div class="cm-l">False positive rate after tuning</div></div>
         <div class="cm"><div class="cm-n">68→83</div><div class="cm-l">Lynis hardening index</div></div>
         <div class="cm"><div class="cm-n">₱0</div><div class="cm-l">Licensing cost · fully open source</div></div>
+      </div>
+      <div class="capstone-certs">
+        <div class="cc-title">Kibana dashboards I built</div>
+        <div class="cc-grid cd-grid">
+          <div class="cg-item" onclick="openModal('Host &amp; Device Monitoring Dashboard — Kibana (lab replica)','images/dashboards/kibana-host-device-monitoring.jpg',true)"><img loading="lazy" decoding="async" src="images/dashboards/kibana-host-device-monitoring.jpg" alt="Kibana Host and Device Monitoring dashboard: devices monitored, severity counts, activity over time, per-device activity, most-used applications and processes per endpoint"/><div class="cg-cap">Host &amp; Device Monitoring</div></div>
+          <div class="cg-item" onclick="openModal('Network Traffic &amp; Connections Monitor — Kibana (lab replica)','images/dashboards/kibana-network-traffic-monitoring.jpg',true)"><img loading="lazy" decoding="async" src="images/dashboards/kibana-network-traffic-monitoring.jpg" alt="Kibana Network Traffic and Connections dashboard: connections, network alerts, top talkers, top destinations, protocol breakdown, DNS lookups and Suricata alert log"/><div class="cg-cap">Network Traffic &amp; Connections</div></div>
+        </div>
+        <p class="cd-note">Built in a lab replica for the colloquium presentation, mirroring the dashboards deployed at the MIS Office: per-device activity and severity, top talkers and destinations, DNS lookups, protocol breakdown, and Suricata alert logs. Click to view full size.</p>
       </div>
       <div class="capstone-gallery">
         <div class="cg-item wide" onclick="openModal('Best Capstone — Information Security Track · IT Colloquium \'26–\'27','images/colloquium/award-stage-team.jpg',true)"><img loading="lazy" decoding="async" src="images/colloquium/award-stage-team.jpg" alt="Group 6 on stage receiving the Best Capstone award for the Information Security Track"/><div class="cg-cap">1st Place · Best Capstone — InfoSec Track</div></div>
