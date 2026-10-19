@@ -256,6 +256,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);overflow-x:h
 .role-t{font-size:14px;font-weight:600;color:var(--text);}
 .role-d{font-size:11px;font-family:var(--mono);color:var(--t3);}
 .capstone-certs{grid-column:1/-1;}
+#dashboards{scroll-margin-top:90px;}
 .cc-title{font-family:var(--mono);font-size:11px;color:var(--t3);letter-spacing:.14em;text-transform:uppercase;margin-bottom:.6rem;}
 .cc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:.6rem;}
 .cc-grid .cg-item,.cc-grid .cg-item:last-child{grid-column:auto;height:auto;aspect-ratio:1400/990;}
@@ -638,7 +639,7 @@ a:focus-visible,button:focus-visible,[role="button"]:focus-visible{outline:2px s
         <div class="cm"><div class="cm-n">68→83</div><div class="cm-l">Lynis hardening index</div></div>
         <div class="cm"><div class="cm-n">₱0</div><div class="cm-l">Licensing cost · fully open source</div></div>
       </div>
-      <div class="capstone-certs">
+      <div class="capstone-certs" id="dashboards">
         <div class="cc-title">Kibana dashboards I built</div>
         <div class="cc-grid cd-grid">
           <div class="cg-item" onclick="openModal('Host &amp; Device Monitoring Dashboard — Kibana (lab replica)','images/dashboards/kibana-host-device-monitoring.jpg',true)"><img loading="lazy" decoding="async" src="images/dashboards/kibana-host-device-monitoring.jpg" alt="Kibana Host and Device Monitoring dashboard: devices monitored, severity counts, activity over time, per-device activity, most-used applications and processes per endpoint"/><div class="cg-cap">Host &amp; Device Monitoring</div></div>
@@ -684,7 +685,7 @@ a:focus-visible,button:focus-visible,[role="button"]:focus-visible{outline:2px s
         <div class="tl-card">
           <div class="tl-head"><div class="tl-role">Security Monitoring Deployment — Capstone Project (Group 6)</div><div class="tl-date">2025 – 2026 · Live Aug 2026</div></div>
           <div class="tl-org">MIS Office, Tanauan City Hall · Real client deployment</div>
-          <ul class="tl-list"><li>Deployed Security Onion on the Tanauan City Hall network (Suricata, Zeek, Elastic Agent on five endpoints) with custom Kibana dashboards, ATT&amp;CK-mapped detection rules and Telegram alerting.</li><li>100% detection across five simulated attacks and 9.7M+ events indexed in four days live; endorsed by the MIS Department Head for continued use. <a href="#capstone" class="tl-link">See the full capstone ↑</a></li></ul>
+          <ul class="tl-list"><li>Deployed Security Onion on the Tanauan City Hall network (Suricata, Zeek, Elastic Agent on five endpoints) with custom Kibana dashboards, ATT&amp;CK-mapped detection rules and Telegram alerting.</li><li>100% detection across five simulated attacks and 9.7M+ events indexed in four days live; endorsed by the MIS Department Head for continued use. <a href="#capstone" class="tl-link">See the full capstone ↑</a> · <a href="#dashboards" class="tl-link">See the dashboards I built ↑</a></li></ul>
           <div class="tags"><span class="t">Security Onion</span><span class="t">Elastic Stack</span><span class="t">Suricata</span><span class="t">Zeek</span><span class="t">ElastAlert 2</span><span class="t">NIST CSF 2.0</span></div>
         </div>
       </div>
