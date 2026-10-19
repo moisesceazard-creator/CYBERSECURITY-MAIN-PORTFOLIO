@@ -262,6 +262,9 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);overflow-x:h
 .cd-grid{grid-template-columns:repeat(2,1fr);}
 .cd-grid .cg-item,.cd-grid .cg-item:last-child{aspect-ratio:1918/1198;}
 .cd-grid .cg-item img{object-position:top;}
+.cc-sub{margin-top:1rem;}
+.so-grid .cg-item,.so-grid .cg-item:last-child{aspect-ratio:1918/1198;}
+.so-grid .cg-item img{object-position:top left;}
 .cd-note{font-size:12.5px;color:var(--t3);line-height:1.6;margin-top:.6rem;}
 @media(max-width:600px){.cc-grid{grid-template-columns:1fr;}}
 .capstone-event{grid-column:1/-1;font-size:12px;font-family:var(--mono);color:var(--t3);margin-top:-.8rem;}
@@ -641,7 +644,13 @@ a:focus-visible,button:focus-visible,[role="button"]:focus-visible{outline:2px s
           <div class="cg-item" onclick="openModal('Host &amp; Device Monitoring Dashboard — Kibana (lab replica)','images/dashboards/kibana-host-device-monitoring.jpg',true)"><img loading="lazy" decoding="async" src="images/dashboards/kibana-host-device-monitoring.jpg" alt="Kibana Host and Device Monitoring dashboard: devices monitored, severity counts, activity over time, per-device activity, most-used applications and processes per endpoint"/><div class="cg-cap">Host &amp; Device Monitoring</div></div>
           <div class="cg-item" onclick="openModal('Network Traffic &amp; Connections Monitor — Kibana (lab replica)','images/dashboards/kibana-network-traffic-monitoring.jpg',true)"><img loading="lazy" decoding="async" src="images/dashboards/kibana-network-traffic-monitoring.jpg" alt="Kibana Network Traffic and Connections dashboard: connections, network alerts, top talkers, top destinations, protocol breakdown, DNS lookups and Suricata alert log"/><div class="cg-cap">Network Traffic &amp; Connections</div></div>
         </div>
-        <p class="cd-note">Built in a lab replica for the colloquium presentation, mirroring the dashboards deployed at the MIS Office: per-device activity and severity, top talkers and destinations, DNS lookups, protocol breakdown, and Suricata alert logs. Click to view full size.</p>
+        <div class="cc-title cc-sub">Security Onion: detections, hunting &amp; case management</div>
+        <div class="cc-grid so-grid">
+          <div class="cg-item" onclick="openModal('Security Onion Alerts — custom detection rules firing (lab replica)','images/dashboards/so-alerts-custom-detections.jpg',true)"><img loading="lazy" decoding="async" src="images/dashboards/so-alerts-custom-detections.jpg" alt="Security Onion Alerts view listing custom ElastAlert detections: SSH brute force, unauthorized workstation access, removable media exfiltration, phishing-related malicious communication and network reconnaissance"/><div class="cg-cap">Custom detections firing</div></div>
+          <div class="cg-item" onclick="openModal('Security Onion Hunt — 8.6M events over one month (lab replica)','images/dashboards/so-hunt.jpg',true)"><img loading="lazy" decoding="async" src="images/dashboards/so-hunt.jpg" alt="Security Onion Hunt view with an event timeline and 8.6 million events grouped by sensor"/><div class="cg-cap">Threat hunting · 8.6M events</div></div>
+          <div class="cg-item" onclick="openModal('Security Onion Cases — incident case management (lab replica)','images/dashboards/so-cases.jpg',true)"><img loading="lazy" decoding="async" src="images/dashboards/so-cases.jpg" alt="Security Onion Cases view with open cases for reconnaissance, SOC login failure, Feodo Tracker malicious IP and SSH brute force"/><div class="cg-cap">Incident case management</div></div>
+        </div>
+        <p class="cd-note">Built in a lab replica for the colloquium presentation, mirroring what was deployed at the MIS Office: Kibana dashboards for per-device activity, top talkers, DNS lookups and protocol breakdown; the five custom detection rules (SSH brute force, unauthorized workstation access, USB exfiltration, phishing-related C2 and port scanning) firing as Security Onion alerts; threat hunting across 8.6M events; and tracked incident cases. Click any image to view full size.</p>
       </div>
       <div class="capstone-gallery">
         <div class="cg-item wide" onclick="openModal('Best Capstone — Information Security Track · IT Colloquium \'26–\'27','images/colloquium/award-stage-team.jpg',true)"><img loading="lazy" decoding="async" src="images/colloquium/award-stage-team.jpg" alt="Group 6 on stage receiving the Best Capstone award for the Information Security Track"/><div class="cg-cap">1st Place · Best Capstone — InfoSec Track</div></div>
