@@ -435,6 +435,28 @@ footer{border-top:1px solid var(--border);padding:2rem;}
 @media(max-width:340px){.nav-logo-text{display:none;}}
 
 /* ACCESSIBILITY */
+/* line icons (replace emoji) */
+.ico{width:1.05em;height:1.05em;flex-shrink:0;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;vertical-align:-.17em;}
+.hp-i{display:inline-flex;align-items:center;justify-content:center;width:1.6rem;height:1.6rem;border-radius:7px;background:rgba(255,255,255,.04);border:1px solid var(--border);}
+.hp-i .ico{width:.95rem;height:.95rem;}
+.va-status{display:inline-flex;align-items:center;gap:5px;}
+/* scroll progress */
+#scroll-progress{position:fixed;top:0;left:0;height:2px;width:100%;transform-origin:0 50%;transform:scaleX(0);background:linear-gradient(90deg,var(--blue),var(--cyan));z-index:1001;pointer-events:none;}
+/* active nav link */
+.nav-menu a.active{color:var(--text);}
+.nav-menu a.active::after{width:100%;}
+/* cursor spotlight on cards */
+.sk-card,.proj-card,.cert-card,.fact{--mx:50%;--my:50%;}
+.sk-card::before,.cert-card::before,.fact::before{content:'';position:absolute;inset:0;border-radius:inherit;pointer-events:none;opacity:0;transition:opacity .3s;z-index:-1;background:radial-gradient(320px circle at var(--mx) var(--my),rgba(59,130,246,.10),transparent 60%);}
+.sk-card,.cert-card,.fact{position:relative;isolation:isolate;}
+.sk-card:hover::before,.cert-card:hover::before,.fact:hover::before{opacity:1;}
+.proj-card{background-image:radial-gradient(360px circle at var(--mx) var(--my),rgba(59,130,246,.08),transparent 60%);background-repeat:no-repeat;background-size:0 0;}
+.proj-card:hover{background-size:100% 100%;}
+/* back to top */
+#to-top{position:fixed;right:22px;bottom:22px;width:42px;height:42px;border-radius:12px;border:1px solid var(--border-glow);background:rgba(13,17,23,.85);backdrop-filter:blur(12px);color:var(--text);display:flex;align-items:center;justify-content:center;cursor:pointer;opacity:0;transform:translateY(12px);pointer-events:none;transition:opacity .3s,transform .3s,border-color .2s;z-index:900;}
+#to-top.show{opacity:1;transform:none;pointer-events:auto;}
+#to-top:hover{border-color:var(--blue);}
+@media (max-width:768px){#to-top{right:14px;bottom:14px;}}
 a:focus-visible,button:focus-visible,[role="button"]:focus-visible{outline:2px solid var(--cyan);outline-offset:3px;}
 @media(prefers-reduced-motion:reduce){
   html{scroll-behavior:auto;}
@@ -489,6 +511,7 @@ a:focus-visible,button:focus-visible,[role="button"]:focus-visible{outline:2px s
 </head>
 <body>
 
+<div id="scroll-progress" aria-hidden="true"></div>
 <canvas id="bg-canvas"></canvas>
 <canvas id="matrix-canvas"></canvas>
 <div class="cursor-glow" id="cursor-glow"></div>
@@ -551,9 +574,9 @@ a:focus-visible,button:focus-visible,[role="button"]:focus-visible{outline:2px s
       </h1>
       <p class="hero-role"><strong class="typed">Aspiring SOC Analyst</strong><span class="typed-caret" aria-hidden="true"></span><br/>A fourth-year Information Security student who deployed a live security monitoring platform for a city government.</p>
       <ul class="hero-proof">
-        <li><span class="hp-i">🏆</span><span><strong>1st Place, Best Capstone</strong> — Information Security Track, IT Colloquium '26–'27</span></li>
-        <li><span class="hp-i">🛡️</span><span><strong>ISC2 Certified in Cybersecurity (CC)</strong> · Appkademiya CCP (119/120)</span></li>
-        <li><span class="hp-i">📈</span><span><strong>9.7M events</strong> monitored in a live city government deployment</span></li>
+        <li><span class="hp-i"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" style="color:#FBBF24"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"/></svg></span><span><strong>1st Place, Best Capstone</strong> — Information Security Track, IT Colloquium '26–'27</span></li>
+        <li><span class="hp-i"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" style="color:var(--blue)"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg></span><span><strong>ISC2 Certified in Cybersecurity (CC)</strong> · Appkademiya CCP (119/120)</span></li>
+        <li><span class="hp-i"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" style="color:var(--cyan)"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></span><span><strong>9.7M events</strong> monitored in a live city government deployment</span></li>
       </ul>
       <div class="hero-actions">
         <a href="#capstone" class="btn btn-primary">See My Capstone →</a>
@@ -624,7 +647,7 @@ a:focus-visible,button:focus-visible,[role="button"]:focus-visible{outline:2px s
     <p class="s-sub rev">A live security monitoring platform deployed into a real city government network — built, tested, hardened, and handed over.</p>
     <div class="capstone rev">
       <div>
-        <div class="awards"><span class="award">🏆 1st Place · Best Capstone Project — Information Security Track</span><span class="award">🏆 1st Place · Best Group Presentation</span></div>
+        <div class="awards"><span class="award"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"/></svg> 1st Place · Best Capstone Project — Information Security Track</span><span class="award"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"/></svg> 1st Place · Best Group Presentation</span></div>
         <div class="capstone-kicker">Featured · Capstone Project · IT Colloquium '26–'27</div>
         <h3 class="capstone-title">Security Onion for Network &amp; Host Visibility and Case Management — MIS Office, Tanauan City Hall</h3>
         <p class="capstone-desc">Deployed Security Onion into a live government network that had only a perimeter firewall and relied on external advisories for threat awareness. Built network visibility (Suricata, Zeek via SPAN port), host visibility (Elastic Agent on five pilot endpoints), custom Kibana host and network monitoring dashboards, STRIDE- and ATT&amp;CK-mapped detection rules for brute force, port scanning, USB exfiltration and C2 traffic, plain-language Telegram alerts via ElastAlert 2, and case management with Security Onion Cases, grounded in NIST CSF 2.0 and the Philippine NCSP 2023–2028. Validated against five simulated attack scenarios, then hardened the platform after the defense with MFA, secrets storage and key-only SSH. Formally endorsed by the MIS Department Head for continued use.</p>
@@ -772,7 +795,7 @@ a:focus-visible,button:focus-visible,[role="button"]:focus-visible{outline:2px s
         <div class="proj-name">Security Onion Telegram Alerting</div>
         <div class="proj-desc">Automated real-time security alert forwarding from Security Onion (ElastAlert2 / Wazuh) to Telegram channels via Telegram Bot API, with MITRE ATT&amp;CK-tagged detection rules covering SSH brute force, phishing C2, and port scanning.</div>
         <div class="proj-stack"><span class="st">Security Onion</span><span class="st">ElastAlert2</span><span class="st">Python</span><span class="st">Telegram Bot API</span><span class="st">Wazuh</span></div>
-        <div class="proj-footer"><a href="https://github.com/moisesceazard-creator/Security-Onion-Telegram-Alerting" target="_blank" class="proj-link">View on GitHub →</a><span class="proj-stars">⭐ 1</span><span class="pbg pbg-b">Independent</span></div>
+        <div class="proj-footer"><a href="https://github.com/moisesceazard-creator/Security-Onion-Telegram-Alerting" target="_blank" class="proj-link">View on GitHub →</a><span class="proj-stars"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg> 1</span><span class="pbg pbg-b">Independent</span></div>
       </div>
       <div class="proj-card rev d1">
         <div class="proj-top"><div class="proj-icon pi-g"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" ><path d="M2 4h7a4 4 0 0 1 4 4v13a3 3 0 0 0-3-3H2V4z"/><path d="M22 4h-7a4 4 0 0 0-4 4v13a3 3 0 0 1 3-3h8V4z"/></svg></div><div class="proj-bgs"><span class="pbg pbg-g">SOC DEPLOYMENT</span><span class="pbg pbg-g">DOCUMENTATION</span></div></div>
@@ -867,7 +890,7 @@ a:focus-visible,button:focus-visible,[role="button"]:focus-visible{outline:2px s
           <span class="va-tag">SMB Relay</span><span class="va-tag">MitM</span><span class="va-tag">Group Policy</span><span class="va-tag">PowerShell</span>
         </div>
         <div class="va-card-footer">
-          <span class="va-status">✅ Resolved — Remediation scan passed</span>
+          <span class="va-status"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" style="color:var(--green)"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg> Resolved — Remediation scan passed</span>
           <span class="va-arrow">→</span>
         </div>
       </a>
@@ -878,7 +901,7 @@ a:focus-visible,button:focus-visible,[role="button"]:focus-visible{outline:2px s
           <div class="va-sev-badge" style="background:rgba(59,130,246,.15);color:var(--blue-l);border:1px solid rgba(59,130,246,.3);">LOW</div>
           <div class="va-cvss">CVSS 2.1</div>
         </div>
-        <div class="va-card-icon" style="background:rgba(59,130,246,.1);border:1px solid rgba(59,130,246,.2);">⏱️</div>
+        <div class="va-card-icon" style="background:rgba(59,130,246,.1);border:1px solid rgba(59,130,246,.2);" ><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" style="color:var(--blue);width:18px;height:18px"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
         <div class="va-card-title">ICMP Timestamp Remote Date Disclosure</div>
         <div class="va-card-plugin">Nessus Plugin #10114</div>
         <div class="va-card-desc">System time exposure enabling Kerberos/TOTP bypass and uptime fingerprinting. Blocked via Windows Firewall ICMPv4 Type 13 rule.</div>
@@ -886,7 +909,7 @@ a:focus-visible,button:focus-visible,[role="button"]:focus-visible{outline:2px s
           <span class="va-tag">ICMP</span><span class="va-tag">Firewall Rule</span><span class="va-tag">Kerberos</span><span class="va-tag">Hardening</span>
         </div>
         <div class="va-card-footer">
-          <span class="va-status">✅ Resolved — Firewall rule verified</span>
+          <span class="va-status"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" style="color:var(--green)"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg> Resolved — Firewall rule verified</span>
           <span class="va-arrow">→</span>
         </div>
       </a>
@@ -905,7 +928,7 @@ a:focus-visible,button:focus-visible,[role="button"]:focus-visible{outline:2px s
           <span class="va-tag">RCE</span><span class="va-tag">ECLIPSEDWING</span><span class="va-tag">KB958644</span><span class="va-tag">Python HTTP</span>
         </div>
         <div class="va-card-footer">
-          <span class="va-status">✅ Resolved — Patch applied</span>
+          <span class="va-status"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" style="color:var(--green)"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg> Resolved — Patch applied</span>
           <span class="va-arrow">→</span>
         </div>
       </a>
@@ -924,7 +947,7 @@ a:focus-visible,button:focus-visible,[role="button"]:focus-visible{outline:2px s
           <span class="va-tag">EternalBlue</span><span class="va-tag">SMBv1</span><span class="va-tag">WannaCry</span><span class="va-tag">Shadow Brokers</span>
         </div>
         <div class="va-card-footer">
-          <span class="va-status">✅ Resolved — Patch verified</span>
+          <span class="va-status"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" style="color:var(--green)"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg> Resolved — Patch verified</span>
           <span class="va-arrow">→</span>
         </div>
       </a>
@@ -943,7 +966,7 @@ a:focus-visible,button:focus-visible,[role="button"]:focus-visible{outline:2px s
           <span class="va-tag">NTLM Relay</span><span class="va-tag">AD CS</span><span class="va-tag">Lateral Movement</span><span class="va-tag">EoP</span>
         </div>
         <div class="va-card-footer">
-          <span class="va-status">📋 Documented — Patch KB5005413</span>
+          <span class="va-status"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" style="color:#FBBF24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="8" y1="13" x2="16" y2="13"/><line x1="8" y1="17" x2="13" y2="17"/></svg> Documented — Patch KB5005413</span>
           <span class="va-arrow">→</span>
         </div>
       </a>
@@ -962,7 +985,7 @@ a:focus-visible,button:focus-visible,[role="button"]:focus-visible{outline:2px s
           <span class="va-tag">EOL OS</span><span class="va-tag">Risk Assessment</span><span class="va-tag">Windows 2003</span><span class="va-tag">Documented</span>
         </div>
         <div class="va-card-footer">
-          <span class="va-status">📝 Documented — Upgrade recommended</span>
+          <span class="va-status"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" style="color:#FBBF24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="8" y1="13" x2="16" y2="13"/><line x1="8" y1="17" x2="13" y2="17"/></svg> Documented — Upgrade recommended</span>
           <span class="va-arrow">→</span>
         </div>
       </a>
@@ -1005,7 +1028,7 @@ a:focus-visible,button:focus-visible,[role="button"]:focus-visible{outline:2px s
     <p class="s-sub rev">Academic honors, community service and student leadership at De La Salle Lipa.</p>
     <div class="honor rev">
       <div class="honor-text">
-        <div class="awards"><span class="award">🏅 Top Student Awardee</span></div>
+        <div class="awards"><span class="award"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/></svg> Top Student Awardee</span></div>
         <div class="capstone-kicker">Academic Honors · JPCS – DLSL Chapter · April 21, 2026</div>
         <h3 class="capstone-title">Top Student — IT Elective 2 (Information Security): Security Planning, Implementation &amp; Audit</h3>
         <p class="capstone-desc">Recognized as one of the top students in the IT Elective 2 (Information Security) class of IT3D for the First Semester of Academic Year 2025–2026, presented by the Junior Philippine Computer Society – De La Salle Lipa Chapter and the IT Program.</p>
@@ -1018,7 +1041,7 @@ a:focus-visible,button:focus-visible,[role="button"]:focus-visible{outline:2px s
     </div>
     <div class="honor rev">
       <div class="honor-text">
-        <div class="awards"><span class="award">🎖️ NSTP Lingkod Awardee</span></div>
+        <div class="awards"><span class="award"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg> NSTP Lingkod Awardee</span></div>
         <div class="capstone-kicker">Community Service · NSTP · De La Salle Lipa · June 14, 2024</div>
         <h3 class="capstone-title">NSTP Lingkod Award — Community Service Learning</h3>
         <p class="capstone-desc">Spearheaded our NSTP group's community service project at a local public school, teaching students basic computer skills: how to navigate and use a computer, and how to work with Microsoft Office apps like Word. Recognized for exceptional dedication and service to the community.</p>
@@ -1031,7 +1054,7 @@ a:focus-visible,button:focus-visible,[role="button"]:focus-visible{outline:2px s
     </div>
     <div class="honor rev">
       <div class="honor-text">
-        <div class="awards"><span class="award">🤝 Student Leadership</span></div>
+        <div class="awards"><span class="award"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg> Student Leadership</span></div>
         <div class="capstone-kicker">Leadership · Junior Philippine Computer Society – DLSL Chapter</div>
         <h3 class="capstone-title">JPCS Officer — Internal Affairs &amp; IT Student Representation</h3>
         <div class="roles">
@@ -1325,6 +1348,8 @@ a:focus-visible,button:focus-visible,[role="button"]:focus-visible{outline:2px s
   </div>
 </footer>
 
+<button id="to-top" aria-label="Back to top"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><polyline points="18 15 12 9 6 15"/></svg></button>
+
 <script>
 const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 const smallScreen = window.matchMedia('(max-width: 768px)').matches;
@@ -1452,6 +1477,54 @@ function closeModal() {
   document.body.style.overflow='';
 }
 
+
+// SCROLL PROGRESS + BACK TO TOP
+const progEl = document.getElementById('scroll-progress');
+const toTop = document.getElementById('to-top');
+function onScrollUI() {
+  const max = document.documentElement.scrollHeight - innerHeight;
+  progEl.style.transform = 'scaleX(' + (max > 0 ? scrollY / max : 0) + ')';
+  toTop.classList.toggle('show', scrollY > innerHeight);
+}
+window.addEventListener('scroll', onScrollUI, {passive:true}); onScrollUI();
+toTop.addEventListener('click', () => window.scrollTo({top:0, behavior: reduceMotion ? 'auto' : 'smooth'}));
+
+// ACTIVE NAV LINK
+const navLinks = [...document.querySelectorAll('.nav-menu a[href^="#"]')];
+const navTargets = navLinks.map(a => document.querySelector(a.getAttribute('href'))).filter(Boolean);
+const spy = new IntersectionObserver(entries => {
+  entries.forEach(en => {
+    if (!en.isIntersecting) return;
+    navLinks.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + en.target.id));
+  });
+}, {rootMargin: '-45% 0px -50% 0px'});
+navTargets.forEach(t => spy.observe(t));
+
+// CURSOR SPOTLIGHT ON CARDS
+if (window.matchMedia('(pointer: fine)').matches && !reduceMotion) {
+  document.querySelectorAll('.sk-card,.proj-card,.cert-card,.fact').forEach(c => {
+    c.addEventListener('mousemove', e => {
+      const r = c.getBoundingClientRect();
+      c.style.setProperty('--mx', (e.clientX - r.left) + 'px');
+      c.style.setProperty('--my', (e.clientY - r.top) + 'px');
+    }, {passive:true});
+  });
+}
+
+// STAT COUNT-UP
+if (!reduceMotion) {
+  document.querySelectorAll('.stat-n').forEach(el => {
+    const txt = el.textContent.trim();
+    if (!/^\d+(\.\d+)?$/.test(txt)) return;
+    const end = parseFloat(txt), dec = (txt.split('.')[1] || '').length, t0 = performance.now() + 500, dur = 1200;
+    el.textContent = (0).toFixed(dec);
+    (function step(now) {
+      const k = Math.min(1, Math.max(0, (now - t0) / dur)), e = 1 - Math.pow(1 - k, 3);
+      el.textContent = (end * e).toFixed(dec);
+      if (k < 1) requestAnimationFrame(step); else el.textContent = txt;
+    })(performance.now());
+  });
+}
 
 // TYPING (hero role): one pass through two roles, then settles on the target title
 (function(){
