@@ -255,6 +255,11 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);overflow-x:h
 .role-dot.now{background:var(--green);box-shadow:0 0 10px var(--green);}
 .role-t{font-size:14px;font-weight:600;color:var(--text);}
 .role-d{font-size:11px;font-family:var(--mono);color:var(--t3);}
+.capstone-certs{grid-column:1/-1;}
+.cc-title{font-family:var(--mono);font-size:11px;color:var(--t3);letter-spacing:.14em;text-transform:uppercase;margin-bottom:.6rem;}
+.cc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:.6rem;}
+.cc-grid .cg-item,.cc-grid .cg-item:last-child{grid-column:auto;height:auto;aspect-ratio:1400/990;}
+@media(max-width:600px){.cc-grid{grid-template-columns:1fr;}}
 .capstone-event{grid-column:1/-1;font-size:12px;font-family:var(--mono);color:var(--t3);margin-top:-.8rem;}
 @media(max-width:960px){.capstone{grid-template-columns:1fr;padding:1.5rem;}.capstone-gallery{grid-template-columns:1fr 1fr;}.cg-item{grid-column:span 1;height:200px;}.cg-item.wide,.cg-item:last-child{grid-column:1/-1;}.honor{grid-template-columns:1fr;padding:1.5rem;}.honor-gallery{grid-template-columns:1fr 1fr;}.honor-gallery .cg-item:last-child{grid-column:span 1;}}
 .creds-tab svg{vertical-align:-3px;margin-right:4px;}
@@ -632,6 +637,14 @@ a:focus-visible,button:focus-visible,[role="button"]:focus-visible{outline:2px s
         <div class="cg-item" onclick="openModal('Group 6 with our medals and certificates','images/colloquium/team-medals.jpg',true)"><img loading="lazy" decoding="async" src="images/colloquium/team-medals.jpg" alt="Group 6 posing with medals and certificates" style="object-position:center 60%"/><div class="cg-cap">Group 6</div></div>
         <div class="cg-item" onclick="openModal('Both Certificates of Recognition','images/colloquium/moises-certificates.jpg',true)"><img loading="lazy" decoding="async" src="images/colloquium/moises-certificates.jpg" alt="Moises holding both certificates of recognition" style="object-position:center 65%"/><div class="cg-cap">Two 1st-place awards</div></div>
         <div class="cg-item" onclick="openModal('Certificates of Recognition — IT Colloquium \'26–\'27','images/colloquium/certificates-of-recognition.jpg',true)"><img loading="lazy" decoding="async" src="images/colloquium/certificates-of-recognition.jpg" alt="Certificates of recognition for Best Group Presentation and Best Capstone Project"/><div class="cg-cap">Certificates &amp; medal</div></div>
+      </div>
+      <div class="capstone-certs">
+        <div class="cc-title">Official certificates</div>
+        <div class="cc-grid">
+          <div class="cg-item" onclick="openModal('Certificate of Recognition — 1st Place, Best Capstone Project (Information Security Track)','images/colloquium/cert-best-capstone-infosec.jpg',true)"><img loading="lazy" decoding="async" src="images/colloquium/cert-best-capstone-infosec.jpg" alt="Certificate of Recognition: 1st Place, Best Capstone Project Award, Information Security Track, IT Colloquium '26–'27"/><div class="cg-cap">1st Place · Best Capstone (InfoSec)</div></div>
+          <div class="cg-item" onclick="openModal('Certificate of Recognition — 1st Place, Best Group Presentation','images/colloquium/cert-best-group-presentation.jpg',true)"><img loading="lazy" decoding="async" src="images/colloquium/cert-best-group-presentation.jpg" alt="Certificate of Recognition: 1st Place, Best Group Presentation Award, IT Colloquium '26–'27"/><div class="cg-cap">1st Place · Best Group Presentation</div></div>
+          <div class="cg-item" onclick="openModal('Certificate of Participation — IT Colloquium \'26–\'27','images/colloquium/cert-participation.jpg',true)"><img loading="lazy" decoding="async" src="images/colloquium/cert-participation.jpg" alt="Certificate of Participation issued to Moises Ceazar Del Mundo, IT Colloquium '26–'27"/><div class="cg-cap">Certificate of Participation</div></div>
+        </div>
       </div>
       <div class="capstone-event">First IT Colloquium of De La Salle Lipa · organized by JPCS – DLSL Chapter · Oct 16, 2026 · Senator Diokno Auditorium</div>
     </div>
