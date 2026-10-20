@@ -170,6 +170,18 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);overflow-x:h
 .s-sub{font-size:15px;color:var(--t2);max-width:520px;line-height:1.7;}
 
 /* ABOUT */
+/* HOW I WORK (soft skills) */
+.hw{margin-top:3.5rem;}
+.hw-title{font-size:1.15rem;font-weight:800;letter-spacing:-.02em;margin-bottom:1.1rem;}
+.hw-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;}
+.hw-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:1.1rem 1.1rem 1rem;transition:border-color .25s,transform .25s;}
+.hw-card:hover{border-color:var(--border-glow);transform:translateY(-3px);}
+.hw-i{width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;background:rgba(59,130,246,.08);border:1px solid rgba(59,130,246,.2);color:var(--blue-l);margin-bottom:.8rem;}
+.hw-i .ico{width:16px;height:16px;}
+.hw-t{font-size:14px;font-weight:700;color:var(--text);margin-bottom:.35rem;}
+.hw-p{font-size:12.5px;color:var(--t2);line-height:1.6;}
+@media(max-width:1000px){.hw-grid{grid-template-columns:repeat(2,1fr);}}
+@media(max-width:520px){.hw-grid{grid-template-columns:1fr;}}
 .about-grid{display:grid;grid-template-columns:1.1fr 1fr;gap:4rem;align-items:start;margin-top:3rem;}
 .about-body p{font-size:15px;color:var(--t2);line-height:1.9;margin-bottom:1.1rem;}
 .about-body strong{color:var(--text);font-weight:600;}
@@ -893,6 +905,19 @@ a:focus-visible,button:focus-visible,[role="button"]:focus-visible{outline:2px s
         <div class="fact"><div class="fact-i"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" ><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.3" fill="currentColor" stroke="none"/></svg></div><div><div class="fact-k">Target Role</div><div class="fact-v">SOC Analyst Intern · Blue Team · Cybersecurity OJT</div></div></div>
         <div class="fact"><div class="fact-i"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" ><path d="M2 4h7a4 4 0 0 1 4 4v13a3 3 0 0 0-3-3H2V4z"/><path d="M22 4h-7a4 4 0 0 0-4 4v13a3 3 0 0 1 3-3h8V4z"/></svg></div><div><div class="fact-k">Studying</div><div class="fact-v">Google Cybersecurity Certificate (in progress) · CompTIA Security+ · Splunk SIEM</div></div></div>
         <div class="fact"><div class="fact-i"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" ><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div><div><div class="fact-k">Available</div><div class="fact-v">Internship / OJT · Philippines · 2026</div></div></div>
+      </div>
+    </div>
+    <div class="hw rev">
+      <h3 class="hw-title">How I work</h3>
+      <div class="hw-grid">
+        <div class="hw-card rev"><span class="hw-i"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" x2="12" y1="19" y2="22"/></svg></span><div class="hw-t">Communication &amp; presentation</div><p class="hw-p">1st Place, Best Group Presentation at the IT Colloquium '26–'27.</p></div>
+        <div class="hw-card rev d1"><span class="hw-i"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" x2="4" y1="22" y2="15"/></svg></span><div class="hw-t">Leadership</div><p class="hw-p">Project Head, Internal Affairs (IT) at JPCS – DLSL; I lead committees for events with 200+ students.</p></div>
+        <div class="hw-card rev d2"><span class="hw-i"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"/><path d="M8 16H3v5"/></svg></span><div class="hw-t">Adaptability</div><p class="hw-p">Picked up Security Onion, Elastic and Proxmox quickly and adjusted our deployment to a live government network's limits.</p></div>
+        <div class="hw-card rev d3"><span class="hw-i"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span><div class="hw-t">Explaining tech simply</div><p class="hw-p">Taught computer basics in NSTP and co-wrote a plain-language SOC User Handbook for the MIS staff.</p></div>
+        <div class="hw-card rev"><span class="hw-i"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></span><div class="hw-t">Critical thinking</div><p class="hw-p">Root-cause findings across 11 SOC investigations; quantitative risk assessments (SLE, ARO, ALE).</p></div>
+        <div class="hw-card rev d1"><span class="hw-i"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="22" x2="18" y1="12" y2="12"/><line x1="6" x2="2" y1="12" y2="12"/><line x1="12" x2="12" y1="6" y2="2"/><line x1="12" x2="12" y1="22" y2="18"/></svg></span><div class="hw-t">Attention to detail</div><p class="hw-p">Tuned our detections to ~10% false positives and hardened the server from Lynis 68 to 83.</p></div>
+        <div class="hw-card rev d2"><span class="hw-i"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span><div class="hw-t">Teamwork &amp; openness to feedback</div><p class="hw-p">I ask for and act on feedback from my capstone teammates and JPCS org-mates; we won as a team.</p></div>
+        <div class="hw-card rev d3"><span class="hw-i"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg></span><div class="hw-t">Integrity</div><p class="hw-p">Attack simulations only on authorized systems, and a person (not automation) decides on blocking.</p></div>
       </div>
     </div>
   </div>
