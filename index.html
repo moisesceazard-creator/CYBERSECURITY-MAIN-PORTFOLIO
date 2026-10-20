@@ -989,9 +989,9 @@ a:focus-visible,button:focus-visible,[role="button"]:focus-visible{outline:2px s
       </div>
       <div class="proj-card rev d1">
         <div class="proj-top"><div class="proj-icon pi-b"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" ><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></div><div class="proj-bgs"><span class="pbg pbg-b">PYTHON</span><span class="pbg pbg-b">NETWORK</span></div></div>
-        <div class="proj-name">Netscanner v3 — Pure-Python Network Host Scanner</div>
-        <div class="proj-desc">Wrote a host-discovery scanner from scratch with raw sockets and the Python standard library (no nmap, no third-party packages): ICMP echo with TCP fallback, 200 concurrent threads and a 4 MB receive buffer; scans a /24 in about 1–1.5 seconds on Debian 12 in Proxmox VE.</div>
-        <div class="proj-stack"><span class="st">Python 3</span><span class="st">Raw Sockets</span><span class="st">ICMP</span><span class="st">Multithreading</span><span class="st">Debian</span><span class="st">Proxmox VE</span></div>
+        <div class="proj-name">Netscanner — Fast Network Reachability Scanner</div>
+        <div class="proj-desc">A tool I built to answer one question fast: which IPs on a network are reachable? It pings every address in parallel (200 threads), checks common ports (22, 80, 443, 445, 3389) for hosts that block ping, and prints each live host with its response time. Scans a /24 in about 1–1.5 seconds; pure Python, no nmap.</div>
+        <div class="proj-stack"><span class="st">Python 3</span><span class="st">Raw Sockets</span><span class="st">ICMP</span><span class="st">TCP</span><span class="st">Multithreading</span><span class="st">Debian / Proxmox VE</span></div>
         <div class="proj-footer"><span class="proj-stars">Documentation available on request</span><span class="pbg pbg-b">Independent</span></div>
       </div>
       <div class="proj-card rev d2">
