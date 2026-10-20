@@ -19,9 +19,12 @@
 <meta property="og:image:alt" content="Moises Ceazar Del Mundo — Aspiring SOC Analyst, ISC2 CC, 1st Place Best Capstone (InfoSec Track)"/>
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://moisesceazard-creator.github.io/CYBERSECURITY-MAIN-PORTFOLIO/images/og-card-v3.jpg"/>
+<script>document.documentElement.classList.add('js')</script>
+<link rel="preload" as="image" href="images/profile-photo.jpg"/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" onload="this.onload=null;this.rel='stylesheet'"/>
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap"/></noscript>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
 :root{
@@ -29,14 +32,17 @@
   --card-hover:#131E2E; --border:rgba(255,255,255,0.07);
   --border-glow:rgba(59,130,246,0.4); --blue:#3B82F6; --blue-l:#60A5FA;
   --cyan:#22D3EE; --violet:#8B5CF6; --green:#10B981; --amber:#F59E0B;
-  --red:#EF4444; --text:#F1F5F9; --t2:#94A3B8; --t3:#475569;
+  --red:#EF4444; --text:#F1F5F9; --t2:#94A3B8; --t3:#7A889C;
   --mono:'JetBrains Mono',monospace; --sans:'Inter',sans-serif;
 }
 html{scroll-behavior:smooth;font-size:16px;}
 body{background:var(--bg);color:var(--text);font-family:var(--sans);overflow-x:hidden;-webkit-font-smoothing:antialiased;}
 ::selection{background:rgba(59,130,246,0.25);color:#fff;}
-::-webkit-scrollbar{width:2px;}
-::-webkit-scrollbar-thumb{background:var(--blue);border-radius:2px;}
+html{scrollbar-width:thin;scrollbar-color:rgba(96,165,250,.4) transparent;}
+::-webkit-scrollbar{width:9px;height:9px;}
+::-webkit-scrollbar-track{background:transparent;}
+::-webkit-scrollbar-thumb{background:rgba(96,165,250,.32);border-radius:9px;border:2px solid var(--bg);}
+::-webkit-scrollbar-thumb:hover{background:rgba(96,165,250,.6);}
 #bg-canvas{position:fixed;inset:0;z-index:0;pointer-events:none;}
 
 /* NAV */
@@ -79,10 +85,12 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);overflow-x:h
 
 /* EXPERIENCE TIMELINE */
 .timeline{position:relative;margin-top:3rem;padding-left:2rem;}
-.timeline::before{content:'';position:absolute;left:6px;top:8px;bottom:8px;width:2px;background:linear-gradient(var(--blue),var(--cyan) 60%,transparent);}
+.timeline::before{content:'';position:absolute;left:6px;top:8px;bottom:8px;width:2px;background:rgba(255,255,255,.07);border-radius:2px;}
+.tl-fill{position:absolute;left:6px;top:8px;bottom:8px;width:2px;border-radius:2px;background:linear-gradient(var(--blue),var(--cyan));transform-origin:50% 0;transform:scaleY(var(--tlp,0));pointer-events:none;}
 .tl-item{position:relative;margin-bottom:1.1rem;}
-.tl-dot{position:absolute;left:-2rem;top:1.65rem;width:14px;height:14px;border-radius:50%;background:var(--bg);border:2px solid var(--blue);}
-.tl-dot.now{background:var(--green);border-color:var(--green);box-shadow:0 0 12px var(--green);}
+.tl-dot{position:absolute;left:-2rem;top:1.65rem;width:14px;height:14px;border-radius:50%;background:var(--bg);border:2px solid rgba(255,255,255,.16);transition:border-color .35s,background .35s,box-shadow .35s;z-index:1;}
+.tl-dot.lit{border-color:var(--blue);box-shadow:0 0 0 4px rgba(59,130,246,.12);}
+.tl-dot.now.lit{background:var(--green);border-color:var(--green);box-shadow:0 0 12px var(--green);}
 .tl-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:1.4rem 1.6rem;transition:border-color .25s;}
 .tl-card:hover{border-color:var(--border-glow);}
 .tl-head{display:flex;justify-content:space-between;align-items:baseline;gap:.4rem 1rem;flex-wrap:wrap;margin-bottom:.25rem;}
@@ -138,6 +146,12 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);overflow-x:h
 @keyframes ticker-scroll{to{transform:translateX(-100%);}}
 @media(max-width:600px){.ticker-item{font-size:11px;padding:0 1.3rem;}}
 @media(prefers-reduced-motion:reduce){.ticker-track{animation:none;}}
+/* intrinsic sizes only reserve space; CSS sizing still wins (zero specificity) */
+:where(img[width][height]){height:auto;max-width:100%;}
+/* image fade-in */
+.js img[loading="lazy"]:not(.loaded){opacity:0;}
+.js img.loaded{animation:img-in .6s cubic-bezier(.22,1,.36,1) both;}
+@keyframes img-in{from{opacity:0;}to{opacity:1;}}
 /* PROFILE CARD */
 .profile-card{background:var(--card);border:1px solid rgba(59,130,246,.22);border-radius:20px;padding:2rem 1.8rem 1.8rem;position:relative;overflow:hidden;animation:fade-in .8s .2s both;box-shadow:0 30px 80px rgba(0,0,0,.45),0 0 60px rgba(59,130,246,.08);}
 .profile-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--blue),var(--cyan),var(--violet));}
@@ -603,13 +617,14 @@ a:focus-visible,button:focus-visible,[role="button"]:focus-visible{outline:2px s
 </nav>
 
 <!-- HERO -->
+<main id="main">
 <section id="hero">
   <div class="orb orb-1"></div><div class="orb orb-2"></div>
   <div class="hero-inner">
     <div class="hero-left">
       <div class="mobile-photo-wrap">
         <div class="mobile-photo-ring">
-          <img src="images/profile-photo.jpg" alt="Moises Ceazar Del Mundo"/>
+          <img width="600" height="600" src="images/profile-photo.jpg" alt="Moises Ceazar Del Mundo"/>
           <div class="mobile-photo-online"></div>
         </div>
       </div>
@@ -634,7 +649,7 @@ a:focus-visible,button:focus-visible,[role="button"]:focus-visible{outline:2px s
         <div class="profile-card-inner">
           <div class="profile-img-area">
             <div class="profile-img-ring">
-              <img src="images/profile-photo.jpg" alt="Moises Ceazar Del Mundo"/>
+              <img width="600" height="600" src="images/profile-photo.jpg" alt="Moises Ceazar Del Mundo"/>
               <div class="profile-online"></div>
             </div>
             <div class="profile-name">Moises Ceazar Del Mundo</div>
@@ -809,30 +824,30 @@ a:focus-visible,button:focus-visible,[role="button"]:focus-visible{outline:2px s
       <div class="capstone-certs" id="dashboards">
         <div class="cc-title">Kibana dashboards I built</div>
         <div class="cc-grid cd-grid">
-          <div class="cg-item" onclick="openModal('Host &amp; Device Monitoring Dashboard — Kibana (lab replica)','images/dashboards/kibana-host-device-monitoring.jpg',true)"><img loading="lazy" decoding="async" src="images/dashboards/kibana-host-device-monitoring.jpg" alt="Kibana Host and Device Monitoring dashboard: devices monitored, severity counts, activity over time, per-device activity, most-used applications and processes per endpoint"/><div class="cg-cap">Host &amp; Device Monitoring</div></div>
-          <div class="cg-item" onclick="openModal('Network Traffic &amp; Connections Monitor — Kibana (lab replica)','images/dashboards/kibana-network-traffic-monitoring.jpg',true)"><img loading="lazy" decoding="async" src="images/dashboards/kibana-network-traffic-monitoring.jpg" alt="Kibana Network Traffic and Connections dashboard: connections, network alerts, top talkers, top destinations, protocol breakdown, DNS lookups and Suricata alert log"/><div class="cg-cap">Network Traffic &amp; Connections</div></div>
+          <div class="cg-item" onclick="openModal('Host &amp; Device Monitoring Dashboard — Kibana (lab replica)','images/dashboards/kibana-host-device-monitoring.jpg',true)"><img width="900" height="562" loading="lazy" decoding="async" src="images/thumbs/dashboards/kibana-host-device-monitoring.jpg" alt="Kibana Host and Device Monitoring dashboard: devices monitored, severity counts, activity over time, per-device activity, most-used applications and processes per endpoint"/><div class="cg-cap">Host &amp; Device Monitoring</div></div>
+          <div class="cg-item" onclick="openModal('Network Traffic &amp; Connections Monitor — Kibana (lab replica)','images/dashboards/kibana-network-traffic-monitoring.jpg',true)"><img width="900" height="562" loading="lazy" decoding="async" src="images/thumbs/dashboards/kibana-network-traffic-monitoring.jpg" alt="Kibana Network Traffic and Connections dashboard: connections, network alerts, top talkers, top destinations, protocol breakdown, DNS lookups and Suricata alert log"/><div class="cg-cap">Network Traffic &amp; Connections</div></div>
         </div>
         <div class="cc-title cc-sub">Security Onion: detections, hunting &amp; case management</div>
         <div class="cc-grid so-grid">
-          <div class="cg-item" onclick="openModal('Security Onion Alerts — custom detection rules firing (lab replica)','images/dashboards/so-alerts-custom-detections.jpg',true)"><img loading="lazy" decoding="async" src="images/dashboards/so-alerts-custom-detections.jpg" alt="Security Onion Alerts view listing custom ElastAlert detections: SSH brute force, unauthorized workstation access, removable media exfiltration, phishing-related malicious communication and network reconnaissance"/><div class="cg-cap">Custom detections firing</div></div>
-          <div class="cg-item" onclick="openModal('Security Onion Hunt — 8.6M events over one month (lab replica)','images/dashboards/so-hunt.jpg',true)"><img loading="lazy" decoding="async" src="images/dashboards/so-hunt.jpg" alt="Security Onion Hunt view with an event timeline and 8.6 million events grouped by sensor"/><div class="cg-cap">Threat hunting · 8.6M events</div></div>
-          <div class="cg-item" onclick="openModal('Security Onion Cases — incident case management (lab replica)','images/dashboards/so-cases.jpg',true)"><img loading="lazy" decoding="async" src="images/dashboards/so-cases.jpg" alt="Security Onion Cases view with open cases for reconnaissance, SOC login failure, Feodo Tracker malicious IP and SSH brute force"/><div class="cg-cap">Incident case management</div></div>
+          <div class="cg-item" onclick="openModal('Security Onion Alerts — custom detection rules firing (lab replica)','images/dashboards/so-alerts-custom-detections.jpg',true)"><img width="900" height="562" loading="lazy" decoding="async" src="images/thumbs/dashboards/so-alerts-custom-detections.jpg" alt="Security Onion Alerts view listing custom ElastAlert detections: SSH brute force, unauthorized workstation access, removable media exfiltration, phishing-related malicious communication and network reconnaissance"/><div class="cg-cap">Custom detections firing</div></div>
+          <div class="cg-item" onclick="openModal('Security Onion Hunt — 8.6M events over one month (lab replica)','images/dashboards/so-hunt.jpg',true)"><img width="900" height="562" loading="lazy" decoding="async" src="images/thumbs/dashboards/so-hunt.jpg" alt="Security Onion Hunt view with an event timeline and 8.6 million events grouped by sensor"/><div class="cg-cap">Threat hunting · 8.6M events</div></div>
+          <div class="cg-item" onclick="openModal('Security Onion Cases — incident case management (lab replica)','images/dashboards/so-cases.jpg',true)"><img width="900" height="562" loading="lazy" decoding="async" src="images/thumbs/dashboards/so-cases.jpg" alt="Security Onion Cases view with open cases for reconnaissance, SOC login failure, Feodo Tracker malicious IP and SSH brute force"/><div class="cg-cap">Incident case management</div></div>
         </div>
         <p class="cd-note">Built in a lab replica for the colloquium presentation, mirroring what was deployed at the MIS Office: Kibana dashboards for per-device activity, top talkers, DNS lookups and protocol breakdown; the five custom detection rules (SSH brute force, unauthorized workstation access, USB exfiltration, phishing-related C2 and port scanning) firing as Security Onion alerts; threat hunting across 8.6M events; and tracked incident cases. Click any image to view full size.</p>
       </div>
       <div class="capstone-gallery">
-        <div class="cg-item wide" onclick="openModal('Best Capstone — Information Security Track · IT Colloquium \'26–\'27','images/colloquium/award-stage-team.jpg',true)"><img loading="lazy" decoding="async" src="images/colloquium/award-stage-team.jpg" alt="Group 6 on stage receiving the Best Capstone award for the Information Security Track"/><div class="cg-cap">1st Place · Best Capstone — InfoSec Track</div></div>
-        <div class="cg-item wide" onclick="openModal('Best Group Presentation · IT Colloquium \'26–\'27','images/colloquium/award-stage-group-presentation.jpg',true)"><img loading="lazy" decoding="async" src="images/colloquium/award-stage-group-presentation.jpg" alt="Group 6 on stage receiving the Best Group Presentation award"/><div class="cg-cap">1st Place · Best Group Presentation</div></div>
-        <div class="cg-item" onclick="openModal('Group 6 with our medals and certificates','images/colloquium/team-medals.jpg',true)"><img loading="lazy" decoding="async" src="images/colloquium/team-medals.jpg" alt="Group 6 posing with medals and certificates" style="object-position:center 60%"/><div class="cg-cap">Group 6</div></div>
-        <div class="cg-item" onclick="openModal('Both Certificates of Recognition','images/colloquium/moises-certificates.jpg',true)"><img loading="lazy" decoding="async" src="images/colloquium/moises-certificates.jpg" alt="Moises holding both certificates of recognition" style="object-position:center 65%"/><div class="cg-cap">Two 1st-place awards</div></div>
-        <div class="cg-item" onclick="openModal('Certificates of Recognition — IT Colloquium \'26–\'27','images/colloquium/certificates-of-recognition.jpg',true)"><img loading="lazy" decoding="async" src="images/colloquium/certificates-of-recognition.jpg" alt="Certificates of recognition for Best Group Presentation and Best Capstone Project"/><div class="cg-cap">Certificates &amp; medal</div></div>
+        <div class="cg-item wide" onclick="openModal('Best Capstone — Information Security Track · IT Colloquium \'26–\'27','images/colloquium/award-stage-team.jpg',true)"><img width="900" height="675" loading="lazy" decoding="async" src="images/thumbs/colloquium/award-stage-team.jpg" alt="Group 6 on stage receiving the Best Capstone award for the Information Security Track"/><div class="cg-cap">1st Place · Best Capstone — InfoSec Track</div></div>
+        <div class="cg-item wide" onclick="openModal('Best Group Presentation · IT Colloquium \'26–\'27','images/colloquium/award-stage-group-presentation.jpg',true)"><img width="900" height="675" loading="lazy" decoding="async" src="images/thumbs/colloquium/award-stage-group-presentation.jpg" alt="Group 6 on stage receiving the Best Group Presentation award"/><div class="cg-cap">1st Place · Best Group Presentation</div></div>
+        <div class="cg-item" onclick="openModal('Group 6 with our medals and certificates','images/colloquium/team-medals.jpg',true)"><img width="900" height="1200" loading="lazy" decoding="async" src="images/thumbs/colloquium/team-medals.jpg" alt="Group 6 posing with medals and certificates" style="object-position:center 60%"/><div class="cg-cap">Group 6</div></div>
+        <div class="cg-item" onclick="openModal('Both Certificates of Recognition','images/colloquium/moises-certificates.jpg',true)"><img width="900" height="1200" loading="lazy" decoding="async" src="images/thumbs/colloquium/moises-certificates.jpg" alt="Moises holding both certificates of recognition" style="object-position:center 65%"/><div class="cg-cap">Two 1st-place awards</div></div>
+        <div class="cg-item" onclick="openModal('Certificates of Recognition — IT Colloquium \'26–\'27','images/colloquium/certificates-of-recognition.jpg',true)"><img width="900" height="1200" loading="lazy" decoding="async" src="images/thumbs/colloquium/certificates-of-recognition.jpg" alt="Certificates of recognition for Best Group Presentation and Best Capstone Project"/><div class="cg-cap">Certificates &amp; medal</div></div>
       </div>
       <div class="capstone-certs">
         <div class="cc-title">Official certificates</div>
         <div class="cc-grid">
-          <div class="cg-item" onclick="openModal('Certificate of Recognition — 1st Place, Best Capstone Project (Information Security Track)','images/colloquium/cert-best-capstone-infosec.jpg',true)"><img loading="lazy" decoding="async" src="images/colloquium/cert-best-capstone-infosec.jpg" alt="Certificate of Recognition: 1st Place, Best Capstone Project Award, Information Security Track, IT Colloquium '26–'27"/><div class="cg-cap">1st Place · Best Capstone (InfoSec)</div></div>
-          <div class="cg-item" onclick="openModal('Certificate of Recognition — 1st Place, Best Group Presentation','images/colloquium/cert-best-group-presentation.jpg',true)"><img loading="lazy" decoding="async" src="images/colloquium/cert-best-group-presentation.jpg" alt="Certificate of Recognition: 1st Place, Best Group Presentation Award, IT Colloquium '26–'27"/><div class="cg-cap">1st Place · Best Group Presentation</div></div>
-          <div class="cg-item" onclick="openModal('Certificate of Participation — IT Colloquium \'26–\'27','images/colloquium/cert-participation.jpg',true)"><img loading="lazy" decoding="async" src="images/colloquium/cert-participation.jpg" alt="Certificate of Participation issued to Moises Ceazar Del Mundo, IT Colloquium '26–'27"/><div class="cg-cap">Certificate of Participation</div></div>
+          <div class="cg-item" onclick="openModal('Certificate of Recognition — 1st Place, Best Capstone Project (Information Security Track)','images/colloquium/cert-best-capstone-infosec.jpg',true)"><img width="900" height="636" loading="lazy" decoding="async" src="images/thumbs/colloquium/cert-best-capstone-infosec.jpg" alt="Certificate of Recognition: 1st Place, Best Capstone Project Award, Information Security Track, IT Colloquium '26–'27"/><div class="cg-cap">1st Place · Best Capstone (InfoSec)</div></div>
+          <div class="cg-item" onclick="openModal('Certificate of Recognition — 1st Place, Best Group Presentation','images/colloquium/cert-best-group-presentation.jpg',true)"><img width="900" height="636" loading="lazy" decoding="async" src="images/thumbs/colloquium/cert-best-group-presentation.jpg" alt="Certificate of Recognition: 1st Place, Best Group Presentation Award, IT Colloquium '26–'27"/><div class="cg-cap">1st Place · Best Group Presentation</div></div>
+          <div class="cg-item" onclick="openModal('Certificate of Participation — IT Colloquium \'26–\'27','images/colloquium/cert-participation.jpg',true)"><img width="900" height="636" loading="lazy" decoding="async" src="images/thumbs/colloquium/cert-participation.jpg" alt="Certificate of Participation issued to Moises Ceazar Del Mundo, IT Colloquium '26–'27"/><div class="cg-cap">Certificate of Participation</div></div>
         </div>
       </div>
       <div class="capstone-event">First IT Colloquium of De La Salle Lipa · organized by JPCS – DLSL Chapter · Oct 16, 2026 · Senator Diokno Auditorium</div>
@@ -846,7 +861,7 @@ a:focus-visible,button:focus-visible,[role="button"]:focus-visible{outline:2px s
     <div class="s-eyebrow rev">02 — Experience</div>
     <h2 class="s-title rev">Hands-On Experience</h2>
     <p class="s-sub rev">Real deployments, industry mentorship and leadership — not just coursework.</p>
-    <div class="timeline">
+    <div class="timeline"><span class="tl-fill" aria-hidden="true"></span>
       <div class="tl-item rev">
         <span class="tl-dot"></span>
         <div class="tl-card">
@@ -1188,9 +1203,9 @@ a:focus-visible,button:focus-visible,[role="button"]:focus-visible{outline:2px s
         <p class="capstone-desc">Recognized as one of the top students in the IT Elective 2 (Information Security) class of IT3D for the First Semester of Academic Year 2025–2026, presented by the Junior Philippine Computer Society – De La Salle Lipa Chapter and the IT Program.</p>
       </div>
       <div class="honor-gallery">
-        <div class="cg-item wide" onclick="openModal('Certificate of Achievement — Top Student, IT Elective 2 (Information Security)','images/honors/top-student-certificate.jpg',true)"><img loading="lazy" decoding="async" src="images/honors/top-student-certificate.jpg" alt="Certificate of Achievement and Top Student medal for IT Elective 2 (Information Security)"/><div class="cg-cap">Certificate &amp; medal</div></div>
-        <div class="cg-item" onclick="openModal('Top Student Awardee — Awards Night','images/honors/top-student-awards-night.jpg',true)"><img loading="lazy" decoding="async" src="images/honors/top-student-awards-night.jpg" alt="Moises holding the Top Student certificate at the awards night" style="object-position:center 55%"/><div class="cg-cap">Awards night</div></div>
-        <div class="cg-item" onclick="openModal('Top Student medal','images/honors/top-student-medal.jpg',true)"><img loading="lazy" decoding="async" src="images/honors/top-student-medal.jpg" alt="Moises with the Top Student medal and certificate" style="object-position:center 50%"/><div class="cg-cap">Top Student medal</div></div>
+        <div class="cg-item wide" onclick="openModal('Certificate of Achievement — Top Student, IT Elective 2 (Information Security)','images/honors/top-student-certificate.jpg',true)"><img width="900" height="675" loading="lazy" decoding="async" src="images/thumbs/honors/top-student-certificate.jpg" alt="Certificate of Achievement and Top Student medal for IT Elective 2 (Information Security)"/><div class="cg-cap">Certificate &amp; medal</div></div>
+        <div class="cg-item" onclick="openModal('Top Student Awardee — Awards Night','images/honors/top-student-awards-night.jpg',true)"><img width="900" height="1200" loading="lazy" decoding="async" src="images/thumbs/honors/top-student-awards-night.jpg" alt="Moises holding the Top Student certificate at the awards night" style="object-position:center 55%"/><div class="cg-cap">Awards night</div></div>
+        <div class="cg-item" onclick="openModal('Top Student medal','images/honors/top-student-medal.jpg',true)"><img width="1050" height="1400" loading="lazy" decoding="async" src="images/honors/top-student-medal.jpg" alt="Moises with the Top Student medal and certificate" style="object-position:center 50%"/><div class="cg-cap">Top Student medal</div></div>
       </div>
     </div>
     <div class="honor rev">
@@ -1201,9 +1216,9 @@ a:focus-visible,button:focus-visible,[role="button"]:focus-visible{outline:2px s
         <p class="capstone-desc">Spearheaded our NSTP group's community service project at a local public school, teaching students basic computer skills: how to navigate and use a computer, and how to work with Microsoft Office apps like Word. Recognized for exceptional dedication and service to the community.</p>
       </div>
       <div class="honor-gallery">
-        <div class="cg-item wide" onclick="openModal('Certificate of Recognition — NSTP Lingkod Award','images/nstp/lingkod-award-certificate.jpg',true)"><img loading="lazy" decoding="async" src="images/nstp/lingkod-award-certificate.jpg" alt="NSTP Lingkod Award certificate of recognition and NSTP medal"/><div class="cg-cap">Certificate &amp; medal</div></div>
-        <div class="cg-item" onclick="openModal('Teaching basic computer skills','images/nstp/teaching-computer-basics.jpg',true)"><img loading="lazy" decoding="async" src="images/nstp/teaching-computer-basics.jpg" alt="Moises teaching a computer basics lesson from a laptop connected to the classroom TV"/><div class="cg-cap">Teaching the lesson</div></div>
-        <div class="cg-item" onclick="openModal('Our NSTP community service group','images/nstp/nstp-team.jpg',true)"><img loading="lazy" decoding="async" src="images/nstp/nstp-team.jpg" alt="The NSTP community service group" style="object-position:center 65%"/><div class="cg-cap">Our NSTP group</div></div>
+        <div class="cg-item wide" onclick="openModal('Certificate of Recognition — NSTP Lingkod Award','images/nstp/lingkod-award-certificate.jpg',true)"><img width="900" height="675" loading="lazy" decoding="async" src="images/thumbs/nstp/lingkod-award-certificate.jpg" alt="NSTP Lingkod Award certificate of recognition and NSTP medal"/><div class="cg-cap">Certificate &amp; medal</div></div>
+        <div class="cg-item" onclick="openModal('Teaching basic computer skills','images/nstp/teaching-computer-basics.jpg',true)"><img width="900" height="675" loading="lazy" decoding="async" src="images/thumbs/nstp/teaching-computer-basics.jpg" alt="Moises teaching a computer basics lesson from a laptop connected to the classroom TV"/><div class="cg-cap">Teaching the lesson</div></div>
+        <div class="cg-item" onclick="openModal('Our NSTP community service group','images/nstp/nstp-team.jpg',true)"><img width="1050" height="1400" loading="lazy" decoding="async" src="images/nstp/nstp-team.jpg" alt="The NSTP community service group" style="object-position:center 65%"/><div class="cg-cap">Our NSTP group</div></div>
       </div>
     </div>
     <div class="honor rev">
@@ -1219,9 +1234,9 @@ a:focus-visible,button:focus-visible,[role="button"]:focus-visible{outline:2px s
         <div class="tags" style="margin-top:1rem;"><span class="t">Event Planning</span><span class="t">Concept Papers</span><span class="t">SWOT Analysis</span><span class="t">Narrative Reports</span><span class="t">Executive Summaries</span><span class="t">Google Workspace</span></div>
       </div>
       <div class="honor-gallery">
-        <div class="cg-item wide" onclick="openModal('JPCS – DLSL event officers and guests','images/leadership/jpcs-event-officers.jpg',true)"><img loading="lazy" decoding="async" src="images/leadership/jpcs-event-officers.jpg" alt="JPCS – DLSL Chapter officers and guests on stage after a chapter event"/><div class="cg-cap">JPCS – DLSL event</div></div>
-        <div class="cg-item" onclick="openModal('Opening remarks — JPCS – DLSL event','images/leadership/jpcs-event-opening-remarks.jpg',true)"><img loading="lazy" decoding="async" src="images/leadership/jpcs-event-opening-remarks.jpg" alt="Opening remarks at a JPCS – DLSL Chapter event" style="object-position:30% center"/><div class="cg-cap">Opening remarks</div></div>
-        <div class="cg-item" onclick="openModal('JPCS Nite 2026 — JPCS – DLSL Chapter','images/leadership/jpcs-nite-2026.jpg',true)"><img loading="lazy" decoding="async" src="images/leadership/jpcs-nite-2026.jpg" alt="JPCS – DLSL Chapter members at JPCS Nite 2026" style="object-position:center 42%"/><div class="cg-cap">JPCS Nite 2026</div></div>
+        <div class="cg-item wide" onclick="openModal('JPCS – DLSL event officers and guests','images/leadership/jpcs-event-officers.jpg',true)"><img width="900" height="675" loading="lazy" decoding="async" src="images/thumbs/leadership/jpcs-event-officers.jpg" alt="JPCS – DLSL Chapter officers and guests on stage after a chapter event"/><div class="cg-cap">JPCS – DLSL event</div></div>
+        <div class="cg-item" onclick="openModal('Opening remarks — JPCS – DLSL event','images/leadership/jpcs-event-opening-remarks.jpg',true)"><img width="900" height="675" loading="lazy" decoding="async" src="images/thumbs/leadership/jpcs-event-opening-remarks.jpg" alt="Opening remarks at a JPCS – DLSL Chapter event" style="object-position:30% center"/><div class="cg-cap">Opening remarks</div></div>
+        <div class="cg-item" onclick="openModal('JPCS Nite 2026 — JPCS – DLSL Chapter','images/leadership/jpcs-nite-2026.jpg',true)"><img width="1050" height="1400" loading="lazy" decoding="async" src="images/leadership/jpcs-nite-2026.jpg" alt="JPCS – DLSL Chapter members at JPCS Nite 2026" style="object-position:center 42%"/><div class="cg-cap">JPCS Nite 2026</div></div>
       </div>
     </div>
   </div>
@@ -1244,7 +1259,7 @@ a:focus-visible,button:focus-visible,[role="button"]:focus-visible{outline:2px s
     <div class="creds-panel active" id="panel-certs">
       <div class="certs-grid">
         <div class="cert-card rev" onclick="openModal('ISC2 Certified in Cybersecurity (CC)','images/isc2-certified-in-cybersecurity-cc.jpg',false)">
-          <img class="cert-preview" loading="lazy" decoding="async" src="images/isc2-certified-in-cybersecurity-cc.jpg" alt="ISC2"/>
+          <img width="900" height="696" class="cert-preview" loading="lazy" decoding="async" src="images/thumbs/isc2-certified-in-cybersecurity-cc.jpg" alt="ISC2"/>
           <div class="cert-body">
             <div class="cert-issuer-row"><span class="cid" style="background:#22C55E;"></span><span class="cin">ISC2</span></div>
             <div class="cert-name">Certified in Cybersecurity (CC)</div>
@@ -1252,7 +1267,7 @@ a:focus-visible,button:focus-visible,[role="button"]:focus-visible{outline:2px s
           </div>
         </div>
         <div class="cert-card rev d1" onclick="openModal('Google — Foundations of Cybersecurity','images/google-foundations-of-cybersecurity.jpg',false)">
-          <img class="cert-preview" loading="lazy" decoding="async" src="images/google-foundations-of-cybersecurity.jpg" alt="Foundations"/>
+          <img width="900" height="696" class="cert-preview" loading="lazy" decoding="async" src="images/thumbs/google-foundations-of-cybersecurity.jpg" alt="Foundations"/>
           <div class="cert-body">
             <div class="cert-issuer-row"><span class="cid" style="background:#3B82F6;"></span><span class="cin">Google / Coursera</span></div>
             <div class="cert-name">Foundations of Cybersecurity</div>
@@ -1260,7 +1275,7 @@ a:focus-visible,button:focus-visible,[role="button"]:focus-visible{outline:2px s
           </div>
         </div>
         <div class="cert-card rev d2" onclick="openModal('Google — Play It Safe: Manage Security Risks','images/google-play-it-safe-manage-security-risks.jpg',false)">
-          <img class="cert-preview" loading="lazy" decoding="async" src="images/google-play-it-safe-manage-security-risks.jpg" alt="Play It Safe"/>
+          <img width="900" height="696" class="cert-preview" loading="lazy" decoding="async" src="images/thumbs/google-play-it-safe-manage-security-risks.jpg" alt="Play It Safe"/>
           <div class="cert-body">
             <div class="cert-issuer-row"><span class="cid" style="background:#3B82F6;"></span><span class="cin">Google / Coursera</span></div>
             <div class="cert-name">Play It Safe: Manage Security Risks</div>
@@ -1268,7 +1283,7 @@ a:focus-visible,button:focus-visible,[role="button"]:focus-visible{outline:2px s
           </div>
         </div>
         <div class="cert-card rev" onclick="openModal('Google — Networks & Network Security','images/google-networks-network-security.jpg',false)">
-          <img class="cert-preview" loading="lazy" decoding="async" src="images/google-networks-network-security.jpg" alt="Networks"/>
+          <img width="900" height="696" class="cert-preview" loading="lazy" decoding="async" src="images/thumbs/google-networks-network-security.jpg" alt="Networks"/>
           <div class="cert-body">
             <div class="cert-issuer-row"><span class="cid" style="background:#3B82F6;"></span><span class="cin">Google / Coursera</span></div>
             <div class="cert-name">Connect &amp; Protect: Networks &amp; Security</div>
@@ -1276,7 +1291,7 @@ a:focus-visible,button:focus-visible,[role="button"]:focus-visible{outline:2px s
           </div>
         </div>
         <div class="cert-card rev d1" onclick="openModal('Fortinet — Introduction to the Threat Landscape 3.0','images/fortinet-introduction-to-the-threat-landscape-3-0.png',false)">
-          <img class="cert-preview" loading="lazy" decoding="async" src="images/fortinet-introduction-to-the-threat-landscape-3-0.png" alt="Fortinet"/>
+          <img width="900" height="655" class="cert-preview" loading="lazy" decoding="async" src="images/thumbs/fortinet-introduction-to-the-threat-landscape-3-0.jpg" alt="Fortinet"/>
           <div class="cert-body">
             <div class="cert-issuer-row"><span class="cid" style="background:#EF4444;"></span><span class="cin">Fortinet</span></div>
             <div class="cert-name">Introduction to the Threat Landscape 3.0</div>
@@ -1284,7 +1299,7 @@ a:focus-visible,button:focus-visible,[role="button"]:focus-visible{outline:2px s
           </div>
         </div>
         <div class="cert-card rev d2" onclick="openModal('Cisco — Introduction to Cybersecurity','images/cisco-introduction-to-cybersecurity.jpg',false)">
-          <img class="cert-preview" loading="lazy" decoding="async" src="images/cisco-introduction-to-cybersecurity.jpg" alt="Cisco"/>
+          <img width="900" height="695" class="cert-preview" loading="lazy" decoding="async" src="images/thumbs/cisco-introduction-to-cybersecurity.jpg" alt="Cisco"/>
           <div class="cert-body">
             <div class="cert-issuer-row"><span class="cid" style="background:#06B6D4;"></span><span class="cin">Cisco Networking Academy</span></div>
             <div class="cert-name">Introduction to Cybersecurity</div>
@@ -1292,7 +1307,7 @@ a:focus-visible,button:focus-visible,[role="button"]:focus-visible{outline:2px s
           </div>
         </div>
       <div class="cert-card rev" onclick="openModal('Google — Tools of the Trade: Linux and SQL','images/google-tools-of-the-trade-linux-and-sql.jpg',false)">
-        <img class="cert-preview" loading="lazy" decoding="async" src="images/google-tools-of-the-trade-linux-and-sql.jpg" alt="Linux and SQL"/>
+        <img width="900" height="694" class="cert-preview" loading="lazy" decoding="async" src="images/thumbs/google-tools-of-the-trade-linux-and-sql.jpg" alt="Linux and SQL"/>
         <div class="cert-body">
           <div class="cert-issuer-row"><span class="cid" style="background:#3B82F6;"></span><span class="cin">Google / Coursera</span></div>
           <div class="cert-name">Tools of the Trade: Linux and SQL</div>
@@ -1300,7 +1315,7 @@ a:focus-visible,button:focus-visible,[role="button"]:focus-visible{outline:2px s
         </div>
       </div>
       <div class="cert-card rev" onclick="openModal('Appkademiya — Certified Cybersecurity Professional (CCP)','images/appkademiya-certified-cybersecurity-professional-ccp.jpg')">
-        <img class="cert-preview" loading="lazy" decoding="async" src="images/appkademiya-certified-cybersecurity-professional-ccp.jpg" alt="Certified Cybersecurity Professional (CCP)">
+        <img width="900" height="636" class="cert-preview" loading="lazy" decoding="async" src="images/thumbs/appkademiya-certified-cybersecurity-professional-ccp.jpg" alt="Certified Cybersecurity Professional (CCP)">
         <div class="cert-body">
           <div class="cert-issuer-row"><span class="cid" style="background:#2563EB;"></span><span class="cin">Appkademiya</span></div>
           <div class="cert-name">Certified Cybersecurity Professional (CCP)</div>
@@ -1308,7 +1323,7 @@ a:focus-visible,button:focus-visible,[role="button"]:focus-visible{outline:2px s
         </div>
       </div>
       <div class="cert-card rev d1" onclick="openModal('DICT Region IV-A — Introduction to GitHub Actions (3 training hours)','images/dict-github-actions.jpg',false)">
-        <img class="cert-preview" loading="lazy" decoding="async" src="images/dict-github-actions.jpg" alt="DICT certificate of participation: Introduction to GitHub Actions"/>
+        <img width="900" height="506" class="cert-preview" loading="lazy" decoding="async" src="images/thumbs/dict-github-actions.jpg" alt="DICT certificate of participation: Introduction to GitHub Actions"/>
         <div class="cert-body">
           <div class="cert-issuer-row"><span class="cid" style="background:#1E3A8A;"></span><span class="cin">DICT Region IV-A</span></div>
           <div class="cert-name">Introduction to GitHub Actions (3 training hours)</div>
@@ -1316,7 +1331,7 @@ a:focus-visible,button:focus-visible,[role="button"]:focus-visible{outline:2px s
         </div>
       </div>
       <div class="cert-card rev d2" onclick="openModal('DICT Region IV-A — CALABARZON CyberTalks: Digital Bayanihan','images/dict-cybertalks.jpg',false)">
-        <img class="cert-preview" loading="lazy" decoding="async" src="images/dict-cybertalks.jpg" alt="DICT certificate of attendance: CALABARZON CyberTalks"/>
+        <img width="900" height="506" class="cert-preview" loading="lazy" decoding="async" src="images/thumbs/dict-cybertalks.jpg" alt="DICT certificate of attendance: CALABARZON CyberTalks"/>
         <div class="cert-body">
           <div class="cert-issuer-row"><span class="cid" style="background:#1E3A8A;"></span><span class="cin">DICT Region IV-A Cybersecurity</span></div>
           <div class="cert-name">CALABARZON CyberTalks: Digital Bayanihan</div>
@@ -1347,7 +1362,7 @@ a:focus-visible,button:focus-visible,[role="button"]:focus-visible{outline:2px s
 
             <div class="badges-grid">
         <div class="badge-card rev" onclick="openModal('First Blood — First Incident Investigation','images/first-blood-first-incident-investigation.jpg',true)">
-          <img class="badge-img" loading="lazy" decoding="async" src="images/first-blood-first-incident-investigation.jpg" alt="First Blood"/>
+          <img width="900" height="465" class="badge-img" loading="lazy" decoding="async" src="images/thumbs/first-blood-first-incident-investigation.jpg" alt="First Blood"/>
           <div class="badge-body">
             <div class="badge-name">First Blood</div>
             <div class="badge-course">Investigated First Incident</div>
@@ -1355,7 +1370,7 @@ a:focus-visible,button:focus-visible,[role="button"]:focus-visible{outline:2px s
           </div>
         </div>
         <div class="badge-card rev d1" onclick="openModal('SOC Member — SOC Fundamentals','images/soc-member-soc-fundamentals.jpg',true)">
-          <img class="badge-img" loading="lazy" decoding="async" src="images/soc-member-soc-fundamentals.jpg" alt="SOC Member"/>
+          <img width="900" height="470" class="badge-img" loading="lazy" decoding="async" src="images/thumbs/soc-member-soc-fundamentals.jpg" alt="SOC Member"/>
           <div class="badge-body">
             <div class="badge-name">SOC Member</div>
             <div class="badge-course">SOC Fundamentals Course</div>
@@ -1363,7 +1378,7 @@ a:focus-visible,button:focus-visible,[role="button"]:focus-visible{outline:2px s
           </div>
         </div>
         <div class="badge-card rev d2" onclick="openModal('Incident Handler — 5 Incidents Investigated','images/incident-handler-5-incidents-investigated.jpg',true)">
-          <img class="badge-img" loading="lazy" decoding="async" src="images/incident-handler-5-incidents-investigated.jpg" alt="Incident Handler"/>
+          <img width="900" height="466" class="badge-img" loading="lazy" decoding="async" src="images/thumbs/incident-handler-5-incidents-investigated.jpg" alt="Incident Handler"/>
           <div class="badge-body">
             <div class="badge-name">Incident Handler</div>
             <div class="badge-course">Investigated 5 Different Incidents</div>
@@ -1371,7 +1386,7 @@ a:focus-visible,button:focus-visible,[role="button"]:focus-visible{outline:2px s
           </div>
         </div>
         <div class="badge-card rev d3" onclick="openModal('Phishing Expert — Phishing Email Analysis','images/phishing-expert-phishing-email-analysis.jpg',true)">
-          <img class="badge-img" loading="lazy" decoding="async" src="images/phishing-expert-phishing-email-analysis.jpg" alt="Phishing Expert"/>
+          <img width="900" height="465" class="badge-img" loading="lazy" decoding="async" src="images/thumbs/phishing-expert-phishing-email-analysis.jpg" alt="Phishing Expert"/>
           <div class="badge-body">
             <div class="badge-name">Phishing Expert</div>
             <div class="badge-course">Phishing Email Analysis Course</div>
@@ -1379,7 +1394,7 @@ a:focus-visible,button:focus-visible,[role="button"]:focus-visible{outline:2px s
           </div>
         </div>
         <div class="badge-card rev d4" onclick="openModal('Malware Analyzer — Malware Analysis Fundamentals','images/malware-analyzer-malware-analysis-fundamentals.jpg',true)">
-          <img class="badge-img" loading="lazy" decoding="async" src="images/malware-analyzer-malware-analysis-fundamentals.jpg" alt="Malware Analyzer"/>
+          <img width="900" height="469" class="badge-img" loading="lazy" decoding="async" src="images/thumbs/malware-analyzer-malware-analysis-fundamentals.jpg" alt="Malware Analyzer"/>
           <div class="badge-body">
             <div class="badge-name">Malware Analyzer</div>
             <div class="badge-course">Malware Analysis Fundamentals</div>
@@ -1387,7 +1402,7 @@ a:focus-visible,button:focus-visible,[role="button"]:focus-visible{outline:2px s
           </div>
         </div>
         <div class="badge-card rev d4" onclick="openModal('Incident Management — Incident Management 101','images/incident-management-incident-management-101.jpg',true)">
-          <img class="badge-img" loading="lazy" decoding="async" src="images/incident-management-incident-management-101.jpg" alt="Incident Management"/>
+          <img width="900" height="469" class="badge-img" loading="lazy" decoding="async" src="images/thumbs/incident-management-incident-management-101.jpg" alt="Incident Management"/>
           <div class="badge-body">
             <div class="badge-name">Incident Management</div>
             <div class="badge-course">Incident Management 101 Course</div>
@@ -1489,6 +1504,8 @@ a:focus-visible,button:focus-visible,[role="button"]:focus-visible{outline:2px s
   </div>
 </section>
 
+</main>
+
 <footer>
   <div class="footer-in">
     <div class="footer-copy">© 2026 <span>Moises Ceazar Del Mundo</span> · Built with purpose.</div>
@@ -1556,7 +1573,7 @@ function animateBg(t) {
   bctx.clearRect(0,0,bgc.width,bgc.height);
   particles.forEach(p=>{p.update();p.draw();});
 }
-if (!reduceMotion) requestAnimationFrame(animateBg);
+if (!reduceMotion && !smallScreen) requestAnimationFrame(animateBg);
 
 // REVEAL
 // elements that enter together are staggered in reading order (max ~0.36s)
@@ -1685,6 +1702,53 @@ if (!reduceMotion) {
     })(performance.now());
   });
 }
+
+// CAPSTONE METRICS COUNT-UP (once, when the metrics scroll into view)
+const cmBox = document.querySelector('.capstone-metrics');
+if (cmBox && !reduceMotion) {
+  const items = [...cmBox.querySelectorAll('.cm-n')].map(el => {
+    const txt = el.textContent;
+    const arrow = txt.match(/^(\d+)→(\d+)$/);                 // 68→83 counts from 68 to 83
+    const m = txt.match(/^(\D*)(\d+(?:\.\d+)?)(.*)$/);
+    if (arrow) return {el, txt, from:+arrow[1], to:+arrow[2], fmt:v => arrow[1] + '→' + Math.round(v)};
+    if (!m || +m[2] === 0) return null;
+    const dec = (m[2].split('.')[1] || '').length;
+    return {el, txt, from:0, to:+m[2], fmt:v => m[1] + v.toFixed(dec) + m[3]};
+  }).filter(Boolean);
+  items.forEach(it => it.el.textContent = it.fmt(it.from));
+  new IntersectionObserver((en, ob) => {
+    if (!en[0].isIntersecting) return;
+    ob.disconnect();
+    const t0 = performance.now(), dur = 1400;
+    (function step(now) {
+      const k = Math.min(1, (now - t0) / dur), e = 1 - Math.pow(1 - k, 3);
+      items.forEach(it => it.el.textContent = k < 1 ? it.fmt(it.from + (it.to - it.from) * e) : it.txt);
+      if (k < 1) requestAnimationFrame(step);
+    })(t0);
+  }, {threshold:.5}).observe(cmBox);
+}
+
+// EXPERIENCE TIMELINE PROGRESS
+const tl = document.querySelector('.timeline');
+if (tl) {
+  const dots = [...tl.querySelectorAll('.tl-dot')];
+  const updateTl = () => {
+    const r = tl.getBoundingClientRect(), mark = innerHeight * 0.62;
+    const prog = reduceMotion ? 1 : Math.min(1, Math.max(0, (mark - r.top) / r.height));
+    tl.style.setProperty('--tlp', prog.toFixed(4));
+    dots.forEach(d => d.classList.toggle('lit', reduceMotion || d.getBoundingClientRect().top + 7 < mark));
+  };
+  let tlTick = false;
+  window.addEventListener('scroll', () => { if (!tlTick) { tlTick = true; requestAnimationFrame(() => { tlTick = false; updateTl(); }); } }, {passive:true});
+  window.addEventListener('resize', updateTl);
+  updateTl();
+}
+
+// IMAGE FADE-IN
+document.querySelectorAll('img[loading="lazy"]').forEach(img => {
+  const done = () => img.classList.add('loaded');
+  if (img.complete) done(); else { img.addEventListener('load', done, {once:true}); img.addEventListener('error', done, {once:true}); }
+});
 
 // TYPING (hero role): one pass through two roles, then settles on the target title
 (function(){
