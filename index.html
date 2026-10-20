@@ -186,16 +186,32 @@ html{scrollbar-width:thin;scrollbar-color:rgba(96,165,250,.4) transparent;}
 /* ABOUT */
 /* HOW I WORK (soft skills) */
 .hw{margin-top:3.5rem;}
-.hw-title{font-size:1.15rem;font-weight:800;letter-spacing:-.02em;margin-bottom:1.1rem;}
+.hw-top{display:flex;align-items:baseline;justify-content:space-between;gap:.4rem 1.5rem;flex-wrap:wrap;margin-bottom:.9rem;}
+.hw-title{font-size:1.15rem;font-weight:800;letter-spacing:-.02em;}
+.hw-sub{font-size:13px;color:var(--t2);}
+.hw-chips{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:1.1rem;}
+.hw-chip{font-family:var(--mono);font-size:11.5px;letter-spacing:.03em;color:var(--t2);background:transparent;border:1px solid var(--border);border-radius:99px;padding:6px 12px;cursor:pointer;transition:color .2s,border-color .2s,background .2s;}
+.hw-chip span{color:var(--t3);margin-left:2px;}
+.hw-chip:hover{color:var(--text);border-color:var(--border-glow);}
+.hw-chip.on{color:#fff;background:rgba(59,130,246,.16);border-color:rgba(59,130,246,.55);}
+.hw-chip.on span{color:var(--blue-l);}
 .hw-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;}
-.hw-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:1.1rem 1.1rem 1rem;transition:border-color .25s,transform .25s;}
+.hw-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:1.1rem 1.1rem 1rem;transition:border-color .25s,transform .25s,opacity .3s;}
 .hw-card:hover{border-color:var(--border-glow);transform:translateY(-3px);}
-.hw-i{width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;background:rgba(59,130,246,.08);border:1px solid rgba(59,130,246,.2);color:var(--blue-l);margin-bottom:.8rem;}
+.hw-card.dim{opacity:.38;}
+.hw-head{display:flex;align-items:center;gap:.7rem;margin-bottom:.85rem;}
+.hw-i{width:32px;height:32px;flex-shrink:0;border-radius:8px;display:flex;align-items:center;justify-content:center;background:rgba(59,130,246,.08);border:1px solid rgba(59,130,246,.2);color:var(--blue-l);}
 .hw-i .ico{width:16px;height:16px;}
-.hw-t{font-size:14px;font-weight:700;color:var(--text);margin-bottom:.35rem;}
-.hw-p{font-size:12.5px;color:var(--t2);line-height:1.6;}
-@media(max-width:1000px){.hw-grid{grid-template-columns:repeat(2,1fr);}}
-@media(max-width:520px){.hw-grid{grid-template-columns:1fr;}}
+.hw-t{font-size:14px;font-weight:700;color:var(--text);line-height:1.3;}
+.hw-list{list-style:none;display:flex;flex-direction:column;gap:.7rem;}
+.hw-ex{display:flex;flex-direction:column;align-items:flex-start;gap:4px;transition:opacity .3s;}
+.hw-ex.off{opacity:.28;}
+.hw-tag{font-family:var(--mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;padding:2px 7px;border-radius:5px;border:1px solid currentColor;line-height:1.5;}
+.hw-tx{font-size:12.5px;color:var(--t2);line-height:1.55;}
+.hw-capstone{color:#FBBF24;}.hw-jpcs{color:#60A5FA;}.hw-school{color:#A78BFA;}
+.hw-soc{color:#22D3EE;}.hw-nstp{color:#34D399;}.hw-self{color:#94A3B8;}
+@media(max-width:1100px){.hw-grid{grid-template-columns:repeat(2,1fr);}}
+@media(max-width:600px){.hw-grid{grid-template-columns:1fr;}.hw-chips{flex-wrap:nowrap;overflow-x:auto;padding-bottom:4px;margin-right:-1rem;scrollbar-width:none;}.hw-chips::-webkit-scrollbar{display:none;}.hw-chip{flex-shrink:0;}}
 .about-grid{display:grid;grid-template-columns:1.1fr 1fr;gap:4rem;align-items:start;margin-top:3rem;}
 .about-body p{font-size:15px;color:var(--t2);line-height:1.9;margin-bottom:1.1rem;}
 .about-body strong{color:var(--text);font-weight:600;}
@@ -922,17 +938,18 @@ a:focus-visible,button:focus-visible,[role="button"]:focus-visible{outline:2px s
         <div class="fact"><div class="fact-i"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" ><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div><div><div class="fact-k">Available</div><div class="fact-v">Internship / OJT · Philippines · 2026</div></div></div>
       </div>
     </div>
-    <div class="hw rev">
-      <h3 class="hw-title">How I work</h3>
+    <div class="hw rev" id="how-i-work">
+      <div class="hw-top"><h3 class="hw-title">How I work</h3><p class="hw-sub">The same habits show up wherever I am. Filter by where they happened:</p></div>
+      <div class="hw-chips" role="group" aria-label="Filter examples by setting"><button type="button" class="hw-chip on" data-f="all" aria-pressed="true">All</button><button type="button" class="hw-chip" data-f="capstone" aria-pressed="false">Capstone <span>8</span></button><button type="button" class="hw-chip" data-f="jpcs" aria-pressed="false">JPCS <span>4</span></button><button type="button" class="hw-chip" data-f="school" aria-pressed="false">School <span>6</span></button><button type="button" class="hw-chip" data-f="soc" aria-pressed="false">SOC Lab <span>2</span></button><button type="button" class="hw-chip" data-f="nstp" aria-pressed="false">NSTP <span>1</span></button><button type="button" class="hw-chip" data-f="self" aria-pressed="false">Self-study <span>1</span></button></div>
       <div class="hw-grid">
-        <div class="hw-card rev"><span class="hw-i"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" x2="12" y1="19" y2="22"/></svg></span><div class="hw-t">Communication &amp; presentation</div><p class="hw-p">1st Place, Best Group Presentation at the IT Colloquium '26–'27.</p></div>
-        <div class="hw-card rev d1"><span class="hw-i"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" x2="4" y1="22" y2="15"/></svg></span><div class="hw-t">Leadership</div><p class="hw-p">Project Head, Internal Affairs (IT) at JPCS – DLSL; I lead committees for events with 200+ students.</p></div>
-        <div class="hw-card rev d2"><span class="hw-i"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"/><path d="M8 16H3v5"/></svg></span><div class="hw-t">Adaptability</div><p class="hw-p">Picked up Security Onion, Elastic and Proxmox quickly and adjusted our deployment to a live government network's limits.</p></div>
-        <div class="hw-card rev d3"><span class="hw-i"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span><div class="hw-t">Explaining tech simply</div><p class="hw-p">Taught computer basics in NSTP and co-wrote a plain-language SOC User Handbook for the MIS staff.</p></div>
-        <div class="hw-card rev"><span class="hw-i"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></span><div class="hw-t">Critical thinking</div><p class="hw-p">Root-cause findings across 11 SOC investigations; quantitative risk assessments (SLE, ARO, ALE).</p></div>
-        <div class="hw-card rev d1"><span class="hw-i"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="22" x2="18" y1="12" y2="12"/><line x1="6" x2="2" y1="12" y2="12"/><line x1="12" x2="12" y1="6" y2="2"/><line x1="12" x2="12" y1="22" y2="18"/></svg></span><div class="hw-t">Attention to detail</div><p class="hw-p">Tuned our detections to ~10% false positives and hardened the server from Lynis 68 to 83.</p></div>
-        <div class="hw-card rev d2"><span class="hw-i"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span><div class="hw-t">Teamwork &amp; openness to feedback</div><p class="hw-p">I ask for and act on feedback from my capstone teammates and JPCS org-mates; we won as a team.</p></div>
-        <div class="hw-card rev d3"><span class="hw-i"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg></span><div class="hw-t">Integrity</div><p class="hw-p">Attack simulations only on authorized systems, and a person (not automation) decides on blocking.</p></div>
+        <div class="hw-card rev"><div class="hw-head"><span class="hw-i"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" x2="12" y1="19" y2="22"/></svg></span><div class="hw-t">Communication &amp; presentation</div></div><ul class="hw-list"><li class="hw-ex" data-c="school"><span class="hw-tag hw-school">School</span><span class="hw-tx">1st Place, Best Group Presentation at the IT Colloquium '26–'27.</span></li><li class="hw-ex" data-c="capstone"><span class="hw-tag hw-capstone">Capstone</span><span class="hw-tx">Presented and defended our system to the panel, the MIS Office and its Department Head.</span></li><li class="hw-ex" data-c="jpcs"><span class="hw-tag hw-jpcs">JPCS</span><span class="hw-tx">Facilitate workshops and seminars for fellow IT students.</span></li></ul></div>
+        <div class="hw-card rev d1"><div class="hw-head"><span class="hw-i"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" x2="4" y1="22" y2="15"/></svg></span><div class="hw-t">Leadership</div></div><ul class="hw-list"><li class="hw-ex" data-c="jpcs"><span class="hw-tag hw-jpcs">JPCS</span><span class="hw-tx">Project Head, Internal Affairs (IT), after serving as 3rd Year IT Representative; I lead committees for events with 200+ students.</span></li><li class="hw-ex" data-c="school"><span class="hw-tag hw-school">School</span><span class="hw-tx">Class officer and part of student government since elementary.</span></li><li class="hw-ex" data-c="school"><span class="hw-tag hw-school">School</span><span class="hw-tx">Usually chosen by my groupmates to lead group projects.</span></li></ul></div>
+        <div class="hw-card rev d2"><div class="hw-head"><span class="hw-i"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"/><path d="M8 16H3v5"/></svg></span><div class="hw-t">Adaptability</div></div><ul class="hw-list"><li class="hw-ex" data-c="capstone"><span class="hw-tag hw-capstone">Capstone</span><span class="hw-tx">Adjusted our deployment to a live government network's limits, like fixing a SPAN-port monitoring gap on site.</span></li><li class="hw-ex" data-c="soc"><span class="hw-tag hw-soc">SOC Lab</span><span class="hw-tx">Picked up Security Onion, Elastic, Proxmox, Sophos and Action1 quickly.</span></li></ul></div>
+        <div class="hw-card rev d3"><div class="hw-head"><span class="hw-i"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span><div class="hw-t">Explaining tech simply</div></div><ul class="hw-list"><li class="hw-ex" data-c="nstp"><span class="hw-tag hw-nstp">NSTP</span><span class="hw-tx">Taught computer basics to community members.</span></li><li class="hw-ex" data-c="capstone"><span class="hw-tag hw-capstone">Capstone</span><span class="hw-tx">Co-wrote a plain-language SOC User Handbook for the MIS staff.</span></li><li class="hw-ex" data-c="school"><span class="hw-tag hw-school">School</span><span class="hw-tx">Explain lessons to classmates when a topic doesn't click for them.</span></li></ul></div>
+        <div class="hw-card rev"><div class="hw-head"><span class="hw-i"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></span><div class="hw-t">Critical thinking</div></div><ul class="hw-list"><li class="hw-ex" data-c="self"><span class="hw-tag hw-self">Self-study</span><span class="hw-tx">Found root causes across 11 SOC investigations on LetsDefend.</span></li><li class="hw-ex" data-c="school"><span class="hw-tag hw-school">School</span><span class="hw-tx">Quantitative risk assessment (SLE, ARO, ALE) and a CIS Controls v8 assessment.</span></li><li class="hw-ex" data-c="capstone"><span class="hw-tag hw-capstone">Capstone</span><span class="hw-tx">Diagnosed the SPAN-port monitoring gap during the live deployment.</span></li></ul></div>
+        <div class="hw-card rev d1"><div class="hw-head"><span class="hw-i"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="22" x2="18" y1="12" y2="12"/><line x1="6" x2="2" y1="12" y2="12"/><line x1="12" x2="12" y1="6" y2="2"/><line x1="12" x2="12" y1="22" y2="18"/></svg></span><div class="hw-t">Attention to detail</div></div><ul class="hw-list"><li class="hw-ex" data-c="capstone"><span class="hw-tag hw-capstone">Capstone</span><span class="hw-tx">Tuned our detections to ~10% false positives and hardened the server from Lynis 68 to 83.</span></li><li class="hw-ex" data-c="jpcs"><span class="hw-tag hw-jpcs">JPCS</span><span class="hw-tx">Write concept papers, SWOT analyses and narrative reports for approval.</span></li></ul></div>
+        <div class="hw-card rev d2"><div class="hw-head"><span class="hw-i"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span><div class="hw-t">Teamwork &amp; openness to feedback</div></div><ul class="hw-list"><li class="hw-ex" data-c="capstone"><span class="hw-tag hw-capstone">Capstone</span><span class="hw-tx">Team of 4: I ask for and act on my teammates' feedback, and we won as a team.</span></li><li class="hw-ex" data-c="jpcs"><span class="hw-tag hw-jpcs">JPCS</span><span class="hw-tx">Act on feedback from org-mates when planning events.</span></li><li class="hw-ex" data-c="school"><span class="hw-tag hw-school">School</span><span class="hw-tx">Group CIS Controls v8 assessment of a campus network (team of 4).</span></li></ul></div>
+        <div class="hw-card rev d3"><div class="hw-head"><span class="hw-i"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg></span><div class="hw-t">Integrity</div></div><ul class="hw-list"><li class="hw-ex" data-c="soc"><span class="hw-tag hw-soc">SOC Lab</span><span class="hw-tx">Run attack simulations only on authorized systems.</span></li><li class="hw-ex" data-c="capstone"><span class="hw-tag hw-capstone">Capstone</span><span class="hw-tx">Designed it so a person, not automation, decides on blocking.</span></li><li class="hw-ex" data-c="capstone"><span class="hw-tag hw-capstone">Capstone</span><span class="hw-tx">Openly disclosed AI assistance in our security audit.</span></li></ul></div>
       </div>
     </div>
   </div>
@@ -1749,6 +1766,18 @@ document.querySelectorAll('img[loading="lazy"]').forEach(img => {
   const done = () => img.classList.add('loaded');
   if (img.complete) done(); else { img.addEventListener('load', done, {once:true}); img.addEventListener('error', done, {once:true}); }
 });
+
+// HOW I WORK FILTER
+const hwChips = document.querySelectorAll('.hw-chip');
+hwChips.forEach(chip => chip.addEventListener('click', () => {
+  const f = chip.dataset.f;
+  hwChips.forEach(c => { const on = c === chip; c.classList.toggle('on', on); c.setAttribute('aria-pressed', on); });
+  document.querySelectorAll('.hw-card').forEach(card => {
+    let any = false;
+    card.querySelectorAll('.hw-ex').forEach(ex => { const hit = f === 'all' || ex.dataset.c === f; ex.classList.toggle('off', !hit); any = any || hit; });
+    card.classList.toggle('dim', !any);
+  });
+}));
 
 // TYPING (hero role): one pass through two roles, then settles on the target title
 (function(){
